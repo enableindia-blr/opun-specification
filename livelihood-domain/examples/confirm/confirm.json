@@ -31,7 +31,13 @@
             "items": [
                 {
                     "id": "JOB_001",
-                    "fulfillment_ids": ["1"]
+                    "fulfillment_ids": ["1"],
+                    "xinput": {
+                        "form": {
+                            "mime_type": "application/xml",
+                            "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info><professional_experience><current_company>ABC Tech</current_company><current_position>Senior Developer</current_position><years_of_experience>4.5</years_of_experience><previous_companies><company><name>XYZ Corp</name><position>Developer</position><duration>2 years</duration></company></previous_companies></professional_experience><skills_qualifications><education><degree>Bachelors</degree><field>Computer Science</field><university>ABC University</university><year>2010</year></education><skills>React, Node.js, TypeScript, AWS</skills><certifications><cert><name>AWS Certified Developer</name><issuer>Amazon</issuer><year>2022</year></cert></certifications></skills_qualifications><documents><resume>https://example.com/resume/sanjay-kumar.pdf</resume><cover_letter>https://example.com/cover-letter/sanjay-kumar.pdf</cover_letter><portfolio>https://sanjaykumar.dev</portfolio></documents><role_questionnaire><question1>I am interested in this position because it aligns with my expertise in full-stack development and offers opportunities to work on cutting-edge technologies.</question1><question2>I have 4+ years of experience with React, including building complex SPAs and mobile apps with React Native.</question2><question3>Yes, I am available to start immediately and can join within 2 weeks notice period.</question3></role_questionnaire></data>"
+                        }
+                    }
                 }
             ],
             "fulfillments": [

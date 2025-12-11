@@ -104,8 +104,7 @@
                         },
                         "form": {
                             "mime_type": "application/xml",
-                            "url": "https://bpp-api.opunseva.com/agache/agent/network/application/form-submit",
-                            "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info><professional_experience><current_company/><current_position/><years_of_experience/><previous_companies/></professional_experience><skills_qualifications><education><degree/><field/><university/><year/></education><skills/><certifications><name/><issuer/><year/></certifications></skills_qualifications><documents><resume/><cover_letter/><portfolio/></documents><role_questionnaire><question1/><question2/><question3/></role_questionnaire></data></xf:instance><xf:submission id=\"submit\" method=\"post\" action=\"https://bpp-api.opunseva.com/agache/agent/network/application/form-submit\" replace=\"instance\"/></xf:model>",
+                            "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info><professional_experience><current_company/><current_position/><years_of_experience/><previous_companies/></professional_experience><skills_qualifications><education><degree/><field/><university/><year/></education><skills/><certifications><name/><issuer/><year/></certifications></skills_qualifications><documents><resume/><cover_letter/><portfolio/></documents><role_questionnaire><question1/><question2/><question3/></role_questionnaire></data></xf:instance></xf:model>",
                             "resubmit": false
                         }
                     },
