@@ -2,18 +2,24 @@
 
 ## Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0.0 | 2024-12-XX | Initial version - Livelihood domain API contract |
-
+|---------|------------|--------------------------------------------------|
+| Version |       Date | Changes                                          |
+|---------|------------|--------------------------------------------------|
+| 1.0.0   | 2024-12-10 | Initial version - Livelihood domain API contract |
+|---------|------------|--------------------------------------------------|
 ---
 
 ## 1. Introduction
 
-OPuN (OPuN Networks) API contracts map business requirements for livelihood opportunities (job opportunities, internships, work assignments) to a set of attribute keys in different APIs and ensures interoperability, between a Buyer App Platform (BAP) & Seller App Platform (BPP), as follows:
+OPuN (A Decentralized, Consent-Based Open Network for Persons with Disabilities) establishes a unified protocol enabling structured data exchange for livelihood-related processes. This document outlines the specifications governing all interactions between Buyer Platforms (BAPs) and Seller Platforms (BPPs) in the OPuN ecosystem. In facilitating transparent, interoperable, and verifiable communications, OPuN ensures that livelihood opportunities—such as job roles, internships, and project-based assignments—can be discovered, evaluated, and pursued efficiently across decentralized digital infrastructures.
 
-* by defining the set of attribute keys that need to be exchanged to establish a handshake between the BAP & BPP;
-* clearly defining the single source of truth for each attribute key and thereby establishing mutability & immutability of these keys on behalf of the participants at each end of the transaction;
+Participation in the OPuN network requires adherence to foundational principles intended to safeguard transaction integrity, transparency, and reliability. Every participant, regardless of role, must undertake responsibilities related to data accuracy, cryptographic compliance, behavioral conformance, and preservation of network trust.
+
+The OPuN framework prioritizes autonomy and decentralized control. Each participant operates its own systems, yet collectively ensures a harmonized experience for candidates and opportunity providers. This specification defines the expectations that allow such distributed coordination to function predictably.
+
+The livelihood domain defines a structured vocabulary of attributes required for the characterization of job roles, skills, experience criteria, compensation models, and application workflows. Attributes identified within this contract represent the authoritative definitions to be used by all participants.
+
+Enumerated fields—such as employment type, fulfillment mode, and application state—must adhere to the exact values specified in this document. Consistent interpretation of attribute semantics ensures that candidate experiences remain uniform across diverse platforms.
 
 This API contract document is structured as follows:
 
@@ -24,17 +30,17 @@ This API contract document is structured as follows:
 
 Livelihood API contract includes the following APIs:
 
-### 1.1 Pre-order APIs
+### a) Pre-order APIs
 
-* `/search` - BAP specifies the search intent for job opportunities;
-* `/on_search` - BPP responds with the job catalog based on the search intent;
-* `/select` - BAP specifies the job opportunity selected by the candidate;
-* `/on_select` - BPP responds with detailed job information, quote, and application form (XInput);
-* `/init` & `/on_init` - BAP submits filled application form and BPP returns submitted form data for verification;
-* `/confirm` - BAP places the job application on behalf of the candidate;
-* `/on_confirm` - BPP responds to the application placed either through auto-acceptance or deferred acceptance or rejection;
+* `/search` - Buyer NP (BAP) specifies the search intent for job opportunities;
+* `/on_search` - Seller NP (BPP) responds with the job catalog based on the search intent;
+* `/select` - Buyer NP (BAP) specifies the job opportunity selected by the candidate;
+* `/on_select` - Seller NP (BPP) responds with detailed job information, quote, and application form (XInput) with required information for selected job opportunity;
+* `/init` & `/on_init` - Buyer NP (BAP) submits filled application form and Seller NP (BPP) returns submitted form data for verification;
+* `/confirm` - Buyer NP (BAP) places the job application on behalf of the candidate;
+* `/on_confirm` - Seller NP (BPP) responds to the application placed either through auto-acceptance or deferred acceptance or rejection;
 
-### 1.2 Post-order APIs
+### b) Post-order APIs
 
 * `/status` - BAP requests for the current status of the application;
 * `/on_status` - BPP provides the current status of the application;
@@ -42,16 +48,12 @@ Livelihood API contract includes the following APIs:
 * `/on_cancel` - BPP responds to the BAP cancellation request or cancels the application directly;
 * `/update` - BAP initiates an update request (for application details) on behalf of the candidate;
 * `/on_update` - BPP responds to the BAP update request or initiates an unsolicited update (interview schedule, notes, offer, etc.) directly;
-* `/track` - BAP requests for tracking of application progress;
-* `/on_track` - BPP responds with tracking details for application;
 * `/support` - BAP requests support information;
 * `/on_support` - BPP responds with support information;
-* `/rating` - BAP submits rating for the application experience;
-* `/on_rating` - BPP acknowledges the rating;
 
 All attribute keys, defined in this API contract, are mandatory, unless explicitly mentioned otherwise. Participants may validate the request & response payloads, based on mandatory attribute keys, as defined in this contract and respond with "NACK" (along with appropriate error code as defined here) for invalid payloads. Any payload, without optional attribute keys, cannot be considered as invalid.
 
-This API contract has been defined after incorporating requirements for livelihood opportunities domain.
+This API contract has been defined after incorporating requirements for the livelihood opportunities domain.
 
 All participants are required to ensure full compliance with this API contract on the OPuN network.
 
@@ -59,17 +61,22 @@ All participants are required to ensure full compliance with this API contract o
 
 ## 2. Signing & Verification of requests & responses
 
-1. Key pairs, for signing & encryption, can be generated using any standard library e.g. libsodium, Bouncy Castle, etc.
+1. Key pairs, for signing & encryption, can be generated using any standard library e.g. libsodium.
+
 2. Creating key pairs
+
    * Create key pairs, for signing (ed25519) & encryption (X25519);
    * Update base64 encoded public keys in registry;
-   * Utility to generate signing key pairs and test signing & verification is available in the OPuN registry documentation;
+
 3. Auth Header Signing
+
    * Generate UTF-8 byte array from json payload;
    * Generate Blake2b hash from UTF-8 byte array;
    * Create base64 encoding of Blake2b hash, this becomes the digest for signing;
-   * Sign the request, using your private signing key, and add the signature to the request authorization header;
+   * Sign the request, using your private signing key, and add the signature to the request authorization header.
+
 4. Auth Header Verification
+
    * Extract the digest from the encoded signature in the request;
    * Get the signing_public_key from registry using lookup (by using the ukId in the authorization header);
    * Create (UTF-8) byte array from the raw payload and generate Blake2b hash;
@@ -81,36 +88,49 @@ All participants are required to ensure full compliance with this API contract o
 ## 3. Registry lookup
 
 1. There are 2 possible participant types, for the livelihood domain, in the OPuN registry:
+
    * Buyer App Platform (BAP)
+
    * Seller App Platform (BPP)
+
 2. Each participant type, defined above, will have an entry in the registry for their entity;
-3. Every participant on the OPuN registry will have one or more entries in the registry, with unique identifier ("ukid") for each such entry;
-4. Signing & Verification of requests and responses using auth headers is defined in section 2;
+
+3. Every participant on the OPuN registry will have one or more entries in the registry, with unique identifier ("key_id") for each such entry;
+
+4. Signing & Verification of requests and responses using auth headers is defined in section 2.
+
 5. All requests & responses have to be signed by the sender and verified by the receiver. If any request fails verification, it should be rejected (NACK'd) with http 401 error code;
+
 6. The identity of the sender of a request is sent, through the auth header, as follows:
+
    ```
-   keyId="{subscriber_id}|{unique_key_id}|{algorithm}"
+   keyId="{subscriber_id}|{key_id}|{algorithm}"
    ```
-7. Signing by all participants will be using their private key, for which the corresponding public key will be in the registry for their "ukid";
+
+7. Signing by all participants will be using their private key, for which the corresponding public key will be in the registry for their "key_id";
+
 8. Verification of requests is using registry lookup. Participants can either use the registry lookup endpoints or cache the registry locally (with refresh at regular interval) for a local lookup;
+
 9. Following options are available:
+
    * `/lookup`
+
      ```
      request:
      {
          "subscriber_id":"bap.opungram.com",
          "domain":"opun:livelihood",
-         "ukId":"UKID1",
+         "key_id":"KEYID",
          "country":"IND",
          "city":"std:080",
-         "type":"BAP"
+         "type":"BAP" 
      }
      response:
      [
          {
              "subscriber_id":"bap.opungram.com",
              "status":"SUBSCRIBED",
-             "ukId":"UKID1",
+             "key_id":"KEYID",
              "subscriber_url":"https://bap-api.opungram.com/agache/agent/network/",
              "country":"IND",
              "domain":"opun:livelihood",
@@ -126,25 +146,59 @@ All participants are required to ensure full compliance with this API contract o
      ]
      ```
 
+**Note:** `type` - enum - "BPP", "BAP", "BG"
+
 ---
 
 ## 4. Construct of APIs & transaction trail
 
-1. All APIs follow the same construct and include:
-   * Context - includes transaction_id, message_id and other attribute keys that identify the source & destination of the message being sent through the API request or response;
-   * Message - identifies the content of the message e.g. the search intent, catalog details, order details, etc.;
-2. All APIs are asynchronous, i.e.:
-   * request is sent from sender to recipient;
-   * recipient acknowledges the request by sending an "ACK" (or "NACK" if they cannot validate the request);
-   * recipient sends response through the callback for the corresponding request API e.g. `/on_search` callback for `/search` request;
-   * recipient of callback (could be the original sender) acknowledges the response by sending an "ACK" (or "NACK" if they cannot validate the request);
-3. Every request & response pair is identified by a transaction_id + unique message_id & the sender of a request is able to correlate the response to the request using the above;
-4. If a stale request or response is received, i.e. with timestamp earlier than similar request or response (identified by the transaction_id + message_id) that has already been processed, the recipient can send "NACK" with the error code "20002" (BAP) and "30022" (BPP);
-5. Error block can be sent in sync (in response to request) or async (along with callback) mode and should have the following attribute keys: error.type, error.code;
-6. OPuN standard error codes are defined in the error codes specification document;
-7. Transaction trail for a candidate is maintained through a unique transaction_id for the pre-order stage, i.e. `/search`, `/select`, `/init`, `/confirm`. However, considering that most buyer apps cache catalogs that are reused by multiple candidates, for providing a good candidate experience, a unique transaction_id is maintained for `/select`, `/init` & `/confirm`.
-8. Buyer apps with live search functionality can use the same transaction_id across the entire pre-order stage;
-9. Unique id for an application on a network will be identified by the transaction_id & order id;
+### 4.1. API Structure and Content
+
+All OPuN APIs adhere to a standard construct comprising two main blocks:
+
+**Context**: Contains essential attribute keys like transaction_id and message_id, which are used to identify the source and destination of the message in the API request or response.
+
+**Message**: Carries the core content of the message, such as search intent, catalog details, or order details.
+
+### 4.2. Asynchronous API Flow
+
+All APIs are asynchronous, operating through a four-step request-response mechanism:
+
+1. **Request**: The sender transmits the request to the recipient.
+
+2. **Acknowledgement (Sync)**: The recipient immediately acknowledges the request by sending an "ACK" (or "NACK" if validation fails).
+
+3. **Response (Async Callback)**: The recipient sends the full response using a corresponding callback API (e.g., `/on_search` for a `/search` request).
+
+4. **Callback Acknowledgement (Sync)**: The recipient of the callback (usually the original sender) acknowledges the response with an "ACK" or "NACK."
+
+### 4.3. Correlation and Identification
+
+**Correlation**: Every request and its corresponding response are uniquely identified by a combination of transaction_id and a unique message_id, allowing the sender to correlate the response with the original request.
+
+**Stale Message Handling**: If a stale request or response is received (i.e., its timestamp is earlier than a previously processed one identified by the same transaction_id + message_id), the recipient should send a "NACK" with the designated error codes: "20002" (for BAP) or "30022" (for BPP).
+
+### 4.4. Error Handling
+
+**Error Transmission**: An error block can be sent in either synchronous (with the request acknowledgement) or asynchronous (with the callback) mode.
+
+**Required Attributes**: The error block must include the following attribute keys: error.type and error.code.
+
+**Error Codes**: Standard OPuN error codes are detailed in a separate error codes specification document.
+
+### 4.5 Transaction ID Management (Pre-Order Stage)
+
+The way transaction_id is used varies during the pre-order stage:
+
+**Full Trail**: A unique transaction_id is maintained for the entire pre-order stage (`/search`, `/select`, `/init`, `/confirm`) to track the transaction trail for a single candidate.
+
+**Cached Catalogs**: Given that buyer applications often cache catalogs for performance, a unique transaction_id is specifically maintained for the set of APIs: `/select`, `/init`, and `/confirm`.
+
+**Live Search**: Buyer applications implementing live search functionality have the flexibility to use the same transaction_id across the entire pre-order stage.
+
+### 4.6. Application Identification
+
+**Unique Application ID**: An application on the network is uniquely identified by the combination of the transaction_id and the order id.
 
 
 ---
@@ -175,7 +229,7 @@ Search request is always broadcast through the gateway so that all BPPs who have
         "code":"std:080"
       }
     },
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "transaction_id":"T1",
@@ -221,7 +275,7 @@ Search request is always broadcast through the gateway so that all BPPs who have
         "code":"std:080"
       }
     },
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "transaction_id":"T1",
@@ -263,7 +317,7 @@ Search request is always broadcast through the gateway so that all BPPs who have
         "code":"std:080"
       }
     },
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "transaction_id":"T1",
@@ -308,7 +362,7 @@ BPP responds with job catalog based on the search intent.
       }
     },
     "action":"on_search",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -504,7 +558,7 @@ BAP specifies the job opportunity selected by the candidate.
       }
     },
     "action":"select",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -557,7 +611,7 @@ BPP responds with detailed job information, quote, and application form (XInput)
       }
     },
     "action":"on_select",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -636,8 +690,7 @@ BPP responds with detailed job information, quote, and application form (XInput)
             "form":
             {
               "mime_type":"application/xml",
-              "url":"https://bpp-api.opunseva.com/agache/agent/network/application/form-submit",
-              "data":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info><professional_experience><current_company/><current_position/><years_of_experience/><previous_companies/></professional_experience><skills_qualifications><education><degree/><field/><university/><year/></education><skills/><certifications><name/><issuer/><year/></certifications></skills_qualifications><documents><resume/><cover_letter/><portfolio/></documents><role_questionnaire><question1/><question2/><question3/></role_questionnaire></data></xf:instance><xf:submission id=\"submit\" method=\"post\" action=\"https://bpp-api.opunseva.com/agache/agent/network/application/form-submit\" replace=\"instance\"/></xf:model>",
+              "data":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info><professional_experience><current_company/><current_position/><years_of_experience/><previous_companies/></professional_experience><skills_qualifications><education><degree/><field/><university/><year/></education><skills/><certifications><name/><issuer/><year/></certifications></skills_qualifications><documents><resume/><cover_letter/><portfolio/></documents><role_questionnaire><question1/><question2/><question3/></role_questionnaire></data></xf:instance></xf:model>",
               "resubmit":false
             }
           },
@@ -719,17 +772,17 @@ BPP responds with detailed job information, quote, and application form (XInput)
 ```
 
 **N.B.**
-1. The `xinput` block contains the application form fields in XForms 2.0 XML format;
+1. The `xinput` block contains the application form structure in XForms 2.0 XML format (NO URL);
 2. Form fields are sent inline via `form.data` in XForms 2.0 XML;
-3. The form captures: Candidate personal details (if not already known), Resume/certifications, Role-specific questionnaire responses;
-4. On form submission, the XForms engine will POST to `xf:submission/@action` URL;
-5. BPP validates the payload, generates `submission_id`, and returns it to BAP via form-submit response;
+3. The form structure includes: Personal info, Professional experience, Skills & qualifications, Documents, Role-specific questionnaire;
+4. Buyer app renders the XForm structure and candidate fills the form;
+5. No form-submit endpoint is used - form is rendered and filled at buyer app;
 
 ---
 
 ### 5.5 /init
 
-BAP sends `submission_id` in the init request after form submission.
+BAP sends filled form data in the init request after candidate fills the form.
 
 ```
 {
@@ -747,7 +800,7 @@ BAP sends `submission_id` in the init request after form submission.
       }
     },
     "action":"init",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -773,7 +826,8 @@ BAP sends `submission_id` in the init request after form submission.
           {
             "form":
             {
-              "submission_id":"8203501c-8934-468c-b947-1d5317847e9a"
+              "mime_type":"application/xml",
+              "data":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info><professional_experience><current_company>ABC Tech</current_company><current_position>Senior Developer</current_position><years_of_experience>4.5</years_of_experience><previous_companies><company><name>XYZ Corp</name><position>Developer</position><duration>2 years</duration></company></previous_companies></professional_experience><skills_qualifications><education><degree>Bachelors</degree><field>Computer Science</field><university>ABC University</university><year>2010</year></education><skills>React, Node.js, TypeScript, AWS</skills><certifications><cert><name>AWS Certified Developer</name><issuer>Amazon</issuer><year>2022</year></cert></certifications></skills_qualifications><documents><resume>https://example.com/resume/sanjay-kumar.pdf</resume><cover_letter>https://example.com/cover-letter/sanjay-kumar.pdf</cover_letter><portfolio>https://sanjaykumar.dev</portfolio></documents><role_questionnaire><question1>I am interested in this position because it aligns with my expertise in full-stack development and offers opportunities to work on cutting-edge technologies.</question1><question2>I have 4+ years of experience with React, including building complex SPAs and mobile apps with React Native.</question2><question3>Yes, I am available to start immediately and can join within 2 weeks notice period.</question3></role_questionnaire></data>"
             }
           }
         }
@@ -861,15 +915,15 @@ BAP sends `submission_id` in the init request after form submission.
 ```
 
 **N.B.**
-1. The `submission_id` is obtained from the form-submit response after candidate fills and submits the application form;
-2. BAP sends only the `submission_id` in the init request;
-3. BPP retrieves the form data using the `submission_id`;
+1. BAP sends filled form data in `xinput.form.data` after candidate fills the form at buyer app;
+2. Form data is in XML format matching the XForms structure received in `on_select`;
+3. BPP stores this form data for later verification;
 
 ---
 
 ### 5.6 /on_init
 
-BPP returns submitted form data (from submission_id) for verification by candidate along with other information.
+BPP stores the form data and returns it back for review by candidate along with other information.
 
 ```
 {
@@ -887,7 +941,7 @@ BPP returns submitted form data (from submission_id) for verification by candida
       }
     },
     "action":"on_init",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -940,15 +994,35 @@ BPP returns submitted form data (from submission_id) for verification by candida
               "end":"2024-02-03T13:23:01+00:00"
             }
           },
-          "xinput":
-          {
-            "form":
-            {
-              "mime_type":"application/xml",
-              "submission_id":"8203501c-8934-468c-b947-1d5317847e9a",
-              "data":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info><professional_experience><current_company>ABC Tech</current_company><current_position>Senior Developer</current_position><years_of_experience>4.5</years_of_experience><previous_companies><company><name>XYZ Corp</name><position>Developer</position><duration>2 years</duration></company></previous_companies></professional_experience><skills_qualifications><education><degree>Bachelors</degree><field>Computer Science</field><university>ABC University</university><year>2010</year></education><skills>React, Node.js, TypeScript, AWS</skills><certifications><cert><name>AWS Certified Developer</name><issuer>Amazon</issuer><year>2022</year></cert></certifications></skills_qualifications><documents><resume>https://example.com/resume/sanjay-kumar.pdf</resume><cover_letter>https://example.com/cover-letter/sanjay-kumar.pdf</cover_letter><portfolio>https://sanjaykumar.dev</portfolio></documents><role_questionnaire><question1>I am interested in this position because it aligns with my expertise in full-stack development and offers opportunities to work on cutting-edge technologies.</question1><question2>I have 4+ years of experience with React, including building complex SPAs and mobile apps with React Native.</question2><question3>Yes, I am available to start immediately and can join within 2 weeks notice period.</question3></role_questionnaire></data>"
-            }
-          },
+                    "xinput":
+                    {
+                        "required":true,
+                        "head":
+                        {
+                            "descriptor":
+                            {
+                                "name":"Job Application Form"
+                            },
+                            "index":
+                            {
+                                "min":0,
+                                "cur":0,
+                                "max":3
+                            },
+                            "headings":
+                            [
+                                "Personal Information",
+                                "Professional Experience",
+                                "Skills & Qualifications",
+                                "Review & Submit"
+                            ]
+                        },
+                        "form":
+                        {
+                            "mime_type":"application/xml",
+                            "data":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info><professional_experience><current_company>ABC Tech</current_company><current_position>Senior Developer</current_position><years_of_experience>4.5</years_of_experience><previous_companies><company><name>XYZ Corp</name><position>Developer</position><duration>2 years</duration></company></previous_companies></professional_experience><skills_qualifications><education><degree>Bachelors</degree><field>Computer Science</field><university>ABC University</university><year>2010</year></education><skills>React, Node.js, TypeScript, AWS</skills><certifications><cert><name>AWS Certified Developer</name><issuer>Amazon</issuer><year>2022</year></cert></certifications></skills_qualifications><documents><resume>https://example.com/resume/sanjay-kumar.pdf</resume><cover_letter>https://example.com/cover-letter/sanjay-kumar.pdf</cover_letter><portfolio>https://sanjaykumar.dev</portfolio></documents><role_questionnaire><question1>I am interested in this position because it aligns with my expertise in full-stack development and offers opportunities to work on cutting-edge technologies.</question1><question2>I have 4+ years of experience with React, including building complex SPAs and mobile apps with React Native.</question2><question3>Yes, I am available to start immediately and can join within 2 weeks notice period.</question3></role_questionnaire></data>"
+                        }
+                    },
           "fulfillment_ids":["1"]
         }
       ],
@@ -1076,10 +1150,11 @@ BPP returns submitted form data (from submission_id) for verification by candida
 ```
 
 **N.B.**
-1. BPP returns the submitted form data retrieved using `submission_id` for candidate verification;
-2. Form data is returned in XML format matching the XForms structure;
+1. BPP stores the form data received in `init` and returns it back for candidate review;
+2. Form data is returned in XML format matching what was sent in `init`;
 3. Candidate can review all submitted information before confirming the application;
-4. State indicates "APPLICATION-FORM-SUBMITTED - Pending Verification";
+4. If candidate finds any discrepancy, they can drop the transaction at buyer app and start again;
+5. State indicates "APPLICATION-FORM-SUBMITTED - Pending Verification";
 
 ---
 
@@ -1103,7 +1178,7 @@ BAP places the job application on behalf of the candidate.
       }
     },
     "action":"confirm",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1126,7 +1201,15 @@ BAP places the job application on behalf of the candidate.
       [
         {
           "id":"JOB_001",
-          "fulfillment_ids":["1"]
+          "fulfillment_ids":["1"],
+          "xinput":
+          {
+            "form":
+            {
+              "mime_type":"application/xml",
+              "data":"<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info><professional_experience><current_company>ABC Tech</current_company><current_position>Senior Developer</current_position><years_of_experience>4.5</years_of_experience><previous_companies><company><name>XYZ Corp</name><position>Developer</position><duration>2 years</duration></company></previous_companies></professional_experience><skills_qualifications><education><degree>Bachelors</degree><field>Computer Science</field><university>ABC University</university><year>2010</year></education><skills>React, Node.js, TypeScript, AWS</skills><certifications><cert><name>AWS Certified Developer</name><issuer>Amazon</issuer><year>2022</year></cert></certifications></skills_qualifications><documents><resume>https://example.com/resume/sanjay-kumar.pdf</resume><cover_letter>https://example.com/cover-letter/sanjay-kumar.pdf</cover_letter><portfolio>https://sanjaykumar.dev</portfolio></documents><role_questionnaire><question1>I am interested in this position because it aligns with my expertise in full-stack development and offers opportunities to work on cutting-edge technologies.</question1><question2>I have 4+ years of experience with React, including building complex SPAs and mobile apps with React Native.</question2><question3>Yes, I am available to start immediately and can join within 2 weeks notice period.</question3></role_questionnaire></data>"
+            }
+          }
         }
       ],
       "fulfillments":
@@ -1205,8 +1288,9 @@ BAP places the job application on behalf of the candidate.
 
 **N.B.**
 1. BAP generates `order.id` for tracking purposes;
-2. This is the final confirmation step where candidate confirms the application;
-3. All order details must match what was verified in `/on_init`;
+2. BAP sends the same filled form data that was received in `on_init`;
+3. This is the final confirmation step where candidate confirms the application after reviewing the data;
+4. All order details must match what was verified in `/on_init`;
 
 ---
 
@@ -1230,7 +1314,7 @@ BPP responds to the application placed either through auto-acceptance or deferre
       }
     },
     "action":"on_confirm",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1384,10 +1468,11 @@ BPP responds to the application placed either through auto-acceptance or deferre
 ```
 
 **N.B.**
-1. BPP returns `order.id` (can be same as BAP's or BPP-generated);
-2. State indicates "APPLICATION-CONFIRMED";
-3. Tracking is enabled (`tracking: true`) for post-order APIs;
-4. This `order.id` will be used for all subsequent API calls (`status`, `update`, `cancel`, etc.);
+1. BPP verifies the form data received in `confirm` against what was stored in `init`;
+2. If verification passes, BPP returns `order.id` (can be same as BAP's or BPP-generated) and application is submitted;
+3. State indicates "APPLICATION-CONFIRMED";
+4. Tracking is enabled (`tracking: true`) for post-order APIs;
+5. This `order.id` will be used for all subsequent API calls (`status`, `update`, `cancel`, etc.);
 
 ---
 
@@ -1411,7 +1496,7 @@ BAP requests for the current status of the application.
       }
     },
     "action":"status",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1450,7 +1535,7 @@ BPP provides the current status of the application.
       }
     },
     "action":"on_status",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1514,7 +1599,7 @@ BAP initiates an update request (for application details) on behalf of the candi
       }
     },
     "action":"update",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1577,7 +1662,7 @@ BPP responds to the BAP update request or initiates an unsolicited update (inter
       }
     },
     "action":"on_update",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1644,7 +1729,7 @@ BPP responds to the BAP update request or initiates an unsolicited update (inter
       }
     },
     "action":"on_update",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1754,7 +1839,7 @@ BPP responds to the BAP update request or initiates an unsolicited update (inter
       }
     },
     "action":"on_update",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1877,7 +1962,7 @@ BAP places cancellation request for the application.
       }
     },
     "action":"cancel",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1922,7 +2007,7 @@ BPP responds to the BAP cancellation request or cancels the application directly
       }
     },
     "action":"on_cancel",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -1980,7 +2065,7 @@ BAP requests for tracking of application progress.
       }
     },
     "action":"track",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -2019,7 +2104,7 @@ BPP responds with tracking details for application.
       }
     },
     "action":"on_track",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -2062,7 +2147,7 @@ BAP requests support information.
       }
     },
     "action":"support",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -2101,7 +2186,7 @@ BPP responds with support information.
       }
     },
     "action":"on_support",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -2142,7 +2227,7 @@ BAP submits rating for the application experience.
       }
     },
     "action":"rating",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -2187,7 +2272,7 @@ BPP acknowledges the rating.
       }
     },
     "action":"on_rating",
-    "version":"1.1.0",
+    "version":"1.0.0",
     "bap_id":"bap.opungram.com",
     "bap_uri":"https://bap-api.opungram.com/agache/agent/network/",
     "bpp_id":"bpp.opunseva.com",
@@ -2219,9 +2304,9 @@ This domain is used for all livelihood-related opportunities including job oppor
 
 ### 6.2 Version
 
-**Version**: `1.1.0`
+**Version**: `1.0.0`
 
-All APIs use version `1.1.0` unless specified otherwise.
+All APIs use version `1.0.0` unless specified otherwise.
 
 ### 6.3 Fulfillment Types
 
@@ -2265,9 +2350,7 @@ The `xinput` block is used for job application forms:
   * `headings` - Array of section headings
 * `form` - Form data structure:
   * `mime_type` - MIME type of form data (`application/xml` for XForms 2.0)
-  * `url` - Form submission URL
-  * `data` - XForms 2.0 XML data (inline)
-  * `submission_id` - Unique ID returned after form submission
+  * `data` - XForms 2.0 XML data (inline) - form structure in `on_select`, filled form data in `init`, `on_init`, and `confirm`
   * `resubmit` - Boolean indicating if form can be resubmitted
 
 ### 6.7 Quote Structure
@@ -2289,31 +2372,48 @@ The `quote` block provides salary/compensation breakdown:
 
 The job application flow follows this sequence:
 
-1. **search API**: Candidate searches for job opportunities
-2. **on_search API**: BPP responds with job catalog
-3. **select API**: Candidate selects a job opportunity
-4. **on_select API**: BPP responds with detailed job information, quote, and form fields via XInput (XForms 2.0 XML)
-5. **Form Submission**: 
-   - Form fields are provided inline via XForms 2.0 XML in `xinput.form.data`
-   - Form captures: Candidate personal details (if not already known), Resume/certifications, Role-specific questionnaire responses
-   - XForms engine POSTs to `xf:submission/@action` URL (form-submit endpoint)
-   - BPP validates the payload, generates `submission_id`, and returns it to BAP via form-submit response
-6. **init API**: BAP sends `submission_id` in the init request
-7. **on_init API**: BPP returns submitted form data (from submission_id) for verification by candidate along with other information
-8. **confirm API**: Candidate confirms and submits job application (BAP generates `order.id`)
-9. **on_confirm API**: BPP responds with confirmation and application details (BPP returns `order.id`)
-10. **update/on_update API**: Can be used in two ways:
-    - **Solicited Update**: BAP requests to update application details → BPP responds with confirmation
-    - **Unsolicited Update**: BPP sends updates to BAP such as:
-      - Interview schedule
-      - Application notes
+1. **search API**: The candidate initiates a search for job opportunities through the BAP, which broadcasts the search intent across the network.
+
+2. **on_search API**: The BPP responds with a comprehensive job catalog containing available opportunities that match the search criteria.
+
+3. **select API**: The candidate selects a specific job opportunity of interest through the BAP.
+
+4. **on_select API**: The BPP provides detailed job information, compensation quote, and the application form structure via XInput using XForms 2.0 XML format (without URL).
+
+5. **Form Rendering and Completion**: 
+   - The buyer app renders the XForm structure received in the `on_select` response
+   - The candidate completes the form by providing personal details (if not already available), resume/certifications, and responses to role-specific questionnaire items
+
+6. **init API**: The BAP transmits the completed form data in `xinput.form.data` to the BPP for processing.
+
+7. **on_init API**: The BPP stores the submitted form data and returns it to the candidate for review, along with additional order-related information.
+
+8. **Review and Verification**: 
+   - The candidate reviews the form data returned in the `on_init` response
+   - If any discrepancies are identified, the candidate may abort the transaction at the buyer app and restart the process
+   - Upon verification of all information, the candidate proceeds to confirmation
+
+9. **confirm API**: The BAP transmits the verified form data (identical to that received in `on_init`) in the confirm request, and generates an `order.id` for tracking purposes.
+
+10. **on_confirm API**: The BPP validates the form data against the stored information from the `init` request. Upon successful verification, the application is submitted, and the BPP returns the `order.id`.
+
+11. **update/on_update API**: This API supports two operational modes:
+    - **Solicited Update**: The BAP initiates a request to modify application details, and the BPP responds with a confirmation of the update
+    - **Unsolicited Update**: The BPP proactively sends updates to the BAP, including:
+      - Interview scheduling information
+      - Application review notes
       - Job offer details
-      - Status changes
-11. **status/on_status API**: Used to check the current status of application
-12. **cancel/on_cancel API**: Used to cancel the application
-13. **track/on_track API**: Used to track application progress
-14. **support/on_support API**: Used to get support information
-15. **rating/on_rating API**: Used to rate the application experience
+      - Application status changes
+
+12. **status/on_status API**: Enables querying the current status of the application at any point in the process.
+
+13. **cancel/on_cancel API**: Facilitates cancellation of the application by either the candidate (via BAP) or the employer (via BPP).
+
+14. **track/on_track API**: Provides real-time tracking capabilities for monitoring application progress.
+
+15. **support/on_support API**: Retrieves support contact information and assistance resources.
+
+16. **rating/on_rating API**: Allows the candidate to submit feedback and ratings regarding their application experience.
 
 ---
 
@@ -2339,13 +2439,16 @@ Standard error codes for OPuN Livelihood domain:
 
 ### 9.1 Form Submission Flow
 
-1. BPP provides form fields in XForms 2.0 XML format in `/on_select`
-2. Candidate fills the form using XForms engine
-3. Form is submitted to BPP's form-submit endpoint
-4. BPP validates and generates `submission_id`
-5. BAP sends `submission_id` in `/init`
-6. BPP returns form data for verification in `/on_init`
-7. Candidate confirms application in `/confirm`
+1. BPP provides form structure in XForms 2.0 XML format in `/on_select` (NO URL)
+2. Buyer app renders the XForm structure
+3. Candidate fills the form at buyer app
+4. BAP sends filled form data in `/init`
+5. BPP stores the form data and returns it back in `/on_init` for candidate review
+6. Candidate reviews the form data in `/on_init`
+7. If candidate finds discrepancy, they can drop transaction and start again
+8. If all is fine, BAP sends same form data in `/confirm`
+9. BPP verifies form data in `/confirm` against what was stored in `/init`
+10. If verified, BPP confirms application in `/on_confirm`
 
 ### 9.2 Order ID Generation
 
@@ -2375,22 +2478,13 @@ All participants are required to ensure full compliance with this API contract o
 
 ## Appendix A: Complete Example Payloads
 
-Complete example payloads for all APIs are available in the `/examples/work-opportunities/` directory of the OPuN specification repository.
+Complete example payloads for all APIs are available in the `/livelihood-domain/examples/` directory of the OPuN specification repository.
 
----
-
-## Appendix B: References
-
-* OPuN Protocol Specification
-* Beckn Protocol Core Specification
-* XForms 2.0 Specification
-* OPuN Registry Documentation
-* OPuN Error Codes Specification
 
 ---
 
 **Document Version**: 1.0.0  
-**Last Updated**: 2024-12-XX  
+**Last Updated**: 2024-12-11  
 **Domain**: opun:livelihood  
-**API Version**: 1.1.0
+**API Version**: 1.0.0
 

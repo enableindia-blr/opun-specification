@@ -1,10 +1,9 @@
 # OPuN Livelihood Usecase
 
-This section contains sample request and response payloads for the OPuN (OPuN Networks) livelihood domain. 
 
 ## Overview
 
-The opun:livelihood domain enables discovery and application for job opportunities through a standardized protocol. this implementation uses structured fields for better clarity and interoperability.
+OPuN (A Decentralized, Consent-Based Open Network for Persons with Disabilities) establishes a unified protocol enabling structured data exchange for livelihood-related processes. This document outlines the specifications governing all interactions between Buyer Platforms (BAPs) and Seller Platforms (BPPs) in the OPuN ecosystem. In facilitating transparent, interoperable, and verifiable communications, OPuN ensures that livelihood opportunities—such as job roles, internships, and project-based assignments—can be discovered, evaluated, and pursued efficiently across decentralized digital infrastructures.
 
 ## Key Differences from Tag-Based Approach
 
@@ -68,42 +67,51 @@ The following endpoints are covered in these examples:
 - `support/support.json` - Request support information
 - `support/on_support.json` - Support contact details
 
-### Track
-- `track/track.json` - Track application progress
-- `track/on_track.json` - Tracking URL and status
-
-### Rating
-- `rating/rating.json` - Rate job application experience
-- `rating/on_rating.json` - Rating acknowledgment
 
 ## Application Flow
 
 The job application flow follows this sequence:
 
-1. **select API**: Candidate selects a job opportunity
-2. **on_select API**: BPP responds with detailed job information, quote, and form structure via XInput:
-   - Form fields are provided inline via XForms 2.0 XML in `xinput.form.data` (NO URL)
-   - Form structure includes: Personal info, Professional experience, Skills & qualifications, Documents, Role-specific questionnaire
-   - Form metadata (headings, steps) in `xinput.head`
-3. **Form Rendering**: 
-   - Buyer app renders the XForm structure received in `on_select`
-   - Candidate fills the form: Personal details (if not already known), Resume/certifications, Role-specific questionnaire responses
-4. **init API**: BAP sends filled form data in `xinput.form.data` to BPP
-5. **on_init API**: BPP stores the form data and returns it back for review by candidate along with other information
-6. **Review & Confirm**: 
-   - Candidate reviews the form data returned in `on_init`
-   - If candidate finds any discrepancy, they can drop the transaction at buyer app and start again
-   - If all is fine, candidate proceeds to confirm
-7. **confirm API**: BAP sends the same filled form data (received in on_init) in the confirm request
-8. **on_confirm API**: BPP verifies the form data against what was stored in init, and if verified, application is submitted
-9. **update/on_update API**: Can be used in two ways:
-   - **Solicited Update**: BAP requests to update application details → BPP responds with confirmation
-   - **Unsolicited Update**: BPP sends updates to BAP such as:
-     - Interview schedule
-     - Application notes
-     - Job offer details
-     - Status changes
-10. **status/on_status API**: Used to check the status of application
+1. **search API**: The candidate initiates a search for job opportunities through the BAP, which broadcasts the search intent across the network.
+
+2. **on_search API**: The BPP responds with a comprehensive job catalog containing available opportunities that match the search criteria.
+
+3. **select API**: The candidate selects a specific job opportunity of interest through the BAP.
+
+4. **on_select API**: The BPP provides detailed job information, compensation quote, and the application form structure via XInput using XForms 2.0 XML format (without URL).
+
+5. **Form Rendering and Completion**: 
+   - The buyer app renders the XForm structure received in the `on_select` response
+   - The candidate completes the form by providing personal details (if not already available), resume/certifications, and responses to role-specific questionnaire items
+
+6. **init API**: The BAP transmits the completed form data in `xinput.form.data` to the BPP for processing.
+
+7. **on_init API**: The BPP stores the submitted form data and returns it to the candidate for review, along with additional order-related information.
+
+8. **Review and Verification**: 
+   - The candidate reviews the form data returned in the `on_init` response
+   - If any discrepancies are identified, the candidate may abort the transaction at the buyer app and restart the process
+   - Upon verification of all information, the candidate proceeds to confirmation
+
+9. **confirm API**: The BAP transmits the verified form data (identical to that received in `on_init`) in the confirm request, and generates an `order.id` for tracking purposes.
+
+10. **on_confirm API**: The BPP validates the form data against the stored information from the `init` request. Upon successful verification, the application is submitted, and the BPP returns the `order.id`.
+
+11. **update/on_update API**: This API supports two operational modes:
+    - **Solicited Update**: The BAP initiates a request to modify application details, and the BPP responds with a confirmation of the update
+    - **Unsolicited Update**: The BPP proactively sends updates to the BAP, including:
+      - Interview scheduling information
+      - Application review notes
+      - Job offer details
+      - Application status changes
+
+12. **status/on_status API**: Enables querying the current status of the application at any point in the process.
+
+13. **cancel/on_cancel API**: Facilitates cancellation of the application by either the candidate (via BAP) or the employer (via BPP).
+
+14. **support/on_support API**: Retrieves support contact information and assistance resources.
+
+
 
 ## Domain
 
@@ -111,4 +119,4 @@ All examples use the domain: `opun:livelihood`
 
 ## Version
 
-All examples use version: `1.1.0`
+All examples use version: `1.0.0`
