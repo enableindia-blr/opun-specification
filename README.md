@@ -39,7 +39,7 @@ The livelihood domain enables discovery and application for job opportunities, i
 
 
 **Flow Diagram**
-
+```mermaid
 sequenceDiagram
     autonumber
     participant C as Candidate
@@ -108,7 +108,7 @@ sequenceDiagram
     BAP->>BPP: POST /support
     BPP-->>BAP: POST /on_support
     BAP-->>C: Present support information
-
+```
 
 **Key Features:**
 - Structured field approach for better clarity and interoperability
