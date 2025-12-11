@@ -1,0 +1,108 @@
+{
+    "context": {
+        "domain": "opun:livelihood",
+        "location": {
+            "city": {
+                "name": "Bangalore",
+                "code": "std:080"
+            },
+            "country": {
+                "name": "India",
+                "code": "IND"
+            }
+        },
+        "action": "init",
+        "version": "1.1.0",
+        "bap_id": "bap.opungram.com",
+        "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+        "bpp_id": "bpp.opunseva.com",
+        "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+        "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+        "message_id": "$89bdae17-9942-40c8-869a-5bd413356407",
+        "timestamp": "2023-02-14T12:11:46.1295616+00:00",
+        "ttl": "P1M"
+    },
+    "message": {
+        "order": {
+            "provider": {
+                "id": "1"
+            },
+            "items": [
+                {
+                    "id": "JOB_001",
+                    "xinput": {
+                        "form": {
+                            "submission_id": "8203501c-8934-468c-b947-1d5317847e9a"
+                        }
+                    }
+                }
+            ],
+            "fulfillments": [
+                {
+                    "id": "1",
+                    "customer": {
+                        "id": "aadhaar:798677675565",
+                        "person": {
+                            "name": "Sanjay Kumar",
+                            "gender": "Male",
+                            "age": "35",
+                            "skills": [
+                                {
+                                    "name": "React",
+                                    "code": "react"
+                                },
+                                {
+                                    "name": "Node.js",
+                                    "code": "nodejs"
+                                },
+                                {
+                                    "name": "TypeScript",
+                                    "code": "typescript"
+                                }
+                            ],
+                            "languages": [
+                                {
+                                    "code": "en",
+                                    "name": "English"
+                                },
+                                {
+                                    "code": "hi",
+                                    "name": "Hindi"
+                                }
+                            ]
+                        },
+                        "contact": {
+                            "phone": "+91-9999999999",
+                            "email": "sanjay.kumar@example.com"
+                        }
+                    }
+                }
+            ],
+            "billing": {
+                "name": "Sanjay Kumar",
+                "organization": {
+                    "descriptor": {
+                        "name": "OpunGram",
+                        "code": "opungram.com"
+                    },
+                    "contact": {
+                        "phone": "+91-8888888888",
+                        "email": "support@opungram.com"
+                    }
+                },
+                "address": "123 Main Street, Bangalore",
+                "phone": "+91-9999999999"
+            },
+            "payments": [
+                {
+                    "params": {
+                        "bank_code": "IFSC_CODE_OF_THE_BANK",
+                        "bank_account_number": "121212121212",
+                        "bank_account_name": "Sanjay Kumar"
+                    }
+                }
+            ]
+        }
+    }
+}
+

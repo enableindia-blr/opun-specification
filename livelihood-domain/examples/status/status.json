@@ -1,0 +1,29 @@
+{
+    "context": {
+        "domain": "opun:livelihood",
+        "location": {
+            "city": {
+                "name": "Bangalore",
+                "code": "std:080"
+            },
+            "country": {
+                "name": "India",
+                "code": "IND"
+            }
+        },
+        "action": "status",
+        "version": "1.1.0",
+        "bap_id": "bap.opungram.com",
+        "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+        "bpp_id": "bpp.opunseva.com",
+        "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+        "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+        "message_id": "481a01fc-4b45-4d49-9558-c6a7dfad8b75",
+        "timestamp": "2023-02-23T08:09:02.172Z",
+        "ttl": "PT10M"
+    },
+    "message": {
+        "order_id": "JOB_APP_001"
+    }
+}
+

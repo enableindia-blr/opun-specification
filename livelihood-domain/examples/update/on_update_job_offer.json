@@ -1,0 +1,159 @@
+{
+    "context": {
+        "domain": "opun:livelihood",
+        "location": {
+            "city": {
+                "name": "Bangalore",
+                "code": "std:080"
+            },
+            "country": {
+                "name": "India",
+                "code": "IND"
+            }
+        },
+        "action": "on_update",
+        "version": "1.1.0",
+        "bap_id": "bap.opungram.com",
+        "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+        "bpp_id": "bpp.opunseva.com",
+        "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+        "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+        "message_id": "b9bc9bb5-9eed-5e7b-b12d-17208b5be959",
+        "timestamp": "2023-03-05T14:30:00.000Z",
+        "ttl": "PT10M"
+    },
+    "message": {
+        "order": {
+            "id": "JOB_APP_001",
+            "provider": {
+                "id": "1",
+                "descriptor": {
+                    "name": "TechCorp Solutions",
+                    "short_desc": "Leading technology company specializing in software development and digital solutions"
+                }
+            },
+            "items": [
+                {
+                    "id": "JOB_001",
+                    "descriptor": {
+                        "name": "Fullstack Engineer"
+                    }
+                }
+            ],
+            "fulfillments": [
+                {
+                    "id": "1",
+                    "state": {
+                        "descriptor": {
+                            "code": "JOB-OFFER-EXTENDED",
+                            "name": "Job Offer Extended"
+                        },
+                        "updated_at": "2023-03-05T14:30:00.000Z"
+                    },
+                    "type": "JOB",
+                    "agent": {
+                        "person": {
+                            "name": "HR Team"
+                        },
+                        "contact": {
+                            "email": "hr@techcorp.com",
+                            "phone": "+91-9876543210"
+                        }
+                    },
+                    "customer": {
+                        "id": "aadhaar:798677675565",
+                        "person": {
+                            "name": "Sanjay Kumar"
+                        },
+                        "contact": {
+                            "phone": "+91-9999999999",
+                            "email": "sanjay.kumar@example.com"
+                        }
+                    }
+                }
+            ],
+            "tags": [
+                {
+                    "display": true,
+                    "descriptor": {
+                        "code": "offer-details",
+                        "name": "Job Offer Details"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "offer-date",
+                                "name": "Offer Date"
+                            },
+                            "value": "2023-03-05"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "start-date",
+                                "name": "Proposed Start Date"
+                            },
+                            "value": "2023-04-01"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "offer-validity",
+                                "name": "Offer Validity"
+                            },
+                            "value": "7 days"
+                        }
+                    ]
+                },
+                {
+                    "display": true,
+                    "descriptor": {
+                        "code": "offer-notes",
+                        "name": "Offer Notes"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "note",
+                                "name": "Note"
+                            },
+                            "value": "Congratulations! We are pleased to extend you an offer for the Fullstack Engineer position. Please review the offer details and respond within 7 days."
+                        }
+                    ]
+                }
+            ],
+            "quote": {
+                "price": {
+                    "currency": "INR",
+                    "value": "1500000"
+                },
+                "breakup": [
+                    {
+                        "title": "Base Salary",
+                        "price": {
+                            "currency": "INR",
+                            "value": "1200000"
+                        }
+                    },
+                    {
+                        "title": "Variable Pay",
+                        "price": {
+                            "currency": "INR",
+                            "value": "300000"
+                        }
+                    }
+                ]
+            },
+            "docs": [
+                {
+                    "descriptor": {
+                        "name": "Job Offer Letter",
+                        "short_desc": "Official job offer letter with terms and conditions"
+                    },
+                    "url": "https://bpp-api.opunseva.com/agache/agent/network/applications/JOB_APP_001/offer-letter",
+                    "mime_type": "application/pdf"
+                }
+            ],
+            "update_target": "fulfillments"
+        }
+    }
+}
+

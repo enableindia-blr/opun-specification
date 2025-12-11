@@ -1,0 +1,54 @@
+{
+    "context": {
+        "domain": "opun:livelihood",
+        "location": {
+            "city": {
+                "name": "Bangalore",
+                "code": "std:080"
+            },
+            "country": {
+                "name": "India",
+                "code": "IND"
+            }
+        },
+        "action": "on_support",
+        "version": "1.1.0",
+        "bap_id": "bap.opungram.com",
+        "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+        "bpp_id": "bpp.opunseva.com",
+        "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+        "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+        "message_id": "a8ab8aa4-9ddc-496a-a01c-06107a4ad848",
+        "timestamp": "2023-02-23T08:20:51.064Z",
+        "ttl": "PT10M"
+    },
+    "message": {
+        "phone": "+91-9876543210",
+        "email": "hr@techcorp.com",
+        "tags": [
+            {
+                "descriptor": {
+                    "code": "support-type",
+                    "name": "Support Type"
+                },
+                "list": [
+                    {
+                        "descriptor": {
+                            "code": "contact-email",
+                            "name": "Contact Email"
+                        },
+                        "value": "hr@techcorp.com"
+                    },
+                    {
+                        "descriptor": {
+                            "code": "contact-phone",
+                            "name": "Contact Phone"
+                        },
+                        "value": "+91-9876543210"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
