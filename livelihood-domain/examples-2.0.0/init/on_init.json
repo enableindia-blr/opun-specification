@@ -1,0 +1,129 @@
+{
+  "@context": [
+    "https://becknprotocol.io/context/core.jsonld",
+    "https://becknprotocol.io/context/livelihood.jsonld"
+  ],
+  "context": {
+    "domain": "beckn:livelihood",
+    "action": "on_init",
+    "core_version": "2.0.0",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "af58aa7b-6745-47d0-9b0d-62dcb262ee87",
+    "timestamp": "2023-02-23T10:14:05.557Z",
+    "ttl": "P1M",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+    "location": {
+      "@type": "schema:Place",
+      "address": {
+        "@type": "schema:PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressCountry": "IND"
+      }
+    }
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "@id": "urn:order:JOB_APP_001",
+
+      "provider": {
+        "@type": "schema:Organization",
+        "@id": "urn:provider:1",
+        "name": "TechCorp Solutions",
+        "description": "Leading technology company specializing in digital identity solutions.",
+        "logo": "https://example.com/techcorp-logo.png"
+      },
+
+      "items": [
+        {
+          "@type": "schema:JobPosting",
+          "@id": "urn:job:JOB_001",
+          "title": "Fullstack Engineer",
+          "description": "We're looking for a Fullstack Engineer with expertise in React, React Native, and Node.js.",
+          "employmentType": "Full-time",
+          "jobLocationType": "REMOTE",
+
+          "baseSalary": {
+            "@type": "schema:MonetaryAmount",
+            "currency": "INR",
+            "value": 1200000
+          },
+
+          "validThrough": "2023-02-03T23:59:59Z",
+
+          "xinput": {
+            "@type": "beckn:XInput",
+            "required": true,
+            "form": {
+              "mime_type": "application/xml",
+              "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info><professional_experience><current_company>ABC Tech</current_company><current_position>Senior Developer</current_position><years_of_experience>4.5</years_of_experience></professional_experience></data>"
+            }
+          }
+        }
+      ],
+
+      "fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "id": "application-1",
+          "fulfillmentCategory": "JOB",
+
+          "state": {
+            "@type": "beckn:State",
+            "descriptor": {
+              "code": "APPLICATION-FORM-SUBMITTED"
+            },
+            "updated_at": "2023-02-23T10:14:05.557Z"
+          },
+
+          "agent": {
+            "@type": "schema:Organization",
+            "name": "TechCorp HR Team",
+            "email": "hr@techcorp.com"
+          },
+
+          "customer": {
+            "@type": "schema:Person",
+            "@id": "urn:person:aadhaar:798677675565",
+            "name": "Sanjay Kumar",
+            "gender": "Male",
+            "birthDate": "1988-05-15",
+            "knowsAbout": ["React", "Node.js"],
+            "email": "sanjay.kumar@example.com",
+            "telephone": "+91-9999999999"
+          }
+        }
+      ],
+
+      "quote": {
+        "@type": "beckn:Quote",
+        "price": {
+          "@type": "schema:MonetaryAmount",
+          "currency": "INR",
+          "value": 1500000
+        },
+        "breakup": [
+          {
+            "title": "Base Salary",
+            "price": {
+              "@type": "schema:MonetaryAmount",
+              "currency": "INR",
+              "value": 1200000
+            }
+          },
+          {
+            "title": "Variable Pay",
+            "price": {
+              "@type": "schema:MonetaryAmount",
+              "currency": "INR",
+              "value": 300000
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "@context": [
+    "https://becknprotocol.io/context/core.jsonld",
+    "https://becknprotocol.io/context/livelihood.jsonld"
+  ],
+  "context": {
+    "domain": "beckn:livelihood",
+    "action": "confirm",
+    "core_version": "2.0.0",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "481a01fc-4b45-4d49-9558-c6a7dfad8b75",
+    "timestamp": "2023-02-23T08:09:02.172Z",
+    "ttl": "PT10M",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+    "location": {
+      "@type": "schema:Place",
+      "address": {
+        "@type": "schema:PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressCountry": "IND"
+      }
+    }
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "@id": "urn:order:JOB_APP_001",
+
+      "provider": {
+        "@type": "schema:Organization",
+        "@id": "urn:provider:1"
+      },
+
+      "items": [
+        {
+          "@type": "schema:JobPosting",
+          "@id": "urn:job:JOB_001",
+          "xinput": {
+            "@type": "beckn:XInput",
+            "required": true,
+            "form": {
+              "mime_type": "application/xml",
+              "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info><professional_experience><current_company>ABC Tech</current_company><current_position>Senior Developer</current_position><years_of_experience>4.5</years_of_experience></professional_experience></data>"
+            }
+          }
+        }
+      ],
+
+      "fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "id": "application-1",
+          "fulfillmentCategory": "JOB",
+
+          "customer": {
+            "@type": "schema:Person",
+            "@id": "urn:person:aadhaar:798677675565",
+            "name": "Sanjay Kumar",
+            "gender": "Male",
+            "birthDate": "1988-05-15",
+            "knowsAbout": ["React", "Node.js", "TypeScript"],
+            "email": "sanjay.kumar@example.com",
+            "telephone": "+91-9999999999"
+          }
+        }
+      ],
+
+      "billing": {
+        "@type": "schema:Invoice",
+        "name": "Job Application Confirmation",
+        "billingAddress": {
+          "@type": "schema:PostalAddress",
+          "streetAddress": "123 Main Street",
+          "addressLocality": "Bangalore",
+          "addressCountry": "IND"
+        }
+      }
+    }
+  }
+}

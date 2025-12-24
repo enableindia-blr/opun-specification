@@ -1,0 +1,57 @@
+{
+  "@context": [
+    "https://becknprotocol.io/context/core.jsonld",
+    "https://becknprotocol.io/context/livelihood.jsonld"
+  ],
+  "context": {
+    "domain": "beckn:livelihood",
+    "action": "on_update",
+    "core_version": "2.0.0",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "a8ab8aa4-9ddc-496a-a01c-06107a4ad848",
+    "timestamp": "2023-02-23T08:20:51.064Z",
+    "ttl": "PT10M",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+    "location": {
+      "@type": "schema:Place",
+      "address": {
+        "@type": "schema:PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressCountry": "IND"
+      }
+    }
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "@id": "urn:order:JOB_APP_001",
+
+      "fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "id": "application-1",
+          "fulfillmentCategory": "JOB",
+
+          "state": {
+            "@type": "beckn:State",
+            "descriptor": {
+              "code": "APPLICATION-UPDATED"
+            },
+            "updated_at": "2023-02-23T08:20:51.064Z"
+          },
+
+          "customer": {
+            "@type": "schema:Person",
+            "@id": "urn:person:aadhaar:798677675565",
+            "name": "Sanjay Kumar",
+            "telephone": "+91-9999999999",
+            "email": "sanjay.kumar.new@example.com"
+          }
+        }
+      ]
+    }
+  }
+}

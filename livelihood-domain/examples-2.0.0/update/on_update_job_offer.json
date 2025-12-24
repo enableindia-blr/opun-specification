@@ -1,0 +1,128 @@
+{
+  "@context": [
+    "https://becknprotocol.io/context/core.jsonld",
+    "https://becknprotocol.io/context/livelihood.jsonld"
+  ],
+  "context": {
+    "domain": "beckn:livelihood",
+    "action": "on_update",
+    "core_version": "2.0.0",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "b9bc9bb5-9eed-5e7b-b12d-17208b5be959",
+    "timestamp": "2023-03-05T14:30:00.000Z",
+    "ttl": "PT10M",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+    "location": {
+      "@type": "schema:Place",
+      "address": {
+        "@type": "schema:PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressCountry": "IND"
+      }
+    }
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "@id": "urn:order:JOB_APP_001",
+
+      "provider": {
+        "@type": "schema:Organization",
+        "@id": "urn:provider:1",
+        "name": "TechCorp Solutions",
+        "description": "Leading technology company specializing in software development and digital solutions."
+      },
+
+      "items": [
+        {
+          "@type": "schema:JobPosting",
+          "@id": "urn:job:JOB_001",
+          "title": "Fullstack Engineer"
+        }
+      ],
+
+      "fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "id": "application-1",
+          "fulfillmentCategory": "JOB",
+
+          "state": {
+            "@type": "beckn:State",
+            "descriptor": {
+              "code": "JOB-OFFER-EXTENDED"
+            },
+            "updated_at": "2023-03-05T14:30:00.000Z"
+          },
+
+          "agent": {
+            "@type": "schema:Organization",
+            "name": "TechCorp HR Team",
+            "email": "hr@techcorp.com",
+            "telephone": "+91-9876543210"
+          },
+
+          "customer": {
+            "@type": "schema:Person",
+            "@id": "urn:person:aadhaar:798677675565",
+            "name": "Sanjay Kumar",
+            "email": "sanjay.kumar@example.com",
+            "telephone": "+91-9999999999"
+          },
+
+          "time": {
+            "label": "Offer Timeline",
+            "range": {
+              "start": "2023-03-05T14:30:00.000Z",
+              "end": "2023-03-12T23:59:59.000Z"
+            }
+          },
+
+          "instructions": {
+            "short_desc": "Offer extended. Please review the offer letter and respond within 7 days. Proposed start date: 2023-04-01."
+          }
+        }
+      ],
+
+      "quote": {
+        "@type": "beckn:Quote",
+        "price": {
+          "@type": "schema:MonetaryAmount",
+          "currency": "INR",
+          "value": 1500000
+        },
+        "breakup": [
+          {
+            "title": "Base Salary",
+            "price": {
+              "@type": "schema:MonetaryAmount",
+              "currency": "INR",
+              "value": 1200000
+            }
+          },
+          {
+            "title": "Variable Pay",
+            "price": {
+              "@type": "schema:MonetaryAmount",
+              "currency": "INR",
+              "value": 300000
+            }
+          }
+        ]
+      },
+
+      "docs": [
+        {
+          "@type": "schema:MediaObject",
+          "name": "Job Offer Letter",
+          "description": "Official job offer letter with terms and conditions.",
+          "url": "https://bpp-api.opunseva.com/agache/agent/network/applications/JOB_APP_001/offer-letter",
+          "encodingFormat": "application/pdf"
+        }
+      ]
+    }
+  }
+}

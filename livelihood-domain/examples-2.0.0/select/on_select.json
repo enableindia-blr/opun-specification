@@ -1,0 +1,125 @@
+{
+  "@context": [
+    "https://becknprotocol.io/context/core.jsonld",
+    "https://becknprotocol.io/context/livelihood.jsonld"
+  ],
+  "context": {
+    "domain": "beckn:livelihood",
+    "action": "on_select",
+    "core_version": "2.0.0",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "c8e3968c-cd78-4e46-aa34-0d541e46bd73",
+    "timestamp": "2023-02-22T11:50:46.742Z",
+    "ttl": "PT10M",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+    "location": {
+      "@type": "schema:Place",
+      "address": {
+        "@type": "schema:PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressCountry": "IND"
+      }
+    }
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+
+      "provider": {
+        "@type": "schema:Organization",
+        "@id": "urn:provider:techcorp",
+        "name": "TechCorp Solutions",
+        "description": "Leading technology company specializing in digital identity solutions.",
+        "logo": "https://example.com/techcorp-logo.png",
+        "location": {
+          "@type": "schema:Place",
+          "@id": "urn:location:L1",
+          "address": {
+            "@type": "schema:PostalAddress",
+            "addressLocality": "Pune",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IND"
+          }
+        }
+      },
+
+      "items": [
+        {
+          "@type": "schema:JobPosting",
+          "@id": "urn:job:JOB_001",
+
+          "title": "Fullstack Engineer",
+          "description": "We're looking for a Fullstack Engineer with expertise in React, React Native, and Node.js. The ideal candidate should have experience building scalable web and mobile applications.",
+
+          "employmentType": "Full-time",
+          "jobLocationType": "REMOTE",
+
+          "skills": [
+            "React.js",
+            "React Native",
+            "TypeScript",
+            "Node.js"
+          ],
+
+          "jobLocation": {
+            "@type": "schema:Place",
+            "address": {
+              "@type": "schema:PostalAddress",
+              "addressLocality": "Pune",
+              "addressRegion": "Maharashtra",
+              "addressCountry": "IND"
+            }
+          },
+
+          "baseSalary": {
+            "@type": "schema:MonetaryAmount",
+            "currency": "INR",
+            "value": 1200000
+          },
+
+          "datePosted": "2023-01-03",
+          "validThrough": "2023-02-03T23:59:59Z",
+
+          "xinput": {
+            "@type": "beckn:XInput",
+            "required": true,
+            "form": {
+              "mime_type": "application/xml",
+              "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info><professional_experience><current_company/><current_position/><years_of_experience/><previous_companies/></professional_experience><skills_qualifications><education><degree/><field/><university/><year/></education><skills/><certifications><name/><issuer/><year/></certifications></skills_qualifications><documents><resume/><cover_letter/><portfolio/></documents><role_questionnaire><question1/><question2/><question3/></role_questionnaire></data></xf:instance></xf:model>"
+            }
+          }
+        }
+      ],
+
+      "quote": {
+        "@type": "beckn:Quote",
+        "price": {
+          "@type": "schema:MonetaryAmount",
+          "currency": "INR",
+          "value": 1500000
+        },
+        "breakup": [
+          {
+            "title": "Base Salary",
+            "price": {
+              "@type": "schema:MonetaryAmount",
+              "currency": "INR",
+              "value": 1200000
+            }
+          },
+          {
+            "title": "Variable Pay",
+            "price": {
+              "@type": "schema:MonetaryAmount",
+              "currency": "INR",
+              "value": 300000
+            }
+          }
+        ]
+      }
+    }
+  }
+}

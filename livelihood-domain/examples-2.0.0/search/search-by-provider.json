@@ -1,0 +1,36 @@
+{
+    "@context": [
+      "https://becknprotocol.io/context/core.jsonld",
+      "https://becknprotocol.io/context/livelihood.jsonld"
+    ],
+    "context": {
+      "domain": "beckn:livelihood",
+      "action": "search",
+      "core_version": "2.0.0",
+      "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+      "message_id": "89bdae17-9942-40c8-869a-5bd413356407",
+      "timestamp": "2023-02-14T12:11:46.129Z",
+      "ttl": "PT30S",
+      "bap_id": "bap.opungram.com",
+      "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+      "location": {
+        "@type": "schema:Place",
+        "address": {
+          "@type": "schema:PostalAddress",
+          "addressLocality": "Bangalore",
+          "addressCountry": "IND"
+        }
+      }
+    },
+    "message": {
+      "intent": {
+        "@type": "beckn:Intent",
+        "@typeHint": "schema:JobPosting",
+        "provider": {
+          "@type": "schema:Organization",
+          "@id": "urn:provider:1"
+        }
+      }
+    }
+  }
+  

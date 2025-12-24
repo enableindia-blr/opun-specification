@@ -1,0 +1,95 @@
+{
+  "@context": [
+    "https://becknprotocol.io/context/core.jsonld",
+    "https://becknprotocol.io/context/livelihood.jsonld"
+  ],
+  "context": {
+    "domain": "beckn:livelihood",
+    "action": "on_update",
+    "core_version": "2.0.0",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "a8ab8aa4-9ddc-496a-a01c-06107a4ad848",
+    "timestamp": "2023-02-25T10:20:51.064Z",
+    "ttl": "PT10M",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com/agache/agent/network/",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+    "location": {
+      "@type": "schema:Place",
+      "address": {
+        "@type": "schema:PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressCountry": "IND"
+      }
+    }
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "@id": "urn:order:JOB_APP_001",
+
+      "provider": {
+        "@type": "schema:Organization",
+        "@id": "urn:provider:1",
+        "name": "TechCorp Solutions",
+        "description": "Leading technology company specializing in software development and digital solutions."
+      },
+
+      "items": [
+        {
+          "@type": "schema:JobPosting",
+          "@id": "urn:job:JOB_001",
+          "title": "Fullstack Engineer"
+        }
+      ],
+
+      "fulfillments": [
+        {
+          "@type": "beckn:Fulfillment",
+          "id": "application-1",
+          "fulfillmentCategory": "JOB",
+
+          "state": {
+            "@type": "beckn:State",
+            "descriptor": {
+              "code": "INTERVIEW-SCHEDULED"
+            },
+            "updated_at": "2023-02-25T10:20:51.064Z"
+          },
+
+          "agent": {
+            "@type": "schema:Organization",
+            "name": "TechCorp HR Team",
+            "email": "hr@techcorp.com",
+            "telephone": "+91-9876543210"
+          },
+
+          "customer": {
+            "@type": "schema:Person",
+            "@id": "urn:person:aadhaar:798677675565",
+            "name": "Sanjay Kumar",
+            "email": "sanjay.kumar@example.com",
+            "telephone": "+91-9999999999"
+          },
+
+          "time": {
+            "label": "Interview Schedule",
+            "range": {
+              "start": "2023-03-01T10:00:00+05:30"
+            }
+          },
+
+          "location": {
+            "@type": "schema:VirtualLocation",
+            "url": "https://meet.techcorp.com/interview/abc123"
+          },
+
+          "instructions": {
+            "short_desc": "Technical interview (video call) with John Doe, Senior Engineering Manager."
+          }
+        }
+      ]
+    }
+  }
+}
