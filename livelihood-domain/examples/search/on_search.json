@@ -42,14 +42,53 @@
                     "fulfillments": [
                         {
                             "id": "1",
+                            "start": {
+                                "location": {
+                                    "city": {
+                                        "name": "Bengaluru"
+                                    },
+                                    "country": {
+                                        "name": "India"
+                                    },
+                                    "state": {
+                                        "name": "Karnataka"
+                                    }
+                                }
+                            },
                             "type": "remote"
                         },
                         {
                             "id": "2",
+                            "start": {
+                                "location": {
+                                    "city": {
+                                        "name": "Bengaluru"
+                                    },
+                                    "country": {
+                                        "name": "India"
+                                    },
+                                    "state": {
+                                        "name": "Karnataka"
+                                    }
+                                }
+                            },
                             "type": "hybrid"
                         },
                         {
                             "id": "3",
+                            "start": {
+                                "location": {
+                                    "city": {
+                                        "name": "Bengaluru"
+                                    },
+                                    "country": {
+                                        "name": "India"
+                                    },
+                                    "state": {
+                                        "name": "Karnataka"
+                                    }
+                                }
+                            },
                             "type": "onsite"
                         }
                     ],
