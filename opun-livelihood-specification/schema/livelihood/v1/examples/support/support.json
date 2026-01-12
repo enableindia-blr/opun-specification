@@ -1,0 +1,29 @@
+{
+  "context": {
+    "domain": "opun:livelihood",
+    "action": "support",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "481a01fc-4b45-4d49-9558-c6a7dfad8b75",
+    "timestamp": "2024-01-15T12:11:46.129Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:id": "order-001"
+    }
+  }
+}

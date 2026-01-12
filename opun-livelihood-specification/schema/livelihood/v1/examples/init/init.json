@@ -1,0 +1,125 @@
+{
+  "context": {
+    "domain": "opun:livelihood",
+    "action": "init",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "89bdae17-9942-40c8-869a-5bd413356407",
+    "timestamp": "2024-01-15T12:11:46.129Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:orderStatus": "ACTIVE",
+
+      "beckn:provider": {
+        "@type": "beckn:Provider",
+        "beckn:id": "techcorp-solutions"
+      },
+
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "techcorp-solutions"
+      },
+
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "candidate-001",
+        "beckn:displayName": "Sanjay Kumar",
+        "beckn:role": "BUYER",
+        "beckn:telephone": "+91-9999999999",
+        "beckn:email": "sanjay.kumar@example.com",
+        "beckn:buyerAttributes": {
+          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+          "@type": "opun:LivelihoodCandidateProfile",
+
+          "opun:currentEmployer": "ABC Tech",
+          "opun:currentDesignation": "Senior Developer",
+          "opun:totalExperience": "P4Y6M",
+          "opun:noticePeriod": "P14D",
+
+          "opun:disabilityProfile": {
+            "opun:disabilityType": "LOCO_WHEELCHAIR",
+            "opun:subType": "Wheelchair User",
+            "opun:nature": "ACQUIRED",
+            "opun:severityPercentage": 60,
+
+            "opun:functionalAbilities": {
+              "opun:upperLimbDexterity": "FULL",
+              "opun:fineMotorSkills": "UNAFFECTED",
+              "opun:indoorMobility": "INDEPENDENT_WHEELCHAIR",
+              "opun:sittingTolerance": "4_6_HOURS",
+              "opun:travelRangeKm": "5_20"
+            },
+
+            "opun:workplaceRequirements": {
+              "opun:barrierFreeAccess": true,
+              "opun:accessibleWashroom": true,
+              "opun:ergonomicSeating": true
+            },
+
+            "opun:assistiveTechnologyOwned": [
+              "WHEELCHAIR_ELECTRIC",
+              "MODIFIED_SCOOTER"
+            ]
+          }
+        }
+      },
+
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@type": "beckn:Item",
+            "beckn:id": "JOB_001"
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "position"
+          }
+        }
+      ],
+
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "application-1",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "PENDING"
+      },
+
+      "beckn:orderAttributes": {
+        "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+        "@type": "opun:LivelihoodApplicationAttributes",
+
+        "opun:applicationId": "APP-2024-001",
+        "opun:appliedDate": "2024-01-15T12:11:46.129Z",
+
+        "opun:applicationForm": {
+          "@type": "opun:LivelihoodApplicationForm",
+          "opun:mimeType": "application/xml",
+          "opun:formData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore, Karnataka, India</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info></data>",
+          "opun:resubmit": false
+        },
+
+        "opun:submittedDocuments": [
+          "RESUME",
+          "COVER_LETTER",
+          "PORTFOLIO"
+        ]
+      }
+    }
+  }
+}

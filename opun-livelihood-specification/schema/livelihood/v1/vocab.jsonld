@@ -1,0 +1,406 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "http://schema.org/",
+    "beckn": "https://schema.beckn.org/core/v2/",
+    "opun": "https://schema.opun.network/livelihood/v1/"
+  },
+  "@graph": [
+    {
+      "@id": "opun:",
+      "@type": "rdfs:Ontology",
+      "rdfs:label": "OpuN Livelihood Domain Vocabulary",
+      "rdfs:comment": "Vocabulary for job opportunities and employment services in the OpuN Network ecosystem",
+      "schema:version": "1.0.0",
+      "schema:dateCreated": "2024-01-15"
+    },
+
+    {
+      "@id": "opun:JobOpportunity",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Job Opportunity",
+      "rdfs:comment": "Represents a job opening or employment opportunity",
+      "rdfs:subClassOf": "beckn:Item"
+    },
+
+    {
+      "@id": "opun:EmploymentType",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Employment Type",
+      "rdfs:comment": "Type of employment contract",
+      "schema:enumeration": [
+        "FULL_TIME",
+        "PART_TIME",
+        "CONTRACT",
+        "TEMPORARY",
+        "INTERNSHIP",
+        "FREELANCE",
+        "APPRENTICESHIP",
+        "VOLUNTEER"
+      ]
+    },
+
+    {
+      "@id": "opun:WorkMode",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Work Mode",
+      "rdfs:comment": "Work location arrangement",
+      "schema:enumeration": [
+        "REMOTE",
+        "ONSITE",
+        "HYBRID"
+      ]
+    },
+
+    {
+      "@id": "opun:ExperienceLevel",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Experience Level",
+      "rdfs:comment": "Level of professional experience",
+      "schema:enumeration": [
+        "ENTRY_LEVEL",
+        "JUNIOR",
+        "MID_LEVEL",
+        "SENIOR",
+        "LEAD",
+        "MANAGER",
+        "DIRECTOR",
+        "EXECUTIVE"
+      ]
+    },
+
+    {
+      "@id": "opun:EducationLevel",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Education Level",
+      "rdfs:comment": "Educational qualification level",
+      "schema:enumeration": [
+        "NO_FORMAL_EDUCATION",
+        "HIGH_SCHOOL",
+        "DIPLOMA",
+        "BACHELORS",
+        "MASTERS",
+        "DOCTORATE",
+        "PROFESSIONAL_CERTIFICATION"
+      ]
+    },
+
+    {
+      "@id": "opun:ApplicationStatus",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Application Status",
+      "rdfs:comment": "Status of a job application in the recruitment process",
+      "schema:enumeration": [
+        "APPLICATION_SUBMITTED",
+        "APPLICATION_RECEIVED",
+        "APPLICATION_UNDER_REVIEW",
+        "SHORTLISTED",
+        "INTERVIEW_SCHEDULED",
+        "INTERVIEW_COMPLETED",
+        "ASSESSMENT_PENDING",
+        "ASSESSMENT_COMPLETED",
+        "REFERENCE_CHECK_IN_PROGRESS",
+        "BACKGROUND_CHECK_IN_PROGRESS",
+        "OFFER_PENDING",
+        "OFFER_EXTENDED",
+        "OFFER_ACCEPTED",
+        "OFFER_REJECTED",
+        "OFFER_WITHDRAWN",
+        "APPLICATION_REJECTED",
+        "APPLICATION_ON_HOLD",
+        "CANDIDATE_WITHDREW",
+        "JOINED"
+      ]
+    },
+
+    {
+      "@id": "opun:InterviewType",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Interview Type",
+      "rdfs:comment": "Type of interview in the recruitment process",
+      "schema:enumeration": [
+        "ONLINE_INTERVIEW",
+        "FACE_TO_FACE_INTERVIEW",
+        "TELEPHONIC_INTERVIEW",
+        "VIDEO_INTERVIEW",
+        "TECHNICAL_ASSESSMENT",
+        "HR_ROUND",
+        "MANAGERIAL_ROUND",
+        "PANEL_INTERVIEW",
+        "GROUP_DISCUSSION"
+      ]
+    },
+
+    {
+      "@id": "opun:jobCode",
+      "@type": "rdf:Property",
+      "rdfs:label": "Job Code",
+      "rdfs:comment": "Unique identifier or reference code for the job posting",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "opun:employmentType",
+      "@type": "rdf:Property",
+      "rdfs:label": "Employment Type",
+      "rdfs:comment": "Type of employment contract being offered",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "opun:EmploymentType"
+    },
+
+    {
+      "@id": "opun:workMode",
+      "@type": "rdf:Property",
+      "rdfs:label": "Work Mode",
+      "rdfs:comment": "Work location arrangement (remote, onsite, or hybrid)",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "opun:WorkMode"
+    },
+
+    {
+      "@id": "opun:experienceRequired",
+      "@type": "rdf:Property",
+      "rdfs:label": "Experience Required",
+      "rdfs:comment": "Required work experience for the position",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "schema:QuantitativeValue"
+    },
+
+    {
+      "@id": "opun:educationLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": "Education Level",
+      "rdfs:comment": "Required educational qualification",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "opun:EducationLevel"
+    },
+
+    {
+      "@id": "opun:skills",
+      "@type": "rdf:Property",
+      "rdfs:label": "Skills",
+      "rdfs:comment": "Required and preferred skills for the position",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "schema:DefinedTerm"
+    },
+
+    {
+      "@id": "opun:responsibilities",
+      "@type": "rdf:Property",
+      "rdfs:label": "Responsibilities",
+      "rdfs:comment": "Key job responsibilities and duties",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "opun:benefits",
+      "@type": "rdf:Property",
+      "rdfs:label": "Benefits",
+      "rdfs:comment": "Employee benefits and perks offered",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "schema:OfferItemCondition"
+    },
+
+    {
+      "@id": "opun:salaryRange",
+      "@type": "rdf:Property",
+      "rdfs:label": "Salary Range",
+      "rdfs:comment": "Compensation range for the position",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "schema:MonetaryAmount"
+    },
+
+    {
+      "@id": "opun:applicationDeadline",
+      "@type": "rdf:Property",
+      "rdfs:label": "Application Deadline",
+      "rdfs:comment": "Last date to apply for the position",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:dateTime"
+    },
+
+    {
+      "@id": "opun:vacancies",
+      "@type": "rdf:Property",
+      "rdfs:label": "Vacancies",
+      "rdfs:comment": "Number of open positions",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:integer"
+    },
+
+    {
+      "@id": "opun:jobFunction",
+      "@type": "rdf:Property",
+      "rdfs:label": "Job Function",
+      "rdfs:comment": "Primary job function or department",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "opun:industryType",
+      "@type": "rdf:Property",
+      "rdfs:label": "Industry Type",
+      "rdfs:comment": "Industry sector of the employer",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "opun:companySize",
+      "@type": "rdf:Property",
+      "rdfs:label": "Company Size",
+      "rdfs:comment": "Size of the organization",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "opun:applicationForm",
+      "@type": "rdf:Property",
+      "rdfs:label": "Application Form",
+      "rdfs:comment": "Application form details and URL",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "schema:WebPage"
+    },
+
+    {
+      "@id": "opun:requiredDocuments",
+      "@type": "rdf:Property",
+      "rdfs:label": "Required Documents",
+      "rdfs:comment": "Documents required for application submission",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "schema:DigitalDocument"
+    },
+
+    {
+      "@id": "opun:submittedDocuments",
+      "@type": "rdf:Property",
+      "rdfs:label": "Submitted Documents",
+      "rdfs:comment": "Types of documents submitted with the application",
+      "schema:domainIncludes": "opun:LivelihoodApplicationAttributes",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "opun:interviewProcess",
+      "@type": "rdf:Property",
+      "rdfs:label": "Interview Process",
+      "rdfs:comment": "Stages in the interview and recruitment process",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "schema:ItemList"
+    },
+
+    {
+      "@id": "opun:joiningDate",
+      "@type": "rdf:Property",
+      "rdfs:label": "Joining Date",
+      "rdfs:comment": "Expected date of joining",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:date"
+    },
+
+    {
+      "@id": "opun:probationPeriod",
+      "@type": "rdf:Property",
+      "rdfs:label": "Probation Period",
+      "rdfs:comment": "Duration of probation period",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:duration"
+    },
+
+    {
+      "@id": "opun:noticePeriod",
+      "@type": "rdf:Property",
+      "rdfs:label": "Notice Period",
+      "rdfs:comment": "Required notice period for resignation",
+      "schema:domainIncludes": "opun:JobOpportunity",
+      "schema:rangeIncludes": "xsd:duration"
+    },
+
+    {
+      "@id": "opun:applicationStatus",
+      "@type": "rdf:Property",
+      "rdfs:label": "Application Status",
+      "rdfs:comment": "Current status of job application",
+      "schema:domainIncludes": "beckn:Fulfillment",
+      "schema:rangeIncludes": "opun:ApplicationStatus"
+    },
+
+    {
+      "@id": "opun:companyProfile",
+      "@type": "rdf:Property",
+      "rdfs:label": "Company Profile",
+      "rdfs:comment": "Detailed company information",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "schema:Organization"
+    },
+
+    {
+      "@id": "opun:candidateProfile",
+      "@type": "rdf:Property",
+      "rdfs:label": "Candidate Profile",
+      "rdfs:comment": "Job seeker profile information",
+      "schema:domainIncludes": "beckn:Buyer",
+      "schema:rangeIncludes": "schema:Person"
+    },
+
+    {
+      "@id": "opun:salaryBreakup",
+      "@type": "rdf:Property",
+      "rdfs:label": "Salary Breakup",
+      "rdfs:comment": "Detailed breakdown of salary components",
+      "schema:domainIncludes": "opun:LivelihoodJobOfferAttributes",
+      "schema:rangeIncludes": "schema:StructuredValue"
+    },
+
+    {
+      "@id": "opun:employmentTerms",
+      "@type": "rdf:Property",
+      "rdfs:label": "Employment Terms",
+      "rdfs:comment": "Terms and conditions of employment",
+      "schema:domainIncludes": "opun:LivelihoodJobOfferAttributes",
+      "schema:rangeIncludes": "schema:StructuredValue"
+    },
+
+    {
+      "@id": "opun:benefits",
+      "@type": "rdf:Property",
+      "rdfs:label": "Benefits",
+      "rdfs:comment": "Employee benefits and perks offered",
+      "schema:domainIncludes": "opun:LivelihoodJobOfferAttributes",
+      "schema:rangeIncludes": "schema:OfferItemCondition"
+    },
+
+    {
+      "@id": "opun:formVerificationStatus",
+      "@type": "rdf:Property",
+      "rdfs:label": "Form Verification Status",
+      "rdfs:comment": "Status of form verification by provider",
+      "schema:domainIncludes": "opun:LivelihoodFulfillmentAttributes",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "opun:applicationPreview",
+      "@type": "rdf:Property",
+      "rdfs:label": "Application Preview",
+      "rdfs:comment": "Preview of application details before submission",
+      "schema:domainIncludes": "opun:LivelihoodFulfillmentAttributes",
+      "schema:rangeIncludes": "schema:StructuredValue"
+    },
+
+    {
+      "@id": "opun:submissionConfirmation",
+      "@type": "rdf:Property",
+      "rdfs:label": "Submission Confirmation",
+      "rdfs:comment": "Confirmation details of successful application submission",
+      "schema:domainIncludes": "opun:LivelihoodFulfillmentAttributes",
+      "schema:rangeIncludes": "schema:StructuredValue"
+    }
+  ]
+}

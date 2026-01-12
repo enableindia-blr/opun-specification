@@ -1,0 +1,159 @@
+{
+  "context": {
+    "domain": "opun:livelihood",
+    "action": "confirm",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "481a01fc-4b45-4d49-9558-c6a7dfad8b75",
+    "timestamp": "2024-01-15T12:11:46.129Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:id": "order-001",
+      "beckn:orderStatus": "CONFIRMED",
+
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "techcorp-solutions"
+      },
+
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "candidate-001",
+        "beckn:displayName": "Sanjay Kumar",
+        "beckn:telephone": "+91-9999999999",
+        "beckn:email": "sanjay.kumar@example.com",
+        "beckn:buyerAttributes": {
+          "@type": "opun:LivelihoodCandidateProfile",
+          "opun:currentEmployer": "ABC Tech",
+          "opun:currentDesignation": "Senior Developer",
+          "opun:totalExperience": "P4Y6M",
+          "opun:noticePeriod": "P14D"
+        }
+      },
+
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@type": "beckn:Item",
+            "beckn:id": "JOB_001",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Fullstack Engineer",
+              "beckn:shortDesc": "High-performance fullstack engineering role",
+              "beckn:longDesc": "We're looking for a Fullstack Engineer with expertise in React, React Native, and Node.js."
+            },
+            "beckn:provider": {
+              "beckn:id": "techcorp-solutions"
+            }
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "position"
+          }
+        }
+      ],
+
+      "beckn:acceptedOffers": [
+        {
+          "@type": "beckn:Offer",
+          "beckn:id": "offer-job-001",
+          "beckn:provider": {
+            "@type": "beckn:Provider",
+            "beckn:id": "techcorp-solutions"
+          },
+          "beckn:items": ["JOB_001"],
+          "beckn:price": {
+            "@type": "beckn:PriceSpecification",
+            "schema:priceCurrency": "INR",
+            "schema:price": 1500000
+          },
+          "beckn:offerAttributes": {
+            "@type": "opun:LivelihoodJobOfferAttributes",
+            "opun:salaryBreakup": [
+              {
+                "opun:component": "BASE_SALARY",
+                "opun:currency": "INR",
+                "opun:amount": 1200000,
+                "opun:period": "ANNUAL"
+              },
+              {
+                "opun:component": "VARIABLE_PAY",
+                "opun:currency": "INR",
+                "opun:amount": 300000,
+                "opun:period": "ANNUAL"
+              }
+            ],
+            "opun:employmentTerms": {
+              "opun:probationPeriod": "P3M",
+              "opun:noticePeriod": "P30D",
+              "opun:joiningDate": "2024-02-01"
+            },
+            "opun:benefits": [
+              {
+                "opun:type": "HEALTH_INSURANCE",
+                "opun:description": "Comprehensive medical insurance"
+              }
+            ]
+          }
+        }
+      ],
+
+      "beckn:orderValue": {
+        "@type": "beckn:PriceSpecification",
+        "schema:priceCurrency": "INR",
+        "schema:price": 1500000
+      },
+
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "application-1",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "APPLICATION_CONFIRMED",
+        "beckn:deliveryAttributes": {
+          "@type": "opun:LivelihoodFulfillmentAttributes",
+          "opun:applicationStatus": "SUBMITTED"
+        }
+      },
+
+      "beckn:orderAttributes": {
+        "@type": "opun:LivelihoodApplicationAttributes",
+        "opun:applicationId": "APP-2024-001",
+
+        "opun:receivedApplicationForm": {
+          "@type": "opun:LivelihoodApplicationForm",
+          "opun:mimeType": "application/xml",
+          "opun:formSchema": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info></data></xf:instance></xf:model>"
+        },
+
+        "opun:applicationForm": {
+          "@type": "opun:LivelihoodApplicationForm",
+          "opun:mimeType": "application/xml",
+          "opun:formData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info></data>",
+          "opun:resubmit": false
+        },
+
+        "opun:submittedDocuments": [
+          "RESUME",
+          "COVER_LETTER",
+          "PORTFOLIO"
+        ]
+      }
+    }
+  }
+}

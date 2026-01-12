@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@vocab": "https://schema.opun.network/livelihood/v1/vocab.jsonld#",
+    "beckn": "https://schema.beckn.org/core/v2/",
+    "opun": "https://schema.opun.network/livelihood/v1/",
+    "schema": "https://schema.org/",
+
+    "JobOpportunity": "opun:JobOpportunity",
+    "EmploymentType": "opun:EmploymentType",
+    "WorkMode": "opun:WorkMode",
+    "ExperienceLevel": "opun:ExperienceLevel",
+    "EducationLevel": "opun:EducationLevel",
+    "ApplicationStatus": "opun:ApplicationStatus",
+    "InterviewType": "opun:InterviewType",
+
+    "jobCode": "opun:jobCode",
+    "employmentType": "opun:employmentType",
+    "workMode": "opun:workMode",
+    "experienceRequired": "opun:experienceRequired",
+    "educationLevel": "opun:educationLevel",
+    "skills": "opun:skills",
+    "responsibilities": "opun:responsibilities",
+    "benefits": "opun:benefits",
+    "salaryRange": "opun:salaryRange",
+    "applicationDeadline": "opun:applicationDeadline",
+    "vacancies": "opun:vacancies",
+    "jobFunction": "opun:jobFunction",
+    "industryType": "opun:industryType",
+    "companySize": "opun:companySize",
+    "applicationForm": "opun:applicationForm",
+    "requiredDocuments": "opun:requiredDocuments",
+    "interviewProcess": "opun:interviewProcess",
+    "joiningDate": "opun:joiningDate",
+    "probationPeriod": "opun:probationPeriod",
+    "noticePeriod": "opun:noticePeriod",
+    "applicationStatus": "opun:applicationStatus",
+    "companyProfile": "opun:companyProfile",
+    "candidateProfile": "opun:candidateProfile"
+  }
+}

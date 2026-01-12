@@ -1,0 +1,159 @@
+{
+    "context": {
+      "version": "2.0.0",
+      "action": "catalog/publish",
+      "domain": "opun:livelihood",
+      "transaction_id": "c101b2aa-44c4-4c01-91f3-3e9b2f44d111",
+      "message_id": "a881bb77-33f2-42fd-8db5-5a76b1f89099",
+      "timestamp": "2024-01-15T09:30:00Z",
+      "ttl": "PT30S",
+      "bpp_id": "bpp.opunseva.com",
+      "bpp_uri": "https://bpp-api.opunseva.com",
+      "schema_context": [
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ]
+    },
+    "message": {
+      "catalogs": [
+        {
+          "@context": [
+            "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+            "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+          ],
+          "@type": "beckn:Catalog",
+          "beckn:id": "catalog-techcorp-001",
+  
+          "beckn:provider": {
+            "@type": "beckn:Provider",
+            "beckn:id": "techcorp-solutions",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "TechCorp Solutions"
+            }
+          },
+  
+          "beckn:items": [
+            {
+              "@type": "beckn:Item",
+              "beckn:id": "JOB_001",
+              "beckn:descriptor": {
+                "@type": "beckn:Descriptor",
+                "schema:name": "Fullstack Engineer",
+                "beckn:shortDesc": "Hybrid full-stack engineering role"
+              },
+  
+              "beckn:itemAttributes": {
+                "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+                "@type": "opun:LivelihoodJobOpportunity",
+  
+                "opun:employmentType": "FULL_TIME",
+                "opun:workMode": "HYBRID",
+                "opun:location": {
+                  "opun:city": "Bangalore",
+                  "opun:pincode": "560001"
+                },
+  
+                
+  
+                "opun:accessibilityMetadata": {
+  
+                  "opun:suitableDisabilityTypes": [
+                    {
+                      "opun:disabilityCode": "LOCO_WHEELCHAIR",
+                      "opun:category": "LOC0MOTOR",
+                      "opun:subTypes": ["Wheelchair User"],
+                      "opun:fitLevel": "PERFECT_MATCH",
+                      "opun:notes": "Desk-based role with minimal mobility needs"
+                    },
+                    {
+                      "opun:disabilityCode": "VISUAL_LOW_VISION",
+                      "opun:category": "VISUAL",
+                      "opun:subTypes": ["Low Vision"],
+                      "opun:fitLevel": "HIGH_MATCH",
+                      "opun:notes": "Screen readers and assistive tech supported"
+                    },
+                    {
+                      "opun:disabilityCode": "HEARING_HARD_OF_HEARING",
+                      "opun:category": "HEARING",
+                      "opun:subTypes": ["Hard of Hearing"],
+                      "opun:fitLevel": "HIGH_MATCH",
+                      "opun:notes": "Written communication and captioned meetings"
+                    }
+                  ],
+  
+                  "opun:roleRequirements": {
+                    "opun:manualDexterity": {
+                      "opun:required": true,
+                      "opun:level": "LOW",
+                      "opun:description": "Keyboard and mouse work only"
+                    },
+                    "opun:mobilityOnJob": {
+                      "opun:required": true,
+                      "opun:level": "MINIMAL",
+                      "opun:description": "Desk-based role"
+                    },
+                    "opun:communication": {
+                      "opun:required": true,
+                      "opun:level": "HIGH",
+                      "opun:description": "Written and verbal channels supported"
+                    },
+                    "opun:visualAcuity": {
+                      "opun:required": true,
+                      "opun:level": "MEDIUM",
+                      "opun:description": "Assistive tech fully supported"
+                    }
+                  },
+  
+                  "opun:infrastructure": {
+                    "opun:buildingAccess": {
+                      "opun:ramps": true,
+                      "opun:elevators": true,
+                      "opun:stepFreeEntry": true,
+                      "opun:floorNumber": 3
+                    },
+                    "opun:washrooms": {
+                      "opun:accessibleStalls": true,
+                      "opun:grabBars": true,
+                      "opun:doorWidthCm": 90
+                    },
+                    "opun:workspace": {
+                      "opun:adjustableDesks": true,
+                      "opun:aisleWidthCm": 150
+                    }
+                  },
+  
+                  "opun:logistics": {
+                    "opun:workMode": "HYBRID",
+                    "opun:transportLinks": [
+                      "Metro Station: Electronic City (500m)",
+                      "Bus Stop: Tech Park (200m)"
+                    ],
+                    "opun:parking": {
+                      "opun:available": true,
+                      "opun:dedicatedDisabilitySpots": true,
+                      "opun:distanceToLiftMeters": 100
+                    }
+                  },
+  
+                  "opun:providedAccommodations": {
+                    "opun:technologySupport": [
+                      "Screen Readers (NVDA, JAWS)",
+                      "Voice Recognition Software",
+                      "Ergonomic Keyboards",
+                      "Large Monitors"
+                    ],
+                    "opun:supportServices": [
+                      "Sign Language Interpreter on request"
+                    ]
+                  }
+                }
+  
+                
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

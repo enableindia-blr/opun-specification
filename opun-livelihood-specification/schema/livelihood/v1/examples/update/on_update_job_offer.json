@@ -1,0 +1,164 @@
+{
+  "context": {
+    "domain": "opun:livelihood",
+    "action": "on_update",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "b9bc9bb5-9eed-5e7b-b12d-17208b5be959",
+    "timestamp": "2024-01-30T14:30:00.000Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:id": "order-001",
+      "beckn:orderStatus": "ACTIVE",
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "techcorp-solutions"
+      },
+      "beckn:buyer": {
+        "@context": [
+          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+        ],
+        "@type": "beckn:Buyer",
+        "beckn:id": "candidate-001",
+        "beckn:displayName": "Sanjay Kumar",
+        "beckn:role": "BUYER",
+        "beckn:telephone": "+91-9999999999",
+        "beckn:email": "sanjay.kumar@example.com"
+      },
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@context": [
+              "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+              "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+            ],
+            "@type": "beckn:Item",
+            "beckn:id": "JOB_001",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Fullstack Engineer",
+              "beckn:shortDesc": "High-performance fullstack engineering role"
+            }
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "position"
+          }
+        }
+      ],
+      "beckn:acceptedOffers": [
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "@type": "beckn:Offer",
+          "beckn:id": "offer-job-001",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Fullstack Engineer Position",
+            "beckn:shortDesc": "Complete employment offer for Fullstack Engineer role"
+          },
+          "beckn:provider": {
+            "@type": "beckn:Provider",
+            "beckn:id": "techcorp-solutions"
+          },
+          "beckn:items": ["JOB_001"],
+          "beckn:price": {
+            "@type": "beckn:PriceSpecification",
+            "schema:priceCurrency": "INR",
+            "schema:price": 1500000
+          },
+          "beckn:validity": {
+            "@type": "beckn:TimePeriod",
+            "schema:startDate": "2024-01-30T14:30:00Z",
+            "schema:endDate": "2024-02-06T23:59:59Z"
+          },
+          "beckn:acceptedPaymentMethod": [
+            {
+              "@type": "beckn:PaymentMethod",
+              "beckn:method": "BANK_TRANSFER"
+            }
+          ],
+          "beckn:offerAttributes": {
+            "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+            "@type": "opun:LivelihoodJobOfferAttributes",
+            "opun:salaryBreakup": [
+              {
+                "opun:component": "BASE_SALARY",
+                "opun:currency": "INR",
+                "opun:amount": 1200000,
+                "opun:period": "ANNUAL"
+              },
+              {
+                "opun:component": "VARIABLE_PAY",
+                "opun:currency": "INR",
+                "opun:amount": 300000,
+                "opun:period": "ANNUAL"
+              }
+            ],
+            "opun:employmentTerms": {
+              "opun:probationPeriod": "P3M",
+              "opun:noticePeriod": "P30D",
+              "opun:joiningDate": "2024-02-01"
+            },
+            "opun:benefits": [
+              {
+                "opun:type": "HEALTH_INSURANCE",
+                "opun:description": "Comprehensive medical insurance"
+              },
+              {
+                "opun:type": "PAID_TIME_OFF",
+                "opun:description": "25 days annual leave plus public holidays"
+              }
+            ]
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "@type": "beckn:PriceSpecification",
+        "schema:priceCurrency": "INR",
+        "schema:price": 1500000
+      },
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "application-1",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "PENDING",
+        "beckn:deliveryAttributes": {
+          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+          "@type": "opun:LivelihoodFulfillmentAttributes",
+          "opun:applicationStatus": "OFFER_EXTENDED",
+          "opun:offerDocument": {
+            "opun:name": "Job Offer Letter",
+            "opun:description": "Official job offer letter with terms and conditions.",
+            "opun:url": "https://bpp-api.opunseva.com/applications/APP-2024-001/offer-letter.pdf",
+            "opun:mimeType": "application/pdf"
+          },
+          "opun:offerInstructions": "Offer extended. Please review the offer letter and respond within 7 days. Proposed start date: 2024-02-01."
+        }
+      },
+      "beckn:orderAttributes": {
+        "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+        "@type": "opun:LivelihoodApplicationAttributes",
+        "opun:applicationId": "APP-2024-001",
+        "opun:appliedDate": "2024-01-15T12:11:46.129Z"
+      }
+    }
+  }
+}

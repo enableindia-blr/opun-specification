@@ -1,0 +1,296 @@
+{
+  "context": {
+    "domain": "opun:livelihood",
+    "action": "on_select",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "c8e3968c-cd78-4e46-aa34-0d541e46bd73",
+    "timestamp": "2024-01-15T12:12:46.742Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:id": "order-001",
+      "beckn:orderStatus": "ACTIVE",
+      "beckn:orderNumber": "ORD-2024-001",
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "techcorp-solutions"
+      },
+      "beckn:buyer": {
+        "@context": [
+          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+        ],
+        "@type": "beckn:Buyer",
+        "beckn:id": "candidate-001",
+        "beckn:displayName": "John Doe",
+        "beckn:role": "BUYER",
+        "beckn:buyerAttributes": {
+          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+          "@type": "opun:LivelihoodCandidateProfile",
+          "opun:totalExperience": "P5Y",
+          "opun:currentDesignation": "Software Engineer",
+          "opun:noticePeriod": "P60D",
+          "opun:preferredWorkMode": ["REMOTE", "HYBRID"],
+          "opun:expectedSalary": {
+            "opun:currency": "INR",
+            "opun:amount": 1500000,
+            "opun:period": "ANNUAL"
+          }
+        }
+      },
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@context": [
+              "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+              "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+            ],
+            "@type": "beckn:Item",
+            "beckn:id": "JOB_001",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Fullstack Engineer",
+              "beckn:shortDesc": "High-performance fullstack engineering role",
+              "beckn:longDesc": "We're looking for a Fullstack Engineer with expertise in React, React Native, and Node.js. The ideal candidate should have experience building scalable web and mobile applications."
+            },
+            "beckn:provider": {
+              "beckn:id": "techcorp-solutions",
+              "beckn:descriptor": {
+                "@type": "beckn:Descriptor",
+                "schema:name": "TechCorp Solutions",
+                "beckn:shortDesc": "Leading technology company specializing in digital identity solutions",
+                "beckn:longDesc": "TechCorp Solutions is a leading technology company specializing in digital identity solutions and enterprise software development."
+              },
+              "beckn:providerAttributes": {
+                "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+                "@type": "opun:LivelihoodCompanyProfile",
+                "opun:industryType": "TECHNOLOGY",
+                "opun:companySize": "MEDIUM (201-1000)",
+                "opun:founded": "2010",
+                "opun:website": "https://techcorp.example.com",
+                "opun:culture": "Innovation-driven with work-life balance"
+              }
+            },
+            "beckn:itemAttributes": {
+              "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+              "@type": "opun:LivelihoodJobOpportunity",
+              "opun:jobCode": "JOB-2024-001",
+              "opun:employmentType": "FULL_TIME",
+              "opun:workMode": "HYBRID",
+              "opun:experienceRequired": {
+                "opun:minimumYears": 3,
+                "opun:maximumYears": 5,
+                "opun:level": "MID_LEVEL"
+              },
+              "opun:educationLevel": "BACHELORS",
+              "opun:skills": [
+                {
+                  "opun:name": "Java",
+                  "opun:level": "REQUIRED",
+                  "opun:proficiency": "ADVANCED"
+                },
+                {
+                  "opun:name": "Spring Boot",
+                  "opun:level": "REQUIRED",
+                  "opun:proficiency": "INTERMEDIATE"
+                }
+              ],
+              "opun:responsibilities": [
+                "Design and develop backend services",
+                "Collaborate with cross-functional teams",
+                "Mentor junior developers"
+              ],
+              "opun:benefits": [
+                {
+                  "opun:type": "HEALTH_INSURANCE",
+                  "opun:description": "Medical insurance for employee and family"
+                },
+                {
+                  "opun:type": "PAID_TIME_OFF",
+                  "opun:description": "25 days annual leave"
+                }
+              ],
+              "opun:salaryRange": {
+                "opun:currency": "INR",
+                "opun:minimum": 1200000,
+                "opun:maximum": 1800000,
+                "opun:period": "ANNUAL"
+              },
+              "opun:applicationDeadline": "2024-12-31T23:59:59Z",
+              "opun:vacancies": 3,
+              "opun:jobFunction": "ENGINEERING",
+              "opun:industryType": "TECHNOLOGY",
+              "opun:companySize": "MEDIUM (201-1000)",
+              "opun:applicationForm": {
+                "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+                "@type": "opun:LivelihoodApplicationForm",
+                "opun:mimeType": "application/xml",
+                "opun:formData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info><professional_experience><current_company/><current_position/><years_of_experience/><previous_companies/></professional_experience><skills_qualifications><education><degree/><field/><university/><year/></education><skills/><certifications><name/><issuer/><year/></certifications></skills_qualifications><documents><resume/><cover_letter/><portfolio/></documents><role_questionnaire><question1/><question2/><question3/></role_questionnaire></data></xf:instance></xf:model>",
+                "opun:resubmit": false
+              },
+              "opun:requiredDocuments": [
+                "RESUME",
+                "COVER_LETTER"
+              ],
+              "opun:interviewProcess": [
+                {
+                  "opun:stage": "Technical Screening",
+                  "opun:type": "TELEPHONIC_INTERVIEW",
+                  "opun:duration": "PT30M",
+                  "opun:mode": "ONLINE"
+                },
+                {
+                  "opun:stage": "Technical Round",
+                  "opun:type": "VIDEO_INTERVIEW",
+                  "opun:duration": "PT1H",
+                  "opun:mode": "ONLINE"
+                }
+              ],
+              "opun:joiningDate": "2024-02-01",
+              "opun:probationPeriod": "P3M",
+              "opun:noticePeriod": "P30D"
+            }
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "position"
+          },
+          "beckn:price": {
+            "@type": "beckn:PriceSpecification",
+            "schema:priceCurrency": "INR",
+            "schema:price": 1500000
+          }
+        }
+      ],
+      "beckn:acceptedOffers": [
+        {
+          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "@type": "beckn:Offer",
+          "beckn:id": "offer-job-001",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Fullstack Engineer Position",
+            "beckn:shortDesc": "Complete employment offer for Fullstack Engineer role"
+          },
+          "beckn:provider": {
+            "@type": "beckn:Provider",
+            "beckn:id": "techcorp-solutions"
+          },
+          "beckn:items": ["JOB_001"],
+          "beckn:price": {
+            "@type": "beckn:PriceSpecification",
+            "schema:priceCurrency": "INR",
+            "schema:price": 1500000
+          },
+          "beckn:validity": {
+            "@type": "beckn:TimePeriod",
+            "schema:startDate": "2024-01-15T00:00:00Z",
+            "schema:endDate": "2024-12-31T23:59:59Z"
+          },
+          "beckn:acceptedPaymentMethod": [
+            {
+              "@type": "beckn:PaymentMethod",
+              "beckn:method": "BANK_TRANSFER"
+            }
+          ],
+          "beckn:offerAttributes": {
+            "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+            "@type": "opun:LivelihoodJobOfferAttributes",
+            "opun:salaryBreakup": [
+              {
+                "opun:component": "BASE_SALARY",
+                "opun:currency": "INR",
+                "opun:amount": 1200000,
+                "opun:period": "ANNUAL"
+              },
+              {
+                "opun:component": "VARIABLE_PAY",
+                "opun:currency": "INR",
+                "opun:amount": 300000,
+                "opun:period": "ANNUAL"
+              },
+              {
+                "opun:component": "JOINING_BONUS",
+                "opun:currency": "INR",
+                "opun:amount": 100000,
+                "opun:period": "ONE_TIME"
+              }
+            ],
+            "opun:employmentTerms": {
+              "opun:probationPeriod": "P3M",
+              "opun:noticePeriod": "P30D",
+              "opun:joiningDate": "2024-02-01"
+            },
+            "opun:benefits": [
+              {
+                "opun:type": "HEALTH_INSURANCE",
+                "opun:description": "Comprehensive medical insurance"
+              },
+              {
+                "opun:type": "PAID_TIME_OFF",
+                "opun:description": "25 days annual leave plus public holidays"
+              },
+              {
+                "opun:type": "PROFESSIONAL_DEVELOPMENT",
+                "opun:description": "Annual learning budget of ₹50,000"
+              }
+            ]
+          }
+        }
+      ],
+      "beckn:orderValue": {
+        "@type": "beckn:PriceSpecification",
+        "schema:priceCurrency": "INR",
+        "schema:price": 1500000
+      },
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-001",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "PENDING",
+        "beckn:deliveryAttributes": {
+          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+          "@type": "opun:LivelihoodFulfillmentAttributes",
+          "opun:applicationStatus": "APPLICATION_SUBMITTED",
+          "opun:interviewSchedule": {
+            "opun:interviewDate": "2024-01-20",
+            "opun:interviewTime": "14:00",
+            "opun:interviewDuration": "PT30M",
+            "opun:interviewMode": "ONLINE",
+            "opun:interviewLink": "https://meet.techcorp.example.com/interview-001",
+            "opun:interviewerName": "Sarah Johnson",
+            "opun:interviewInstructions": "Please prepare for technical questions on React, Node.js, and system design."
+          }
+        }
+      },
+      "beckn:orderAttributes": {
+        "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+        "@type": "opun:LivelihoodApplicationAttributes",
+        "opun:applicationId": "APP-2024-001",
+        "opun:appliedDate": "2024-01-15T12:11:46.129Z",
+        "opun:applicationDeadline": "2024-12-31T23:59:59Z",
+        "opun:requiredDocuments": [
+          "RESUME",
+          "COVER_LETTER"
+        ]
+      }
+    }
+  }
+}

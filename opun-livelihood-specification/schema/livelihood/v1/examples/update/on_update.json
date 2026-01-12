@@ -1,0 +1,95 @@
+{
+  "context": {
+    "domain": "opun:livelihood",
+    "action": "on_update",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+    "message_id": "a8ab8aa4-9ddc-496a-a01c-06107a4ad848",
+    "timestamp": "2024-01-25T10:20:51.064Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:id": "order-001",
+      "beckn:orderStatus": "ACTIVE",
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "techcorp-solutions"
+      },
+      "beckn:buyer": {
+        "@context": [
+          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+        ],
+        "@type": "beckn:Buyer",
+        "beckn:id": "candidate-001",
+        "beckn:displayName": "Sanjay Kumar",
+        "beckn:role": "BUYER",
+        "beckn:telephone": "+91-9999999999",
+        "beckn:email": "sanjay.kumar@example.com"
+      },
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@context": [
+              "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+              "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+            ],
+            "@type": "beckn:Item",
+            "beckn:id": "JOB_001",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Fullstack Engineer",
+              "beckn:shortDesc": "High-performance fullstack engineering role"
+            }
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "position"
+          }
+        }
+      ],
+      "beckn:fulfillment": {
+        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "application-1",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "PENDING",
+        "beckn:deliveryAttributes": {
+          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+          "@type": "opun:LivelihoodFulfillmentAttributes",
+          "opun:applicationStatus": "INTERVIEW_SCHEDULED",
+          "opun:interviewSchedule": {
+            "opun:interviewDate": "2024-01-30",
+            "opun:interviewTime": "10:00",
+            "opun:interviewDuration": "PT1H",
+            "opun:interviewMode": "ONLINE",
+            "opun:interviewLink": "https://meet.techcorp.com/interview/abc123",
+            "opun:interviewerName": "John Doe, Senior Engineering Manager",
+            "opun:interviewInstructions": "Technical interview (video call) for fullstack engineering position."
+          }
+        }
+      },
+      "beckn:orderAttributes": {
+        "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+        "@type": "opun:LivelihoodApplicationAttributes",
+        "opun:applicationId": "APP-2024-001",
+        "opun:appliedDate": "2024-01-15T12:11:46.129Z"
+      }
+    }
+  }
+}

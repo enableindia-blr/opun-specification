@@ -1,0 +1,45 @@
+{
+    "context": {
+      "version": "2.0.0",
+      "action": "select",
+      "domain": "opun:livelihood",
+      "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
+      "message_id": "89bdae17-9942-40c8-869a-5bd413356407",
+      "timestamp": "2024-01-15T12:11:46.129Z",
+      "ttl": "PT30S",
+      "bap_id": "bap.opungram.com",
+      "bap_uri": "https://bap-api.opungram.com",
+      "schema_context": [
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ]
+    },
+    "message": {
+      "order": {
+        "@context": [
+          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+        ],
+        "@type": "beckn:Order",
+  
+        "beckn:provider": {
+          "@type": "beckn:Provider",
+          "beckn:id": "techcorp-solutions"
+        },
+  
+        "beckn:items": [
+          {
+            "@type": "beckn:Item",
+            "beckn:id": "JOB_001"
+          }
+        ],
+  
+        "beckn:fulfillment": {
+          "@type": "beckn:Fulfillment",
+          "beckn:id": "fulfillment-001",
+          "beckn:mode": "DIGITAL",
+          "beckn:category": "JOB_APPLICATION"
+        }
+      }
+    }
+  }
+  

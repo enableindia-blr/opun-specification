@@ -1,0 +1,584 @@
+openapi: 3.1.1
+info:
+  title: OpuN Livelihood Domain Attributes v1.0.0
+  description: |
+    Domain-specific attributes for the OpuN Livelihood domain, extending Beckn Protocol v2.0.0 core schemas.
+    This schema pack enables job opportunities, employment services, and recruitment workflows.
+  version: 1.0.0
+  contact:
+    name: OpuN Network
+    url: https://opun.network
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+components:
+  schemas:
+    JobOpportunityAttributes:
+      type: object
+      description: >
+        Attributes for job opportunities in the livelihood domain, extending beckn:Item
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodJobOpportunity"]
+        "opun:jobCode":
+          type: string
+          description: "Unique identifier or reference code for the job posting"
+          example: "JOB-2024-001"
+        "opun:employmentType":
+          type: string
+          description: "Type of employment contract"
+          enum: ["FULL_TIME", "PART_TIME", "CONTRACT", "TEMPORARY", "INTERNSHIP", "FREELANCE", "APPRENTICESHIP", "VOLUNTEER"]
+          example: "FULL_TIME"
+        "opun:workMode":
+          type: string
+          description: "Work location arrangement"
+          enum: ["REMOTE", "ONSITE", "HYBRID"]
+          example: "HYBRID"
+        "opun:experienceRequired":
+          type: object
+          description: "Required work experience"
+          properties:
+            "opun:minimumYears":
+              type: number
+              description: "Minimum years of experience required"
+            "opun:maximumYears":
+              type: number
+              description: "Maximum years of experience (if applicable)"
+            "opun:level":
+              type: string
+              enum: ["ENTRY_LEVEL", "JUNIOR", "MID_LEVEL", "SENIOR", "LEAD", "MANAGER", "DIRECTOR", "EXECUTIVE"]
+          example:
+            "opun:minimumYears": 3
+            "opun:maximumYears": 5
+            "opun:level": "MID_LEVEL"
+        "opun:educationLevel":
+          type: string
+          description: "Required education qualification"
+          enum: ["NO_FORMAL_EDUCATION", "HIGH_SCHOOL", "DIPLOMA", "BACHELORS", "MASTERS", "DOCTORATE", "PROFESSIONAL_CERTIFICATION"]
+          example: "BACHELORS"
+        "opun:skills":
+          type: array
+          description: "Required and preferred skills"
+          items:
+            type: object
+            properties:
+              "opun:name":
+                type: string
+                description: "Skill name"
+              "opun:level":
+                type: string
+                enum: ["REQUIRED", "PREFERRED"]
+                description: "Whether skill is required or preferred"
+              "opun:proficiency":
+                type: string
+                enum: ["BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"]
+                description: "Required proficiency level"
+          example:
+            - "opun:name": "Java"
+              "opun:level": "REQUIRED"
+              "opun:proficiency": "ADVANCED"
+            - "opun:name": "Spring Boot"
+              "opun:level": "REQUIRED"
+              "opun:proficiency": "INTERMEDIATE"
+        "opun:responsibilities":
+          type: array
+          description: "Key job responsibilities"
+          items:
+            type: string
+          example:
+            - "Design and develop backend services"
+            - "Collaborate with cross-functional teams"
+            - "Mentor junior developers"
+        "opun:benefits":
+          type: array
+          description: "Employee benefits and perks"
+          items:
+            type: object
+            properties:
+              "opun:type":
+                type: string
+                description: "Benefit category"
+              "opun:description":
+                type: string
+                description: "Benefit details"
+          example:
+            - "opun:type": "HEALTH_INSURANCE"
+              "opun:description": "Medical insurance for employee and family"
+            - "opun:type": "PAID_TIME_OFF"
+              "opun:description": "25 days annual leave"
+        "opun:salaryRange":
+          type: object
+          description: "Compensation range"
+          properties:
+            "opun:currency":
+              type: string
+              description: "ISO 4217 currency code"
+            "opun:minimum":
+              type: number
+              description: "Minimum salary"
+            "opun:maximum":
+              type: number
+              description: "Maximum salary"
+            "opun:period":
+              type: string
+              enum: ["ANNUAL", "MONTHLY", "WEEKLY", "HOURLY", "PER_PROJECT"]
+              description: "Payment frequency"
+          example:
+            "opun:currency": "INR"
+            "opun:minimum": 1200000
+            "opun:maximum": 1800000
+            "opun:period": "ANNUAL"
+        "opun:applicationDeadline":
+          type: string
+          format: date-time
+          description: "Last date to apply for the position"
+          example: "2024-12-31T23:59:59Z"
+        "opun:vacancies":
+          type: number
+          description: "Number of open positions"
+          example: 3
+        "opun:jobFunction":
+          type: string
+          description: "Primary job function or department"
+          enum: ["ENGINEERING", "PRODUCT_MANAGEMENT", "DESIGN", "SALES", "MARKETING", "OPERATIONS", "HUMAN_RESOURCES", "FINANCE", "LEGAL", "CUSTOMER_SUPPORT", "DATA_SCIENCE", "RESEARCH", "ADMINISTRATION"]
+          example: "ENGINEERING"
+        "opun:industryType":
+          type: string
+          description: "Industry sector"
+          enum: ["TECHNOLOGY", "HEALTHCARE", "FINANCE", "EDUCATION", "MANUFACTURING", "RETAIL", "HOSPITALITY", "TRANSPORTATION", "REAL_ESTATE", "AGRICULTURE", "MEDIA", "GOVERNMENT", "NON_PROFIT"]
+          example: "TECHNOLOGY"
+        "opun:companySize":
+          type: string
+          description: "Size of the organization"
+          enum: ["STARTUP (1-50)", "SMALL (51-200)", "MEDIUM (201-1000)", "LARGE (1001-5000)", "ENTERPRISE (5000+)"]
+          example: "MEDIUM"
+
+    ApplicationFormAttributes:
+      type: object
+      description: "Application form details"
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodApplicationForm"]
+        "opun:url":
+          type: string
+          format: uri
+          description: "URL to application form"
+        "opun:fields":
+          type: array
+          description: "Required form fields"
+          items:
+            type: object
+            properties:
+              "opun:name":
+                type: string
+              "opun:type":
+                type: string
+              "opun:required":
+                type: boolean
+
+    InterviewProcessAttributes:
+      type: object
+      description: "Interview scheduling and process details"
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodInterviewProcess"]
+        "opun:stage":
+          type: string
+          description: "Interview stage name"
+        "opun:type":
+          type: string
+          enum: ["ONLINE_INTERVIEW", "FACE_TO_FACE_INTERVIEW", "TELEPHONIC_INTERVIEW", "VIDEO_INTERVIEW", "TECHNICAL_ASSESSMENT", "HR_ROUND", "MANAGERIAL_ROUND", "PANEL_INTERVIEW", "GROUP_DISCUSSION"]
+          description: "Type of interview"
+        "opun:duration":
+          type: string
+          description: "Expected duration (ISO 8601)"
+        "opun:mode":
+          type: string
+          enum: ["ONLINE", "OFFLINE"]
+          description: "Interview mode"
+
+    ApplicationStatusAttributes:
+      type: object
+      description: "Job application status tracking"
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodApplicationStatus"]
+        "opun:status":
+          type: string
+          description: "Current status of job application"
+          enum: ["APPLICATION_SUBMITTED", "APPLICATION_RECEIVED", "APPLICATION_UNDER_REVIEW", "SHORTLISTED", "INTERVIEW_SCHEDULED", "INTERVIEW_COMPLETED", "ASSESSMENT_PENDING", "ASSESSMENT_COMPLETED", "REFERENCE_CHECK_IN_PROGRESS", "BACKGROUND_CHECK_IN_PROGRESS", "OFFER_PENDING", "OFFER_EXTENDED", "OFFER_ACCEPTED", "OFFER_REJECTED", "OFFER_WITHDRAWN", "APPLICATION_REJECTED", "APPLICATION_ON_HOLD", "CANDIDATE_WITHDREW", "JOINED"]
+          example: "SHORTLISTED"
+
+    CandidateProfileAttributes:
+      type: object
+      description: "Job seeker profile information"
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodCandidateProfile"]
+        "opun:resume":
+          type: object
+          properties:
+            "opun:url":
+              type: string
+              format: uri
+            "opun:lastUpdated":
+              type: string
+              format: date
+        "opun:portfolio":
+          type: string
+          format: uri
+          description: "Portfolio URL"
+        "opun:linkedIn":
+          type: string
+          format: uri
+          description: "LinkedIn profile URL"
+        "opun:githubProfile":
+          type: string
+          format: uri
+          description: "GitHub profile (for developers)"
+        "opun:currentEmployer":
+          type: string
+          description: "Current employer name"
+        "opun:currentDesignation":
+          type: string
+          description: "Current job title"
+        "opun:totalExperience":
+          type: string
+          description: "Total years of experience (ISO 8601 duration)"
+        "opun:noticePeriod":
+          type: string
+          description: "Current notice period (ISO 8601 duration)"
+        "opun:expectedSalary":
+          type: object
+          properties:
+            "opun:currency":
+              type: string
+            "opun:amount":
+              type: number
+            "opun:period":
+              type: string
+        "opun:preferredLocations":
+          type: array
+          items:
+            type: string
+        "opun:preferredWorkMode":
+          type: array
+          items:
+            type: string
+            enum: ["REMOTE", "ONSITE", "HYBRID"]
+
+    LivelihoodJobOfferAttributes:
+      type: object
+      description: "Job offer specific attributes for livelihood domain"
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodJobOfferAttributes"]
+        "opun:salaryBreakup":
+          type: array
+          description: "Detailed salary component breakdown"
+          items:
+            type: object
+            properties:
+              "opun:component":
+                type: string
+                enum: ["BASE_SALARY", "VARIABLE_PAY", "JOINING_BONUS", "CONVEYANCE_ALLOWANCE", "LTA", "MEDICAL_ALLOWANCE", "OTHER"]
+                description: "Type of salary component"
+              "opun:currency":
+                type: string
+                description: "Currency code (ISO 4217)"
+              "opun:amount":
+                type: number
+                description: "Amount for this component"
+              "opun:period":
+                type: string
+                enum: ["ANNUAL", "MONTHLY", "ONE_TIME", "QUARTERLY"]
+                description: "Payment period/frequency"
+        "opun:employmentTerms":
+          type: object
+          description: "Terms of employment"
+          properties:
+            "opun:probationPeriod":
+              type: string
+              description: "Probation period (ISO 8601 duration)"
+            "opun:noticePeriod":
+              type: string
+              description: "Notice period (ISO 8601 duration)"
+            "opun:joiningDate":
+              type: string
+              format: date
+              description: "Expected joining date"
+        "opun:benefits":
+          type: array
+          description: "Employee benefits and perks"
+          items:
+            type: object
+            properties:
+              "opun:type":
+                type: string
+                enum: ["HEALTH_INSURANCE", "PAID_TIME_OFF", "PROFESSIONAL_DEVELOPMENT", "FLEXIBLE_HOURS", "REMOTE_WORK", "STOCK_OPTIONS", "WELLNESS_PROGRAMS"]
+                description: "Type of benefit"
+              "opun:description":
+                type: string
+                description: "Detailed description of the benefit"
+
+    LivelihoodApplicationAttributes:
+      type: object
+      description: "Application attributes for livelihood domain"
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodApplicationAttributes"]
+        "opun:applicationId":
+          type: string
+          description: "Unique identifier for the job application"
+        "opun:appliedDate":
+          type: string
+          format: date-time
+          description: "Date and time when the application was submitted"
+        "opun:applicationDeadline":
+          type: string
+          format: date-time
+          description: "Deadline for application submission"
+        "opun:applicationForm":
+          type: object
+          description: "Application form with filled data"
+          properties:
+            "@context":
+              type: string
+              format: uri
+              description: JSON-LD context URI for livelihood domain
+            "@type":
+              type: string
+              enum: ["opun:LivelihoodApplicationForm"]
+            "opun:mimeType":
+              type: string
+              description: "MIME type of the form data"
+            "opun:formData":
+              type: string
+              description: "XML form data with filled information"
+            "opun:resubmit":
+              type: boolean
+              description: "Whether the form can be resubmitted"
+        "opun:submittedDocuments":
+          type: array
+          description: "Types of documents submitted with the application"
+          items:
+            type: string
+            enum: ["RESUME", "COVER_LETTER", "PORTFOLIO", "CERTIFICATES", "REFERENCES"]
+
+    LivelihoodFulfillmentAttributes:
+      type: object
+      description: "Fulfillment attributes for livelihood domain"
+      required: ["@context", "@type"]
+      additionalProperties: true
+      properties:
+        "@context":
+          type: string
+          format: uri
+          description: JSON-LD context URI for livelihood domain
+          enum: ["https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"]
+        "@type":
+          type: string
+          description: Type within livelihood domain
+          enum: ["opun:LivelihoodFulfillmentAttributes"]
+        "opun:applicationStatus":
+          type: string
+          description: "Current status of the job application"
+          enum: ["APPLICATION_RECEIVED", "APPLICATION_SUBMITTED", "APPLICATION_UNDER_REVIEW", "SHORTLISTED", "INTERVIEW_SCHEDULED", "OFFER_EXTENDED", "APPLICATION_CANCELLED", "READY_FOR_SUBMISSION"]
+        "opun:formVerificationStatus":
+          type: string
+          description: "Status of form verification by provider"
+          enum: ["VERIFIED", "PENDING", "REJECTED", "REQUIRES_CORRECTION"]
+        "opun:verificationNotes":
+          type: string
+          description: "Notes from form verification process"
+        "opun:nextSteps":
+          type: string
+          description: "Next steps in the application process"
+        "opun:interviewSchedule":
+          type: object
+          description: "Scheduled interview details"
+          properties:
+            "opun:interviewDate":
+              type: string
+              format: date
+              description: "Date of the interview"
+            "opun:interviewTime":
+              type: string
+              description: "Time of the interview"
+            "opun:interviewDuration":
+              type: string
+              description: "Expected duration of interview"
+            "opun:interviewMode":
+              type: string
+              enum: ["ONLINE", "OFFLINE"]
+              description: "Mode of interview"
+            "opun:interviewLink":
+              type: string
+              format: uri
+              description: "Link for online interview"
+            "opun:interviewerName":
+              type: string
+              description: "Name of the interviewer"
+            "opun:interviewInstructions":
+              type: string
+              description: "Instructions for the interview"
+        "opun:applicationPreview":
+          type: object
+          description: "Preview of application details before submission"
+          properties:
+            "opun:candidateName":
+              type: string
+              description: "Name of the candidate"
+            "opun:appliedPosition":
+              type: string
+              description: "Position applied for"
+            "opun:currentStatus":
+              type: string
+              description: "Current status message"
+            "opun:estimatedReviewTime":
+              type: string
+              description: "Estimated time for review"
+            "opun:submissionSummary":
+              type: string
+              description: "Summary of what's being submitted"
+        "opun:submissionConfirmation":
+          type: object
+          description: "Confirmation details of successful application submission"
+          properties:
+            "opun:confirmationId":
+              type: string
+              description: "Unique confirmation identifier"
+            "opun:submittedAt":
+              type: string
+              format: date-time
+              description: "Timestamp of submission"
+            "opun:applicationReference":
+              type: string
+              description: "Reference number for the application"
+            "opun:employerSystemId":
+              type: string
+              description: "ID in employer's system"
+            "opun:statusMessage":
+              type: string
+              description: "Status message"
+            "opun:nextSteps":
+              type: string
+              description: "Next steps for the candidate"
+        "opun:confirmationDocument":
+          type: object
+          description: "Confirmation document details"
+          properties:
+            "opun:name":
+              type: string
+              description: "Name of the document"
+            "opun:description":
+              type: string
+              description: "Description of the document"
+            "opun:url":
+              type: string
+              format: uri
+              description: "URL to access the document"
+            "opun:mimeType":
+              type: string
+              description: "MIME type of the document"
+        "opun:offerDocument":
+          type: object
+          description: "Job offer document details"
+          properties:
+            "opun:name":
+              type: string
+              description: "Name of the offer document"
+            "opun:description":
+              type: string
+              description: "Description of the offer document"
+            "opun:url":
+              type: string
+              format: uri
+              description: "URL to access the offer document"
+            "opun:mimeType":
+              type: string
+              description: "MIME type of the offer document"
+        "opun:offerInstructions":
+          type: string
+          description: "Instructions for responding to job offer"
+        "opun:statusUpdateDocument":
+          type: object
+          description: "Status update document details"
+          properties:
+            "opun:name":
+              type: string
+              description: "Name of the status update document"
+            "opun:description":
+              type: string
+              description: "Description of the status update"
+            "opun:url":
+              type: string
+              format: uri
+              description: "URL to access the status document"
+            "opun:mimeType":
+              type: string
+              description: "MIME type of the document"
