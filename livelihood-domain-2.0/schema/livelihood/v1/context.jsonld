@@ -35,6 +35,90 @@
     "noticePeriod": "opun:noticePeriod",
     "applicationStatus": "opun:applicationStatus",
     "companyProfile": "opun:companyProfile",
-    "candidateProfile": "opun:candidateProfile"
+    "candidateProfile": "opun:candidateProfile",
+
+    "location": "opun:location",
+    "city": "opun:city",
+    "pincode": "opun:pincode",
+
+    "accessibilityMetadata": "opun:accessibilityMetadata",
+    "suitableDisabilityTypes": "opun:suitableDisabilityTypes",
+    "disabilityCode": "opun:disabilityCode",
+    "subTypes": "opun:subTypes",
+    "fitLevel": "opun:fitLevel",
+    "notes": "opun:notes",
+    "roleRequirements": "opun:roleRequirements",
+    "mobilityOnJob": "opun:mobilityOnJob",
+    "communication": "opun:communication",
+    "level": "opun:level",
+    "infrastructure": "opun:infrastructure",
+    "buildingAccess": "opun:buildingAccess",
+    "ramps": "opun:ramps",
+    "elevators": "opun:elevators",
+    "stepFreeEntry": "opun:stepFreeEntry",
+    "workspace": "opun:workspace",
+    "adjustableDesks": "opun:adjustableDesks",
+
+    "founded": "opun:founded",
+    "website": "opun:website",
+    "culture": "opun:culture",
+
+    "minimumYears": "opun:minimumYears",
+    "maximumYears": "opun:maximumYears",
+
+    "name": "opun:name",
+    "proficiency": "opun:proficiency",
+
+    "type": "opun:type",
+    "description": "opun:description",
+
+    "currency": "opun:currency",
+    "minimum": "opun:minimum",
+    "maximum": "opun:maximum",
+    "period": "opun:period",
+
+    "mimeType": "opun:mimeType",
+    "formData": "opun:formData",
+    "resubmit": "opun:resubmit",
+
+    "stage": "opun:stage",
+    "duration": "opun:duration",
+    "mode": "opun:mode",
+
+    "disabilityProfile": "opun:disabilityProfile",
+    "disabilityType": "opun:disabilityType",
+    "subType": "opun:subType",
+    "nature": "opun:nature",
+    "severityPercentage": "opun:severityPercentage",
+    "functionalAbilities": "opun:functionalAbilities",
+    "upperLimbDexterity": "opun:upperLimbDexterity",
+    "fineMotorSkills": "opun:fineMotorSkills",
+    "indoorMobility": "opun:indoorMobility",
+    "sittingTolerance": "opun:sittingTolerance",
+    "travelRangeKm": "opun:travelRangeKm",
+    "workplaceRequirements": "opun:workplaceRequirements",
+    "barrierFreeAccess": "opun:barrierFreeAccess",
+    "accessibleWashroom": "opun:accessibleWashroom",
+    "ergonomicSeating": "opun:ergonomicSeating",
+    "assistiveTechnologyOwned": "opun:assistiveTechnologyOwned",
+
+    "salaryBreakup": "opun:salaryBreakup",
+    "component": "opun:component",
+    "amount": "opun:amount",
+
+    "employmentTerms": "opun:employmentTerms",
+
+    "formVerificationStatus": "opun:formVerificationStatus",
+    "verificationNotes": "opun:verificationNotes",
+    "nextSteps": "opun:nextSteps",
+
+    "applicationId": "opun:applicationId",
+    "appliedDate": "opun:appliedDate",
+    "submittedDocuments": "opun:submittedDocuments",
+
+    "receivedApplicationForm": "opun:receivedApplicationForm",
+    "formSchema": "opun:formSchema",
+    "checksum": "opun:checksum",
+    "submittedApplicationFormData": "opun:submittedApplicationFormData"
   }
 }
