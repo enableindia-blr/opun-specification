@@ -16,38 +16,32 @@
       "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
     ]
   },
+
   "message": {
+    "updateType": "INTERVIEW_SCHEDULE_UPDATE",
+
     "order": {
-      "@context": [
-        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-      ],
       "@type": "beckn:Order",
       "beckn:id": "order-001",
       "beckn:orderStatus": "ACTIVE",
+
       "beckn:seller": {
         "@type": "beckn:Party",
         "beckn:id": "techcorp-solutions"
       },
+
       "beckn:buyer": {
-        "@context": [
-          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-        ],
         "@type": "beckn:Buyer",
         "beckn:id": "candidate-001",
         "beckn:displayName": "Sanjay Kumar",
-        "beckn:role": "BUYER",
         "beckn:telephone": "+91-9999999999",
         "beckn:email": "sanjay.kumar@example.com"
       },
+
       "beckn:orderItems": [
         {
+          "@type": "beckn:OrderItem",
           "beckn:orderedItem": {
-            "@context": [
-              "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-              "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-            ],
             "@type": "beckn:Item",
             "beckn:id": "JOB_001",
             "beckn:descriptor": {
@@ -63,14 +57,13 @@
           }
         }
       ],
+
       "beckn:fulfillment": {
-        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
         "@type": "beckn:Fulfillment",
         "beckn:id": "application-1",
         "beckn:mode": "DIGITAL",
         "beckn:fulfillmentStatus": "PENDING",
         "beckn:deliveryAttributes": {
-          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
           "@type": "opun:LivelihoodFulfillmentAttributes",
           "opun:applicationStatus": "INTERVIEW_SCHEDULED",
           "opun:interviewSchedule": {
@@ -84,8 +77,8 @@
           }
         }
       },
+
       "beckn:orderAttributes": {
-        "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
         "@type": "opun:LivelihoodApplicationAttributes",
         "opun:applicationId": "APP-2024-001",
         "opun:appliedDate": "2024-01-15T12:11:46.129Z"
