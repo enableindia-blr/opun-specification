@@ -1,0 +1,35 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "discover",
+    "domain": "opun:livelihood",
+    "transaction_id": "aa01b2aa-44c4-4c01-91f3-3e9b2f44d222",
+    "message_id": "bb82bb77-33f2-42fd-8db5-5a76b1f89111",
+    "timestamp": "2024-01-15T10:00:00Z",
+    "ttl": "PT30S",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com"
+  },
+  "message": {
+    "criteria": {
+      "filters": {
+        "opun:disabilityType": "LOCO_WHEELCHAIR",
+        "opun:requiredBarrierFreeAccess": true,
+        "opun:workMode": "HYBRID"
+      },
+      "spatialConstraints": [
+        {
+          "op": "s_dwithin",
+          "targets": [
+            "$['beckn:availableAt'][*]['geo']"
+          ],
+          "geometry": {
+            "type": "Point",
+            "coordinates": [77.5946, 12.9716]
+          },
+          "distanceMeters": 10000
+        }
+      ]
+    }
+  }
+}
