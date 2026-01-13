@@ -18,10 +18,6 @@
   },
   "message": {
     "order": {
-      "@context": [
-        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-      ],
       "@type": "beckn:Order",
       "beckn:id": "order-001"
     }

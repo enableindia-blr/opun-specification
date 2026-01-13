@@ -16,46 +16,30 @@
       "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
     ]
   },
+
   "message": {
     "order": {
-      "@context": [
-        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-      ],
       "@type": "beckn:Order",
       "beckn:id": "order-001",
-      "beckn:orderStatus": "ACTIVE",
+      "beckn:orderStatus": "CONFIRMED",
+
       "beckn:seller": {
         "@type": "beckn:Party",
         "beckn:id": "techcorp-solutions"
       },
+
       "beckn:buyer": {
-        "@context": [
-          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-        ],
         "@type": "beckn:Buyer",
         "beckn:id": "candidate-001",
         "beckn:displayName": "Sanjay Kumar",
-        "beckn:role": "BUYER",
         "beckn:telephone": "+91-9999999999",
-        "beckn:email": "sanjay.kumar@example.com",
-        "beckn:buyerAttributes": {
-          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
-          "@type": "opun:LivelihoodCandidateProfile",
-          "opun:currentEmployer": "ABC Tech",
-          "opun:currentDesignation": "Senior Developer",
-          "opun:totalExperience": "P4Y6M",
-          "opun:noticePeriod": "P14D"
-        }
+        "beckn:email": "sanjay.kumar@example.com"
       },
+
       "beckn:orderItems": [
         {
+          "@type": "beckn:OrderItem",
           "beckn:orderedItem": {
-            "@context": [
-              "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-              "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-            ],
             "@type": "beckn:Item",
             "beckn:id": "JOB_001",
             "beckn:descriptor": {
@@ -64,6 +48,7 @@
               "beckn:shortDesc": "High-performance fullstack engineering role"
             },
             "beckn:provider": {
+              "@type": "beckn:Provider",
               "beckn:id": "techcorp-solutions",
               "beckn:descriptor": {
                 "@type": "beckn:Descriptor",
@@ -79,14 +64,13 @@
           }
         }
       ],
+
       "beckn:fulfillment": {
-        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
         "@type": "beckn:Fulfillment",
         "beckn:id": "application-1",
         "beckn:mode": "DIGITAL",
-        "beckn:fulfillmentStatus": "PENDING",
+        "beckn:fulfillmentStatus": "IN_PROGRESS",
         "beckn:deliveryAttributes": {
-          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
           "@type": "opun:LivelihoodFulfillmentAttributes",
           "opun:applicationStatus": "APPLICATION_UNDER_REVIEW",
           "opun:statusUpdateDocument": {
@@ -97,12 +81,11 @@
           }
         }
       },
+
       "beckn:orderAttributes": {
-        "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
         "@type": "opun:LivelihoodApplicationAttributes",
         "opun:applicationId": "APP-2024-001",
-        "opun:appliedDate": "2024-01-15T12:11:46.129Z",
-        "opun:applicationDeadline": "2024-12-31T23:59:59Z"
+        "opun:appliedDate": "2024-01-15T12:11:46.129Z"
       }
     }
   }
