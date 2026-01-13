@@ -6,8 +6,14 @@
       "transaction_id": "aa01b2aa-44c4-4c01-91f3-3e9b2f44d222",
       "message_id": "cc91bb77-33f2-42fd-8db5-5a76b1f89222",
       "timestamp": "2024-01-15T10:00:02Z",
+      "ttl": "PT30S",
+      "bap_id": "bap.opungram.com",
+      "bap_uri": "https://bap-api.opungram.com",
       "bpp_id": "discovery.opun-network.org",
-      "bpp_uri": "https://discovery.opun-network.org"
+      "bpp_uri": "https://discovery.opun-network.org",
+      "schema_context": [
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      ]
     },
     "message": {
       "catalogs": [
