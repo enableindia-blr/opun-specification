@@ -9,13 +9,14 @@
     "bpp_uri": "https://bpp-api.opunseva.com",
     "transaction_id": "a9aaecca-10b7-4d19-b640-b047a7c62195",
     "message_id": "481a01fc-4b45-4d49-9558-c6a7dfad8b75",
-    "timestamp": "2024-01-15T12:11:46.129Z",
+    "timestamp": "2024-01-15T12:13:46.129Z",
     "ttl": "PT10M",
     "network_id": ["opun-network"],
     "schema_context": [
       "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
     ]
   },
+
   "message": {
     "order": {
       "@context": [
@@ -23,6 +24,7 @@
         "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
       ],
       "@type": "beckn:Order",
+
       "beckn:id": "order-001",
       "beckn:orderStatus": "CONFIRMED",
 
@@ -39,25 +41,48 @@
         "beckn:email": "sanjay.kumar@example.com",
         "beckn:buyerAttributes": {
           "@type": "opun:LivelihoodCandidateProfile",
+
           "opun:currentEmployer": "ABC Tech",
           "opun:currentDesignation": "Senior Developer",
           "opun:totalExperience": "P4Y6M",
-          "opun:noticePeriod": "P14D"
+          "opun:noticePeriod": "P14D",
+
+          "opun:disabilityProfile": {
+            "opun:disabilityType": "LOCO_WHEELCHAIR",
+            "opun:subType": "Wheelchair User",
+            "opun:nature": "ACQUIRED",
+            "opun:severityPercentage": 60,
+
+            "opun:functionalAbilities": {
+              "opun:upperLimbDexterity": "FULL",
+              "opun:fineMotorSkills": "UNAFFECTED",
+              "opun:indoorMobility": "INDEPENDENT_WHEELCHAIR",
+              "opun:sittingTolerance": "4_6_HOURS",
+              "opun:travelRangeKm": "5_20"
+            },
+
+            "opun:workplaceRequirements": {
+              "opun:barrierFreeAccess": true,
+              "opun:accessibleWashroom": true,
+              "opun:ergonomicSeating": true
+            },
+
+            "opun:assistiveTechnologyOwned": [
+              "WHEELCHAIR_ELECTRIC",
+              "MODIFIED_SCOOTER"
+            ]
+          }
         }
       },
 
       "beckn:orderItems": [
         {
+          "@type": "beckn:OrderItem",
           "beckn:orderedItem": {
             "@type": "beckn:Item",
             "beckn:id": "JOB_001",
-            "beckn:descriptor": {
-              "@type": "beckn:Descriptor",
-              "schema:name": "Fullstack Engineer",
-              "beckn:shortDesc": "High-performance fullstack engineering role",
-              "beckn:longDesc": "We're looking for a Fullstack Engineer with expertise in React, React Native, and Node.js."
-            },
             "beckn:provider": {
+              "@type": "beckn:Provider",
               "beckn:id": "techcorp-solutions"
             }
           },
@@ -85,6 +110,7 @@
           },
           "beckn:offerAttributes": {
             "@type": "opun:LivelihoodJobOfferAttributes",
+
             "opun:salaryBreakup": [
               {
                 "opun:component": "BASE_SALARY",
@@ -99,11 +125,13 @@
                 "opun:period": "ANNUAL"
               }
             ],
+
             "opun:employmentTerms": {
               "opun:probationPeriod": "P3M",
               "opun:noticePeriod": "P30D",
               "opun:joiningDate": "2024-02-01"
             },
+
             "opun:benefits": [
               {
                 "opun:type": "HEALTH_INSURANCE",
@@ -124,22 +152,17 @@
         "@type": "beckn:Fulfillment",
         "beckn:id": "application-1",
         "beckn:mode": "DIGITAL",
-        "beckn:fulfillmentStatus": "APPLICATION_CONFIRMED",
+        "beckn:fulfillmentStatus": "APPLICATION_SUBMITTED",
         "beckn:deliveryAttributes": {
           "@type": "opun:LivelihoodFulfillmentAttributes",
-          "opun:applicationStatus": "SUBMITTED"
+          "opun:applicationStatus": "APPLICATION_SUBMITTED"
         }
       },
 
       "beckn:orderAttributes": {
         "@type": "opun:LivelihoodApplicationAttributes",
         "opun:applicationId": "APP-2024-001",
-
-        "opun:receivedApplicationForm": {
-          "@type": "opun:LivelihoodApplicationForm",
-          "opun:mimeType": "application/xml",
-          "opun:formSchema": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info></data></xf:instance></xf:model>"
-        },
+        "opun:appliedDate": "2024-01-15T12:11:46.129Z",
 
         "opun:applicationForm": {
           "@type": "opun:LivelihoodApplicationForm",
