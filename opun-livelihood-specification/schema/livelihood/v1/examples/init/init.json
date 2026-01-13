@@ -16,6 +16,7 @@
       "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
     ]
   },
+
   "message": {
     "order": {
       "@context": [
@@ -23,12 +24,7 @@
         "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
       ],
       "@type": "beckn:Order",
-      "beckn:orderStatus": "ACTIVE",
-
-      "beckn:provider": {
-        "@type": "beckn:Provider",
-        "beckn:id": "techcorp-solutions"
-      },
+      "beckn:orderStatus": "DRAFT",
 
       "beckn:seller": {
         "@type": "beckn:Party",
@@ -39,24 +35,19 @@
         "@type": "beckn:Buyer",
         "beckn:id": "candidate-001",
         "beckn:displayName": "Sanjay Kumar",
-        "beckn:role": "BUYER",
         "beckn:telephone": "+91-9999999999",
         "beckn:email": "sanjay.kumar@example.com",
         "beckn:buyerAttributes": {
-          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
           "@type": "opun:LivelihoodCandidateProfile",
-
           "opun:currentEmployer": "ABC Tech",
           "opun:currentDesignation": "Senior Developer",
           "opun:totalExperience": "P4Y6M",
           "opun:noticePeriod": "P14D",
-
           "opun:disabilityProfile": {
             "opun:disabilityType": "LOCO_WHEELCHAIR",
             "opun:subType": "Wheelchair User",
             "opun:nature": "ACQUIRED",
             "opun:severityPercentage": 60,
-
             "opun:functionalAbilities": {
               "opun:upperLimbDexterity": "FULL",
               "opun:fineMotorSkills": "UNAFFECTED",
@@ -64,13 +55,11 @@
               "opun:sittingTolerance": "4_6_HOURS",
               "opun:travelRangeKm": "5_20"
             },
-
             "opun:workplaceRequirements": {
               "opun:barrierFreeAccess": true,
               "opun:accessibleWashroom": true,
               "opun:ergonomicSeating": true
             },
-
             "opun:assistiveTechnologyOwned": [
               "WHEELCHAIR_ELECTRIC",
               "MODIFIED_SCOOTER"
@@ -81,9 +70,14 @@
 
       "beckn:orderItems": [
         {
+          "@type": "beckn:OrderItem",
           "beckn:orderedItem": {
             "@type": "beckn:Item",
-            "beckn:id": "JOB_001"
+            "beckn:id": "JOB_001",
+            "beckn:provider": {
+              "@type": "beckn:Provider",
+              "beckn:id": "techcorp-solutions"
+            }
           },
           "beckn:quantity": {
             "@type": "schema:QuantitativeValue",
@@ -103,17 +97,14 @@
       "beckn:orderAttributes": {
         "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
         "@type": "opun:LivelihoodApplicationAttributes",
-
         "opun:applicationId": "APP-2024-001",
         "opun:appliedDate": "2024-01-15T12:11:46.129Z",
-
         "opun:applicationForm": {
           "@type": "opun:LivelihoodApplicationForm",
           "opun:mimeType": "application/xml",
-          "opun:formData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore, Karnataka, India</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info></data>",
+          "opun:formData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info></data>",
           "opun:resubmit": false
         },
-
         "opun:submittedDocuments": [
           "RESUME",
           "COVER_LETTER",

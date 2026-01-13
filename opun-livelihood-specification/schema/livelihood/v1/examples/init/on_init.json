@@ -16,6 +16,7 @@
       "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
     ]
   },
+
   "message": {
     "order": {
       "@context": [
@@ -23,61 +24,78 @@
         "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
       ],
       "@type": "beckn:Order",
+
       "beckn:id": "order-001",
       "beckn:orderStatus": "ACTIVE",
-      "beckn:provider": {
-        "@type": "beckn:Provider",
-        "beckn:id": "techcorp-solutions"
-      },
+
       "beckn:seller": {
         "@type": "beckn:Party",
         "beckn:id": "techcorp-solutions"
       },
+
       "beckn:buyer": {
-        "@context": [
-          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-        ],
         "@type": "beckn:Buyer",
         "beckn:id": "candidate-001",
         "beckn:displayName": "Sanjay Kumar",
-        "beckn:role": "BUYER",
         "beckn:telephone": "+91-9999999999",
         "beckn:email": "sanjay.kumar@example.com",
         "beckn:buyerAttributes": {
-          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
           "@type": "opun:LivelihoodCandidateProfile",
+
           "opun:currentEmployer": "ABC Tech",
           "opun:currentDesignation": "Senior Developer",
           "opun:totalExperience": "P4Y6M",
-          "opun:noticePeriod": "P14D"
+          "opun:noticePeriod": "P14D",
+
+          "opun:disabilityProfile": {
+            "opun:disabilityType": "LOCO_WHEELCHAIR",
+            "opun:subType": "Wheelchair User",
+            "opun:nature": "ACQUIRED",
+            "opun:severityPercentage": 60,
+            "opun:functionalAbilities": {
+              "opun:upperLimbDexterity": "FULL",
+              "opun:fineMotorSkills": "UNAFFECTED",
+              "opun:indoorMobility": "INDEPENDENT_WHEELCHAIR",
+              "opun:sittingTolerance": "4_6_HOURS",
+              "opun:travelRangeKm": "5_20"
+            },
+            "opun:workplaceRequirements": {
+              "opun:barrierFreeAccess": true,
+              "opun:accessibleWashroom": true,
+              "opun:ergonomicSeating": true
+            },
+            "opun:assistiveTechnologyOwned": [
+              "WHEELCHAIR_ELECTRIC",
+              "MODIFIED_SCOOTER"
+            ]
+          }
         }
       },
+
       "beckn:orderItems": [
         {
+          "@type": "beckn:OrderItem",
           "beckn:orderedItem": {
-            "@context": [
-              "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-              "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
-            ],
             "@type": "beckn:Item",
             "beckn:id": "JOB_001",
+
             "beckn:descriptor": {
               "@type": "beckn:Descriptor",
               "schema:name": "Fullstack Engineer",
               "beckn:shortDesc": "High-performance fullstack engineering role",
-              "beckn:longDesc": "We're looking for a Fullstack Engineer with expertise in React, React Native, and Node.js. The ideal candidate should have experience building scalable web and mobile applications."
+              "beckn:longDesc": "We're looking for a Fullstack Engineer with expertise in React, React Native, and Node.js."
             },
+
             "beckn:provider": {
+              "@type": "beckn:Provider",
               "beckn:id": "techcorp-solutions",
               "beckn:descriptor": {
                 "@type": "beckn:Descriptor",
                 "schema:name": "TechCorp Solutions",
                 "beckn:shortDesc": "Leading technology company specializing in digital identity solutions",
-                "beckn:longDesc": "TechCorp Solutions is a leading technology company specializing in digital identity solutions and enterprise software development."
+                "beckn:longDesc": "TechCorp Solutions is a leading technology company specializing in digital identity solutions."
               },
               "beckn:providerAttributes": {
-                "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
                 "@type": "opun:LivelihoodCompanyProfile",
                 "opun:industryType": "TECHNOLOGY",
                 "opun:companySize": "MEDIUM (201-1000)",
@@ -85,8 +103,8 @@
                 "opun:website": "https://techcorp.example.com"
               }
             },
+
             "beckn:itemAttributes": {
-              "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
               "@type": "opun:LivelihoodJobOpportunity",
               "opun:jobCode": "JOB-2024-001",
               "opun:employmentType": "FULL_TIME",
@@ -97,23 +115,6 @@
                 "opun:level": "MID_LEVEL"
               },
               "opun:educationLevel": "BACHELORS",
-              "opun:skills": [
-                {
-                  "opun:name": "Java",
-                  "opun:level": "REQUIRED",
-                  "opun:proficiency": "ADVANCED"
-                },
-                {
-                  "opun:name": "Spring Boot",
-                  "opun:level": "REQUIRED",
-                  "opun:proficiency": "INTERMEDIATE"
-                }
-              ],
-              "opun:responsibilities": [
-                "Design and develop backend services",
-                "Collaborate with cross-functional teams",
-                "Mentor junior developers"
-              ],
               "opun:salaryRange": {
                 "opun:currency": "INR",
                 "opun:minimum": 1200000,
@@ -125,6 +126,7 @@
               "opun:jobFunction": "ENGINEERING"
             }
           },
+
           "beckn:quantity": {
             "@type": "schema:QuantitativeValue",
             "schema:value": 1,
@@ -132,116 +134,98 @@
           }
         }
       ],
-      "beckn:acceptedOffers": [
-        {
-          "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-          "@type": "beckn:Offer",
-          "beckn:id": "offer-job-001",
-          "beckn:descriptor": {
-            "@type": "beckn:Descriptor",
-            "schema:name": "Fullstack Engineer Position",
-            "beckn:shortDesc": "Complete employment offer for Fullstack Engineer role"
-          },
-          "beckn:provider": {
-            "@type": "beckn:Provider",
-            "beckn:id": "techcorp-solutions"
-          },
-          "beckn:items": ["JOB_001"],
-          "beckn:price": {
-            "@type": "beckn:PriceSpecification",
-            "schema:priceCurrency": "INR",
-            "schema:price": 1500000
-          },
-          "beckn:validity": {
-            "@type": "beckn:TimePeriod",
-            "schema:startDate": "2024-01-15T00:00:00Z",
-            "schema:endDate": "2024-12-31T23:59:59Z"
-          },
-          "beckn:acceptedPaymentMethod": [
+
+      "beckn:quote": {
+        "@type": "beckn:Quotation",
+        "beckn:id": "quote-001",
+        "beckn:items": ["JOB_001"],
+
+        "beckn:price": {
+          "@type": "beckn:PriceSpecification",
+          "schema:priceCurrency": "INR",
+          "schema:price": 1500000
+        },
+
+        "beckn:quoteAttributes": {
+          "@type": "opun:LivelihoodJobOfferAttributes",
+
+          "opun:salaryBreakup": [
             {
-              "@type": "beckn:PaymentMethod",
-              "beckn:method": "BANK_TRANSFER"
+              "opun:component": "BASE_SALARY",
+              "opun:currency": "INR",
+              "opun:amount": 1200000,
+              "opun:period": "ANNUAL"
+            },
+            {
+              "opun:component": "VARIABLE_PAY",
+              "opun:currency": "INR",
+              "opun:amount": 300000,
+              "opun:period": "ANNUAL"
+            },
+            {
+              "opun:component": "JOINING_BONUS",
+              "opun:currency": "INR",
+              "opun:amount": 100000,
+              "opun:period": "ONE_TIME"
             }
           ],
-          "beckn:offerAttributes": {
-            "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
-            "@type": "opun:LivelihoodJobOfferAttributes",
-            "opun:salaryBreakup": [
-              {
-                "opun:component": "BASE_SALARY",
-                "opun:currency": "INR",
-                "opun:amount": 1200000,
-                "opun:period": "ANNUAL"
-              },
-              {
-                "opun:component": "VARIABLE_PAY",
-                "opun:currency": "INR",
-                "opun:amount": 300000,
-                "opun:period": "ANNUAL"
-              },
-              {
-                "opun:component": "JOINING_BONUS",
-                "opun:currency": "INR",
-                "opun:amount": 100000,
-                "opun:period": "ONE_TIME"
-              }
-            ],
-            "opun:employmentTerms": {
-              "opun:probationPeriod": "P3M",
-              "opun:noticePeriod": "P30D",
-              "opun:joiningDate": "2024-02-01"
+
+          "opun:employmentTerms": {
+            "opun:probationPeriod": "P3M",
+            "opun:noticePeriod": "P30D",
+            "opun:joiningDate": "2024-02-01"
+          },
+
+          "opun:benefits": [
+            {
+              "opun:type": "HEALTH_INSURANCE",
+              "opun:description": "Comprehensive medical insurance"
             },
-            "opun:benefits": [
-              {
-                "opun:type": "HEALTH_INSURANCE",
-                "opun:description": "Comprehensive medical insurance"
-              },
-              {
-                "opun:type": "PAID_TIME_OFF",
-                "opun:description": "25 days annual leave plus public holidays"
-              },
-              {
-                "opun:type": "PROFESSIONAL_DEVELOPMENT",
-                "opun:description": "Annual learning budget of ₹50,000"
-              }
-            ]
-          }
+            {
+              "opun:type": "PAID_TIME_OFF",
+              "opun:description": "25 days annual leave plus public holidays"
+            }
+          ]
         }
-      ],
+      },
+
       "beckn:orderValue": {
         "@type": "beckn:PriceSpecification",
         "schema:priceCurrency": "INR",
         "schema:price": 1500000
       },
+
       "beckn:fulfillment": {
-        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
         "@type": "beckn:Fulfillment",
         "beckn:id": "application-1",
         "beckn:mode": "DIGITAL",
         "beckn:fulfillmentStatus": "PENDING",
         "beckn:deliveryAttributes": {
-          "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
           "@type": "opun:LivelihoodFulfillmentAttributes",
           "opun:applicationStatus": "APPLICATION_SUBMITTED",
-          "opun:formVerificationStatus": "VERIFIED",
-          "opun:verificationNotes": "Application form verified successfully. All required fields completed and documents attached.",
-          "opun:nextSteps": "Application will be reviewed by HR team within 2-3 business days."
+          "opun:formVerificationStatus": "PENDING",
+          "opun:verificationNotes": "Application received. Verification will occur after candidate confirmation.",
+          "opun:nextSteps": "Awaiting candidate confirmation."
         }
       },
       "beckn:orderAttributes": {
-        "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
         "@type": "opun:LivelihoodApplicationAttributes",
 
         "opun:applicationId": "APP-2024-001",
         "opun:appliedDate": "2024-01-15T12:11:46.129Z",
-        "opun:applicationDeadline": "2024-12-31T23:59:59Z",
 
-        "opun:receivedApplicationForm": {
+        "opun:applicationForm": {
           "@type": "opun:LivelihoodApplicationForm",
           "opun:mimeType": "application/xml",
-          "opun:formSchema": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><personal_info><full_name/><date_of_birth/><gender/><address/><phone/><email/></personal_info><professional_experience><current_company/><current_position/><years_of_experience/><previous_companies/></professional_experience><skills_qualifications><education><degree/><field/><university/><year/></education><skills/><certifications/></skills_qualifications><documents><resume/><cover_letter/><portfolio/></documents><role_questionnaire><question1/><question2/><question3/></role_questionnaire></data></xf:instance></xf:model>",
-          "opun:checksum": "sha256-9c7e3a1f2b8d9e..."
-        }
+          "opun:formData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><personal_info><full_name>Sanjay Kumar</full_name><date_of_birth>1988-05-15</date_of_birth><gender>Male</gender><address>123 Main Street, Bangalore</address><phone>+91-9999999999</phone><email>sanjay.kumar@example.com</email></personal_info></data>",
+          "opun:resubmit": false
+        },
+
+        "opun:submittedDocuments": [
+          "RESUME",
+          "COVER_LETTER",
+          "PORTFOLIO"
+        ]
       }
     }
   }
