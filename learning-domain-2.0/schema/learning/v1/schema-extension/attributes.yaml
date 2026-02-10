@@ -1,0 +1,637 @@
+# Learning Domain Attributes for Beckn Protocol v2
+# Aligned with: groclake_learning_manager, groclake-frontend (L&D), opungram-frontend (Training and courses)
+# Design ref: LEARNING_DOMAIN_SCHEMA_DESIGN.md
+
+attributes:
+
+  # --- Course (Item) attributes ---
+
+  courseCode:
+    type: string
+    description: "Unique identifier or reference code for the course (course_id)"
+    scope: Item
+    example: "COURSE-2024-PY101"
+
+  courseName:
+    type: string
+    description: "Title of the course"
+    scope: Item
+    example: "Introduction to Python Programming"
+
+  courseDescription:
+    type: string
+    description: "Detailed description of the course"
+    scope: Item
+
+  courseCategory:
+    type: CourseCategory
+    description: "Category of the course"
+    scope: Item
+    values:
+      - technical
+      - soft_skills
+      - certification
+      - degree
+      - workshop
+      - other
+    example: "technical"
+
+  courseLevel:
+    type: CourseLevel
+    description: "Difficulty or audience level"
+    scope: Item
+    values:
+      - beginner
+      - intermediate
+      - advanced
+      - expert
+    example: "beginner"
+
+  courseType:
+    type: CourseType
+    description: "Delivery / format of the course (physical, online, hybrid, self-paced, instructor-led)"
+    scope: Item
+    values:
+      - online
+      - offline
+      - hybrid
+      - self_paced
+      - instructor_led
+    example: "online"
+
+  courseStatus:
+    type: CourseStatus
+    description: "Publication status of the course"
+    scope: Item
+    values:
+      - draft
+      - open
+      - closed
+      - archived
+    example: "open"
+
+  providerId:
+    type: string
+    description: "Organization or provider offering the course"
+    scope: Item
+    example: "PRV_001"
+
+  providerName:
+    type: string
+    description: "Name of the provider organization"
+    scope: Item
+
+  instructorId:
+    type: string
+    description: "Instructor unique identifier"
+    scope: Item
+
+  instructorName:
+    type: string
+    description: "Name of the instructor"
+    scope: Item
+
+  instructorEmail:
+    type: string
+    format: email
+    description: "Email of the instructor"
+    scope: Item
+
+  durationHours:
+    type: number
+    description: "Duration of the course in hours"
+    scope: Item
+    example: 40
+
+  durationWeeks:
+    type: number
+    description: "Duration of the course in weeks"
+    scope: Item
+    example: 8
+
+  duration:
+    type: object
+    description: "Total course duration (alternative structured form)"
+    scope: Item
+    properties:
+      value: { type: number }
+      unit: { type: string, enum: [HOURS, DAYS, WEEKS, MONTHS] }
+      iso8601: { type: string }
+    example:
+      value: 40
+      unit: "HOURS"
+      iso8601: "PT40H"
+
+  startDate:
+    type: string
+    format: date
+    description: "Course start date (Item) or when the learner started the course (Fulfillment)"
+    scope: [Item, Fulfillment]
+
+  endDate:
+    type: string
+    format: date
+    description: "Course end date"
+    scope: Item
+
+  enrollmentDeadline:
+    type: string
+    format: date
+    description: "Last date for enrollment"
+    scope: Item
+
+  schedule:
+    type: object
+    description: "Course schedule (sessions, timezone)"
+    scope: Item
+    properties:
+      startDate: { type: string, format: date }
+      endDate: { type: string, format: date }
+      sessions: { type: array }
+      timezone: { type: string }
+
+  language:
+    type: string
+    description: "Medium of instruction (BCP 47)"
+    scope: Item
+    example: "en-IN"
+
+  maxEnrollments:
+    type: number
+    description: "Maximum number of learners (0 = unlimited)"
+    scope: Item
+    example: 30
+
+  currentEnrollments:
+    type: number
+    description: "Current number of enrollments"
+    scope: Item
+
+  feeAmount:
+    type: number
+    description: "Course fee amount"
+    scope: Price
+    example: 99.00
+
+  currency:
+    type: string
+    description: "Currency for the fee (ISO 4217)"
+    scope: Price
+    example: "USD"
+
+  prerequisites:
+    type: object
+    description: "Prerequisites (courses, certifications, skills) - JSON"
+    scope: Item
+
+  learningObjectives:
+    type: array
+    description: "Learning objectives or outcomes"
+    scope: Item
+    items: { type: string }
+
+  courseOutline:
+    type: object
+    description: "Hierarchical structure of course content (modules, lessons)"
+    scope: Item
+
+  certificateTemplateId:
+    type: string
+    description: "Link to certificate configuration for issuance on completion"
+    scope: Item
+
+  isMandatory:
+    type: boolean
+    description: "Whether the course is mandatory (e.g. compliance training)"
+    scope: Item
+    example: false
+
+  formId:
+    type: string
+    description: "Form ID for enrollment forms (XInput / XForms)"
+    scope: Item
+
+  courseMetadata:
+    type: object
+    description: "Additional course metadata (tags, keywords, etc.)"
+    scope: Item
+
+  location:
+    type: object
+    description: "Venue for physical/hybrid delivery"
+    scope: Item
+    properties:
+      city: { type: string }
+      pincode: { type: string }
+      state: { type: string }
+      country: { type: string }
+      streetAddress: { type: string }
+
+  onlineMeetingInfo:
+    type: object
+    description: "Online delivery details (platform, link template, requirements)"
+    scope: Item
+
+  accessibilityMetadata:
+    type: object
+    description: "Accessibility accommodations for learners"
+    scope: Item
+
+  # --- Provider attributes ---
+
+  providerType:
+    type: string
+    description: "Type of learning provider"
+    scope: Provider
+    values:
+      - INSTITUTION
+      - TRAINING_CENTER
+      - ACADEMY
+      - INDIVIDUAL_EDUCATOR
+    example: "TRAINING_CENTER"
+
+  # --- Order (Enrollment) attributes ---
+
+  enrollmentId:
+    type: string
+    description: "Unique identifier for the enrollment"
+    scope: Order
+    example: "ENR-2024-001"
+
+  courseId:
+    type: string
+    description: "Course ID for this enrollment"
+    scope: Order
+
+  learnerId:
+    type: string
+    description: "Learner unique identifier"
+    scope: Order
+
+  learnerName:
+    type: string
+    description: "Name of the learner"
+    scope: Order
+
+  learnerEmail:
+    type: string
+    format: email
+    description: "Email of the learner"
+    scope: Order
+
+  learnerPhone:
+    type: string
+    description: "Phone number of the learner"
+    scope: Order
+
+  enrolledAt:
+    type: string
+    format: date-time
+    description: "When the learner enrolled (enrollment_date)"
+    scope: Order
+    example: "2024-01-15T12:00:00Z"
+
+  enrollmentStatus:
+    type: EnrollmentStatus
+    description: "Current status of the enrollment"
+    scope: Order
+    values:
+      - pending
+      - confirmed
+      - in_progress
+      - completed
+      - cancelled
+      - failed
+    example: "pending"
+
+  enrollmentStage:
+    type: EnrollmentStage
+    description: "Stage of the enrollment in the lifecycle"
+    scope: Order
+    values:
+      - applied
+      - enrolled
+      - started
+      - in_progress
+      - assessment
+      - completed
+    example: "applied"
+
+  formResponseId:
+    type: string
+    description: "Link to form response (XForms) for enrollment"
+    scope: Order
+
+  prerequisiteVerification:
+    type: object
+    description: "Verification of prerequisites"
+    scope: Order
+
+  enrollmentMetadata:
+    type: object
+    description: "Additional enrollment data"
+    scope: Order
+
+  accessibilityMetadata:
+    type: object
+    description: "Learner accessibility requirements"
+    scope: Order
+
+  customerId:
+    type: string
+    description: "Customer ID for multi-tenancy (learner)"
+    scope: Order
+
+  # --- Fulfillment attributes (progress, completion, certificate) ---
+
+  completionDate:
+    type: string
+    format: date
+    description: "When the learner completed the course"
+    scope: Fulfillment
+
+  expiryDate:
+    type: string
+    format: date
+    description: "For expiring certifications; triggers re-enrollment alerts"
+    scope: Fulfillment
+
+  progressPercentage:
+    type: number
+    description: "Overall course progress 0-100"
+    scope: Fulfillment
+    minimum: 0
+    maximum: 100
+    example: 45
+
+  certificate:
+    type: object
+    description: "Certificate or credential issued on completion"
+    scope: Fulfillment
+    properties:
+      certificateId: { type: string }
+      certificateNumber: { type: string }
+      certificateType: { type: string }
+      certificatePdfUrl: { type: string, format: uri }
+      verifiableCredentialId: { type: string }
+      issueDate: { type: string, format: date }
+      expiryDate: { type: string, format: date }
+      issuerDid: { type: string }
+      holderDid: { type: string }
+      shareToken: { type: string }
+      status: { type: string }
+
+  # --- Certificate (fulfillment outcome) attributes ---
+
+  certificateId:
+    type: string
+    description: "Unique certificate identifier"
+    scope: Fulfillment
+
+  certificateNumber:
+    type: string
+    description: "Human-readable certificate number"
+    scope: Fulfillment
+
+  certificateType:
+    type: CertificateType
+    description: "Type of certificate"
+    scope: Fulfillment
+    values:
+      - completion
+      - participation
+      - achievement
+      - professional
+    example: "completion"
+
+  certificateStatus:
+    type: CertificateStatus
+    description: "Status of the certificate"
+    scope: Fulfillment
+    values:
+      - issued
+      - revoked
+      - expired
+    example: "issued"
+
+  issueDate:
+    type: string
+    format: date
+    description: "Date the certificate was issued"
+    scope: Fulfillment
+
+  grade:
+    type: string
+    description: "Grade if applicable (A, B, C, Pass, Fail)"
+    scope: Fulfillment
+
+  creditsEarned:
+    type: number
+    description: "Credits earned if applicable"
+    scope: Fulfillment
+
+  certificatePdfUrl:
+    type: string
+    format: uri
+    description: "URL to certificate PDF"
+    scope: Fulfillment
+
+  verifiableCredentialId:
+    type: string
+    description: "Verifiable credential ID (e.g. W3C VC)"
+    scope: Fulfillment
+
+  issuerDid:
+    type: string
+    description: "Issuer DID"
+    scope: Fulfillment
+
+  holderDid:
+    type: string
+    description: "Holder DID"
+    scope: Fulfillment
+
+  shareToken:
+    type: string
+    description: "Token for sharing/verification"
+    scope: Fulfillment
+
+  certificateMetadata:
+    type: object
+    description: "Template, signatures, QR code, etc."
+    scope: Fulfillment
+
+  # --- Course content (for syllabus / progress) ---
+
+  contentId:
+    type: string
+    description: "Content item ID (module, lesson, video, etc.)"
+    scope: Fulfillment
+
+  contentType:
+    type: ContentType
+    description: "Type of content"
+    scope: Item
+    values:
+      - module
+      - lesson
+      - video
+      - reading
+      - assignment
+      - quiz
+      - project
+      - other
+
+  completionStatus:
+    type: CompletionStatus
+    description: "Completion status for a content item"
+    scope: Fulfillment
+    values:
+      - not_started
+      - in_progress
+      - completed
+      - skipped
+
+  timeSpentMinutes:
+    type: number
+    description: "Time spent on content in minutes"
+    scope: Fulfillment
+
+  lastAccessedAt:
+    type: string
+    format: date-time
+    description: "Last access timestamp"
+    scope: Fulfillment
+
+  # --- Price (fee) attributes ---
+
+  feeType:
+    type: string
+    description: "How the course fee is structured"
+    scope: Price
+    values:
+      - ONE_TIME
+      - INSTALMENT
+      - SUBSCRIPTION
+    example: "ONE_TIME"
+
+# Tag groups for extensibility
+tagGroups:
+
+  course-details:
+    description: "Course metadata and content"
+    applicableTo: [Item]
+    tags:
+      - code: course_category
+        name: Course Category
+        dataType: string
+      - code: course_level
+        name: Course Level
+        dataType: string
+      - code: duration_hours
+        name: Duration (hours)
+        dataType: number
+      - code: duration_weeks
+        name: Duration (weeks)
+        dataType: number
+      - code: language
+        name: Language
+        dataType: string
+      - code: learning_objectives
+        name: Learning Objectives
+        dataType: array
+      - code: course_outline
+        name: Course Outline
+        dataType: object
+      - code: form_id
+        name: Enrollment Form ID
+        dataType: string
+
+  delivery:
+    description: "Delivery mode and location"
+    applicableTo: [Item]
+    tags:
+      - code: course_type
+        name: Course Type
+        dataType: string
+      - code: location
+        name: Location
+        dataType: object
+      - code: online_meeting_info
+        name: Online Meeting Info
+        dataType: object
+      - code: schedule
+        name: Schedule
+        dataType: object
+
+  enrollment:
+    description: "Enrollment information"
+    applicableTo: [Order]
+    tags:
+      - code: enrollment_id
+        name: Enrollment ID
+        dataType: string
+      - code: enrollment_stage
+        name: Enrollment Stage
+        dataType: string
+      - code: form_response_id
+        name: Form Response ID
+        dataType: string
+      - code: prerequisite_verification
+        name: Prerequisite Verification
+        dataType: object
+      - code: customer_id
+        name: Customer ID
+        dataType: string
+
+  progress:
+    description: "Learner progress and content completion"
+    applicableTo: [Fulfillment]
+    tags:
+      - code: progress_percentage
+        name: Progress %
+        dataType: number
+      - code: last_accessed_at
+        name: Last Accessed
+        dataType: string
+      - code: time_spent_minutes
+        name: Time Spent (minutes)
+        dataType: number
+      - code: completion_status
+        name: Completion Status
+        dataType: string
+      - code: quiz_scores
+        name: Quiz Scores
+        dataType: object
+      - code: assignment_submissions
+        name: Assignment Submissions
+        dataType: object
+
+  certificate:
+    description: "Credential and verification"
+    applicableTo: [Fulfillment]
+    tags:
+      - code: certificate_id
+        name: Certificate ID
+        dataType: string
+      - code: certificate_number
+        name: Certificate Number
+        dataType: string
+      - code: certificate_type
+        name: Certificate Type
+        dataType: string
+      - code: certificate_status
+        name: Certificate Status
+        dataType: string
+      - code: verifiable_credential_id
+        name: Verifiable Credential ID
+        dataType: string
+      - code: share_token
+        name: Share Token
+        dataType: string
+      - code: issue_date
+        name: Issue Date
+        dataType: string
+      - code: issuer_did
+        name: Issuer DID
+        dataType: string
