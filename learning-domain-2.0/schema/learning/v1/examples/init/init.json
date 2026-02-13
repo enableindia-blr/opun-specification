@@ -1,0 +1,97 @@
+{
+  "context": {
+    "domain": "opun:learning",
+    "action": "init",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "learn-003-init-2024-02-10",
+    "message_id": "msg-init-learn-003",
+    "timestamp": "2024-02-10T10:20:00Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:orderStatus": "DRAFT",
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "PRV_ACADEMY_001"
+      },
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "learner-001",
+        "beckn:displayName": "Rajesh Kumar",
+        "beckn:telephone": "+91-9876543210",
+        "beckn:email": "rajesh.kumar@example.com"
+      },
+      "beckn:orderItems": [
+        {
+          "@type": "beckn:OrderItem",
+          "beckn:orderedItem": {
+            "@type": "beckn:Item",
+            "beckn:id": "COURSE_PY101_2024",
+            "beckn:provider": {
+              "@type": "beckn:Provider",
+              "beckn:id": "PRV_ACADEMY_001"
+            }
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "enrollment"
+          }
+        }
+      ],
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-enroll-001",
+        "beckn:mode": "DIGITAL",
+        "beckn:category": "COURSE",
+        "beckn:fulfillmentStatus": "PENDING"
+      },
+      "beckn:orderAttributes": {
+        "@type": "opun:LearningEnrollmentAttributes",
+        "opun:courseId": "COURSE_PY101_2024",
+        "opun:learnerId": "learner-001",
+        "opun:learnerName": "Rajesh Kumar",
+        "opun:learnerEmail": "rajesh.kumar@example.com",
+        "opun:learnerPhone": "+91-9876543210",
+        "opun:enrollmentStatus": "pending",
+        "opun:enrollmentStage": "applied",
+        "opun:formResponseId": "FORM_RESPONSE_001",
+        "opun:prerequisiteVerification": {
+          "basic_computer_literacy": "verified",
+          "status": "passed"
+        },
+        "opun:accessibilityMetadata": {
+          "closed_captions": true,
+          "extended_time": false
+        }
+      },
+      "beckn:xInput": {
+        "@type": "beckn:XInput",
+        "form": {
+          "@type": "beckn:Form",
+          "id": "FORM_ENROLL_PY101",
+          "mimeType": "application/xml",
+          "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><data><learner_name>Rajesh Kumar</learner_name><learner_email>rajesh.kumar@example.com</learner_email><learner_phone>+91-9876543210</learner_phone><prerequisite_declaration>I have basic computer literacy</prerequisite_declaration><accessibility_requirements>Closed captions preferred</accessibility_requirements></data>",
+          "submission": {
+            "url": "https://bpp-api.opunseva.com/enrollments/submit",
+            "method": "POST"
+          }
+        }
+      }
+    }
+  }
+}

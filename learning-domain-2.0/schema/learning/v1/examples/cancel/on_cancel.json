@@ -1,0 +1,85 @@
+{
+  "context": {
+    "domain": "opun:learning",
+    "action": "on_cancel",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "learn-003-init-2024-02-10",
+    "message_id": "msg-on-cancel-learn-008",
+    "timestamp": "2024-03-05T10:00:05Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "beckn:id": "order-learn-001",
+      "beckn:orderStatus": "CANCELLED",
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "PRV_ACADEMY_001"
+      },
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "learner-001",
+        "beckn:displayName": "Rajesh Kumar"
+      },
+      "beckn:orderItems": [
+        {
+          "@type": "beckn:OrderItem",
+          "beckn:orderedItem": {
+            "@type": "beckn:Item",
+            "beckn:id": "COURSE_PY101_2024",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Introduction to Python Programming"
+            }
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "enrollment"
+          }
+        }
+      ],
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-enroll-001",
+        "beckn:mode": "DIGITAL",
+        "beckn:category": "COURSE",
+        "beckn:fulfillmentStatus": "CANCELLED",
+        "beckn:deliveryAttributes": {
+          "@type": "opun:LearningFulfillmentAttributes",
+          "opun:enrollmentStatus": "cancelled",
+          "opun:enrollmentStage": "applied"
+        }
+      },
+      "beckn:cancellation": {
+        "@type": "beckn:Cancellation",
+        "beckn:cancelledBy": "BUYER",
+        "beckn:reason": {
+          "@type": "beckn:Reason",
+          "beckn:code": "SCHEDULE_CONFLICT",
+          "beckn:description": "Unable to attend due to schedule conflict"
+        },
+        "beckn:cancellationFee": {
+          "@type": "beckn:PriceSpecification",
+          "schema:priceCurrency": "INR",
+          "schema:price": 0
+        }
+      },
+      "beckn:orderAttributes": {
+        "@type": "opun:LearningEnrollmentAttributes",
+        "opun:enrollmentId": "ENR_PY101_2024_001",
+        "opun:courseId": "COURSE_PY101_2024",
+        "opun:enrolledAt": "2024-02-10T10:25:00Z"
+      }
+    }
+  }
+}

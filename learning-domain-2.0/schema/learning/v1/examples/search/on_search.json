@@ -1,0 +1,176 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_search",
+    "domain": "opun:learning",
+    "transaction_id": "learn-001-search-2024-02-10",
+    "message_id": "msg-on-search-learn-001",
+    "timestamp": "2024-02-10T10:00:05Z",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
+    "ttl": "PT30S",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "catalogs": [
+      {
+        "@context": [
+          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+        ],
+        "@type": "beckn:Catalog",
+        "beckn:id": "CAT_LEARN_001",
+        "beckn:items": [
+          {
+            "@type": "beckn:Item",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "beckn:longDesc": "Learn Python programming from scratch. Perfect for beginners with no prior coding experience. Covers fundamentals, data structures, and practical projects.",
+              "beckn:shortDesc": "Python Programming | Beginner | Online | 40 hours | Certificate",
+              "schema:name": "Introduction to Python Programming"
+            },
+            "beckn:id": "COURSE_PY101_2024",
+            "beckn:itemAttributes": {
+              "@type": "opun:LearningCourse",
+              "opun:courseCode": "COURSE_PY101_2024",
+              "opun:courseName": "Introduction to Python Programming",
+              "opun:courseDescription": "A comprehensive course covering Python fundamentals, data structures, and practical applications.",
+              "opun:courseCategory": "technical",
+              "opun:courseLevel": "beginner",
+              "opun:courseType": "online",
+              "opun:courseStatus": "open",
+              "opun:providerId": "PRV_ACADEMY_001",
+              "opun:providerName": "Tech Learning Academy",
+              "opun:instructorId": "INST_001",
+              "opun:instructorName": "Dr. Sarah Johnson",
+              "opun:instructorEmail": "sarah.johnson@techacademy.com",
+              "opun:durationHours": 40,
+              "opun:durationWeeks": 8,
+              "opun:startDate": "2024-03-01",
+              "opun:endDate": "2024-04-26",
+              "opun:enrollmentDeadline": "2024-02-25",
+              "opun:schedule": {
+                "opun:startDate": "2024-03-01",
+                "opun:endDate": "2024-04-26",
+                "opun:timezone": "Asia/Kolkata",
+                "opun:sessions": [
+                  {
+                    "dayOfWeek": "Monday",
+                    "startTime": "18:00",
+                    "endTime": "20:00"
+                  },
+                  {
+                    "dayOfWeek": "Wednesday",
+                    "startTime": "18:00",
+                    "endTime": "20:00"
+                  }
+                ]
+              },
+              "opun:language": "en-IN",
+              "opun:maxEnrollments": 50,
+              "opun:currentEnrollments": 32,
+              "opun:feeAmount": 2999,
+              "opun:currency": "INR",
+              "opun:learningObjectives": [
+                "Write Python scripts for automation",
+                "Use data structures (lists, dictionaries, tuples)",
+                "Implement basic algorithms",
+                "Build simple applications"
+              ],
+              "opun:prerequisites": {
+                "description": "Basic computer literacy",
+                "type": "SKILL"
+              },
+              "opun:certificateTemplateId": "CERT_TEMPLATE_PY101",
+              "opun:isMandatory": false,
+              "opun:formId": "FORM_ENROLL_PY101",
+              "opun:onlineMeetingInfo": {
+                "platform": "Zoom",
+                "linkTemplate": "https://zoom.us/j/{meeting_id}",
+                "requirements": [
+                  "Stable internet connection",
+                  "Webcam and microphone",
+                  "Python 3.x installed"
+                ]
+              },
+              "opun:accessibilityMetadata": {
+                "providedAccommodations": {
+                  "support": [
+                    "Closed captions for all video content",
+                    "Extended time for assignments"
+                  ],
+                  "tech": [
+                    "Screen reader compatible materials",
+                    "Keyboard navigation support"
+                  ]
+                }
+              }
+            },
+            "beckn:price": {
+              "@type": "beckn:PriceSpecification",
+              "schema:priceCurrency": "INR",
+              "schema:price": 2999,
+              "opun:feeType": "ONE_TIME"
+            }
+          },
+          {
+            "@type": "beckn:Item",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "beckn:longDesc": "Advanced Python programming with focus on web development, APIs, and data science.",
+              "beckn:shortDesc": "Advanced Python | Intermediate | Hybrid | 60 hours | Certificate",
+              "schema:name": "Advanced Python Development"
+            },
+            "beckn:id": "COURSE_PY201_2024",
+            "beckn:itemAttributes": {
+              "@type": "opun:LearningCourse",
+              "opun:courseCode": "COURSE_PY201_2024",
+              "opun:courseName": "Advanced Python Development",
+              "opun:courseCategory": "technical",
+              "opun:courseLevel": "intermediate",
+              "opun:courseType": "hybrid",
+              "opun:courseStatus": "open",
+              "opun:providerId": "PRV_ACADEMY_001",
+              "opun:providerName": "Tech Learning Academy",
+              "opun:durationHours": 60,
+              "opun:durationWeeks": 12,
+              "opun:startDate": "2024-03-15",
+              "opun:endDate": "2024-06-07",
+              "opun:enrollmentDeadline": "2024-03-10",
+              "opun:maxEnrollments": 30,
+              "opun:currentEnrollments": 18,
+              "opun:feeAmount": 5999,
+              "opun:currency": "INR",
+              "opun:location": {
+                "opun:city": "Bangalore",
+                "opun:pincode": "560001",
+                "opun:state": "Karnataka",
+                "opun:country": "India",
+                "opun:streetAddress": "123 Tech Park, Electronic City"
+              }
+            },
+            "beckn:price": {
+              "@type": "beckn:PriceSpecification",
+              "schema:priceCurrency": "INR",
+              "schema:price": 5999,
+              "opun:feeType": "ONE_TIME"
+            }
+          }
+        ],
+        "beckn:provider": {
+          "@type": "beckn:Provider",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Tech Learning Academy"
+          },
+          "beckn:id": "PRV_ACADEMY_001",
+          "beckn:providerAttributes": {
+            "opun:providerType": "TRAINING_CENTER"
+          }
+        }
+      }
+    ]
+  }
+}

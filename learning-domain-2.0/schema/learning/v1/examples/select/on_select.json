@@ -1,0 +1,172 @@
+{
+  "context": {
+    "domain": "opun:learning",
+    "action": "on_select",
+    "version": "2.0.0",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "bpp_id": "bpp.opunseva.com",
+    "bpp_uri": "https://bpp-api.opunseva.com",
+    "transaction_id": "learn-002-select-2024-02-10",
+    "message_id": "msg-on-select-learn-002",
+    "timestamp": "2024-02-10T10:15:05Z",
+    "ttl": "PT10M",
+    "network_id": ["opun-network"],
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:id": "order-learn-001",
+      "beckn:orderStatus": "ACTIVE",
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "PRV_ACADEMY_001"
+      },
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@type": "beckn:Item",
+            "beckn:id": "COURSE_PY101_2024",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Introduction to Python Programming",
+              "beckn:shortDesc": "Python Programming | Beginner | Online | 40 hours",
+              "beckn:longDesc": "Learn Python programming from scratch. Perfect for beginners with no prior coding experience. Covers fundamentals, data structures, and practical projects."
+            },
+            "beckn:provider": {
+              "@type": "beckn:Provider",
+              "beckn:id": "PRV_ACADEMY_001",
+              "beckn:descriptor": {
+                "@type": "beckn:Descriptor",
+                "schema:name": "Tech Learning Academy",
+                "beckn:shortDesc": "Leading online learning platform"
+              }
+            },
+            "beckn:itemAttributes": {
+              "@type": "opun:LearningCourse",
+              "opun:courseCode": "COURSE_PY101_2024",
+              "opun:courseName": "Introduction to Python Programming",
+              "opun:courseDescription": "A comprehensive course covering Python fundamentals, data structures, and practical applications.",
+              "opun:courseCategory": "technical",
+              "opun:courseLevel": "beginner",
+              "opun:courseType": "online",
+              "opun:courseStatus": "open",
+              "opun:providerId": "PRV_ACADEMY_001",
+              "opun:providerName": "Tech Learning Academy",
+              "opun:instructorId": "INST_001",
+              "opun:instructorName": "Dr. Sarah Johnson",
+              "opun:instructorEmail": "sarah.johnson@techacademy.com",
+              "opun:durationHours": 40,
+              "opun:durationWeeks": 8,
+              "opun:startDate": "2024-03-01",
+              "opun:endDate": "2024-04-26",
+              "opun:enrollmentDeadline": "2024-02-25",
+              "opun:schedule": {
+                "opun:startDate": "2024-03-01",
+                "opun:endDate": "2024-04-26",
+                "opun:timezone": "Asia/Kolkata",
+                "opun:sessions": [
+                  {
+                    "dayOfWeek": "Monday",
+                    "startTime": "18:00",
+                    "endTime": "20:00"
+                  },
+                  {
+                    "dayOfWeek": "Wednesday",
+                    "startTime": "18:00",
+                    "endTime": "20:00"
+                  }
+                ]
+              },
+              "opun:language": "en-IN",
+              "opun:maxEnrollments": 50,
+              "opun:currentEnrollments": 32,
+              "opun:learningObjectives": [
+                "Write Python scripts for automation",
+                "Use data structures (lists, dictionaries, tuples)",
+                "Implement basic algorithms",
+                "Build simple applications"
+              ],
+              "opun:prerequisites": {
+                "description": "Basic computer literacy",
+                "type": "SKILL"
+              },
+              "opun:courseOutline": {
+                "modules": [
+                  {
+                    "title": "Module 1: Python Basics",
+                    "lessons": [
+                      "Introduction to Python",
+                      "Variables and Data Types",
+                      "Operators and Expressions"
+                    ]
+                  },
+                  {
+                    "title": "Module 2: Control Structures",
+                    "lessons": [
+                      "Conditional Statements",
+                      "Loops",
+                      "Functions"
+                    ]
+                  }
+                ]
+              },
+              "opun:certificateTemplateId": "CERT_TEMPLATE_PY101",
+              "opun:isMandatory": false,
+              "opun:formId": "FORM_ENROLL_PY101",
+              "opun:onlineMeetingInfo": {
+                "platform": "Zoom",
+                "linkTemplate": "https://zoom.us/j/{meeting_id}",
+                "requirements": [
+                  "Stable internet connection",
+                  "Webcam and microphone",
+                  "Python 3.x installed"
+                ]
+              }
+            }
+          },
+          "beckn:quantity": {
+            "@type": "schema:QuantitativeValue",
+            "schema:value": 1,
+            "schema:unitText": "enrollment"
+          }
+        }
+      ],
+      "beckn:quote": {
+        "@type": "beckn:Quote",
+        "beckn:price": {
+          "@type": "beckn:PriceSpecification",
+          "schema:priceCurrency": "INR",
+          "schema:price": 2999,
+          "opun:feeType": "ONE_TIME"
+        }
+      },
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "fulfillment-enroll-001",
+        "beckn:mode": "DIGITAL",
+        "beckn:category": "COURSE"
+      },
+      "beckn:xInput": {
+        "@type": "beckn:XInput",
+        "form": {
+          "@type": "beckn:Form",
+          "id": "FORM_ENROLL_PY101",
+          "mimeType": "application/xml",
+          "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance><data><learner_name/><learner_email/><learner_phone/><prerequisite_declaration/><accessibility_requirements/></data></xf:instance><xf:bind nodeset=\"/data/learner_name\" required=\"true()\"/><xf:bind nodeset=\"/data/learner_email\" type=\"xf:string\" required=\"true()\"/></xf:model>",
+          "submission": {
+            "url": "https://bpp-api.opunseva.com/enrollments/submit",
+            "method": "POST"
+          }
+        }
+      }
+    }
+  }
+}

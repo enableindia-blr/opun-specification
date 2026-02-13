@@ -1,0 +1,47 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "search",
+    "domain": "opun:learning",
+    "transaction_id": "learn-001-search-2024-02-10",
+    "message_id": "msg-search-learn-001",
+    "timestamp": "2024-02-10T10:00:00Z",
+    "ttl": "PT30S",
+    "bap_id": "bap.opungram.com",
+    "bap_uri": "https://bap-api.opungram.com",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/learning/v1/context.jsonld"
+    ]
+  },
+  "message": {
+    "intent": {
+      "@type": "beckn:Intent",
+      "@typeHint": "schema:Course",
+      "item": {
+        "@type": "beckn:Item",
+        "descriptor": {
+          "@type": "beckn:Descriptor",
+          "name": "Python Programming"
+        }
+      },
+      "category": {
+        "@type": "beckn:Category",
+        "id": "technical"
+      },
+      "tags": [
+        {
+          "code": "course_category",
+          "value": "technical"
+        },
+        {
+          "code": "course_level",
+          "value": "beginner"
+        },
+        {
+          "code": "course_type",
+          "value": "online"
+        }
+      ]
+    }
+  }
+}

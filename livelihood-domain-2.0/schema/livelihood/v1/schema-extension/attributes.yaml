@@ -1,0 +1,861 @@
+# Livelihood Domain Attributes for Beckn Protocol v2
+# Defines domain-specific attributes for job opportunities and employment
+
+attributes:
+  
+  # Job Opportunity Attributes
+  jobCode:
+    type: string
+    description: "Unique identifier or reference code for the job posting"
+    scope: Item
+    example: "JOB-2024-001"
+    
+  employmentType:
+    type: EmploymentType
+    description: "Type of employment contract"
+    scope: Category
+    values:
+      - FULL_TIME
+      - PART_TIME
+      - CONTRACT
+      - TEMPORARY
+      - INTERNSHIP
+      - FREELANCE
+      - APPRENTICESHIP
+      - VOLUNTEER
+    example: "FULL_TIME"
+
+  location:
+    type: object
+    description: "Job location details"
+    scope: Item
+    properties:
+      city:
+        type: string
+        description: "City where the job is located"
+      pincode:
+        type: string
+        description: "Postal code of the location"
+    example:
+      city: "Bangalore"
+      pincode: "560001"
+    
+  workMode:
+    type: WorkMode
+    description: "Work location arrangement"
+    scope: Category
+    values:
+      - REMOTE
+      - ONSITE
+      - HYBRID
+    example: "HYBRID"
+    
+  experienceRequired:
+    type: object
+    description: "Required work experience"
+    scope: Item
+    properties:
+      minimumYears:
+        type: number
+        description: "Minimum years of experience required"
+      maximumYears:
+        type: number
+        description: "Maximum years of experience (if applicable)"
+      level:
+        type: ExperienceLevel
+        values:
+          - ENTRY_LEVEL
+          - JUNIOR
+          - MID_LEVEL
+          - SENIOR
+          - LEAD
+          - MANAGER
+          - DIRECTOR
+          - EXECUTIVE
+    example:
+      minimumYears: 3
+      maximumYears: 5
+      level: "MID_LEVEL"
+      
+  educationLevel:
+    type: EducationLevel
+    description: "Required education qualification"
+    scope: Item
+    values:
+      - NO_FORMAL_EDUCATION
+      - HIGH_SCHOOL
+      - DIPLOMA
+      - BACHELORS
+      - MASTERS
+      - DOCTORATE
+      - PROFESSIONAL_CERTIFICATION
+    example: "BACHELORS"
+    
+  skills:
+    type: array
+    description: "Required and preferred skills"
+    scope: Item
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Skill name"
+        level:
+          type: string
+          enum: [REQUIRED, PREFERRED]
+          description: "Whether skill is required or preferred"
+        proficiency:
+          type: string
+          enum: [BEGINNER, INTERMEDIATE, ADVANCED, EXPERT]
+          description: "Required proficiency level"
+    example:
+      - name: "Java"
+        level: "REQUIRED"
+        proficiency: "ADVANCED"
+      - name: "Spring Boot"
+        level: "REQUIRED"
+        proficiency: "INTERMEDIATE"
+        
+  responsibilities:
+    type: array
+    description: "Key job responsibilities"
+    scope: Item
+    items:
+      type: string
+    example:
+      - "Design and develop backend services"
+      - "Collaborate with cross-functional teams"
+      - "Mentor junior developers"
+      
+  benefits:
+    type: array
+    description: "Employee benefits and perks"
+    scope: Item
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "Benefit category"
+        description:
+          type: string
+          description: "Benefit details"
+    example:
+      - type: "HEALTH_INSURANCE"
+        description: "Medical insurance for employee and family"
+      - type: "PAID_TIME_OFF"
+        description: "25 days annual leave"
+        
+  salaryRange:
+    type: object
+    description: "Compensation range"
+    scope: Price
+    properties:
+      currency:
+        type: string
+        description: "ISO 4217 currency code"
+      minimum:
+        type: number
+        description: "Minimum salary"
+      maximum:
+        type: number
+        description: "Maximum salary"
+      period:
+        type: string
+        enum: [ANNUAL, MONTHLY, WEEKLY, HOURLY, PER_PROJECT]
+        description: "Payment frequency"
+    example:
+      currency: "INR"
+      minimum: 1200000
+      maximum: 1800000
+      period: "ANNUAL"
+      
+  applicationDeadline:
+    type: string
+    format: date-time
+    description: "Last date to apply for the position"
+    scope: Item
+    example: "2024-12-31T23:59:59Z"
+    
+  vacancies:
+    type: number
+    description: "Number of open positions"
+    scope: Item
+    example: 3
+    
+  jobFunction:
+    type: string
+    description: "Primary job function or department"
+    scope: Category
+    values:
+      - ENGINEERING
+      - PRODUCT_MANAGEMENT
+      - DESIGN
+      - SALES
+      - MARKETING
+      - OPERATIONS
+      - HUMAN_RESOURCES
+      - FINANCE
+      - LEGAL
+      - CUSTOMER_SUPPORT
+      - DATA_SCIENCE
+      - RESEARCH
+      - ADMINISTRATION
+    example: "ENGINEERING"
+    
+  industryType:
+    type: string
+    description: "Industry sector"
+    scope: Provider
+    values:
+      - TECHNOLOGY
+      - HEALTHCARE
+      - FINANCE
+      - EDUCATION
+      - MANUFACTURING
+      - RETAIL
+      - HOSPITALITY
+      - TRANSPORTATION
+      - REAL_ESTATE
+      - AGRICULTURE
+      - MEDIA
+      - GOVERNMENT
+      - NON_PROFIT
+    example: "TECHNOLOGY"
+    
+  companySize:
+    type: string
+    description: "Size of the organization"
+    scope: Provider
+    values:
+      - STARTUP (1-50)
+      - SMALL (51-200)
+      - MEDIUM (201-1000)
+      - LARGE (1001-5000)
+      - ENTERPRISE (5000+)
+    example: "MEDIUM"
+
+  accessibilityMetadata:
+    type: object
+    description: "Accessibility information for persons with disabilities"
+    scope: Item
+    properties:
+      suitableDisabilityTypes:
+        type: array
+        description: "Types of disabilities this job is suitable for"
+        items:
+          type: object
+          properties:
+            disabilityCode:
+              type: string
+              enum: ["LOCO_WHEELCHAIR", "VISUAL_LOW_VISION", "VISUAL_BLIND", "HEARING_IMPAIRED", "SPEECH_IMPAIRED", "LEARNING_DISABILITY", "MENTAL_HEALTH", "OTHER"]
+            subTypes:
+              type: array
+              items:
+                type: string
+            fitLevel:
+              type: string
+              enum: ["PERFECT_MATCH", "HIGH_MATCH", "MODERATE_MATCH", "LOW_MATCH", "NOT_SUITABLE"]
+            notes:
+              type: string
+      roleRequirements:
+        type: object
+        description: "Role-specific requirements assessment"
+        properties:
+          mobilityOnJob:
+            type: object
+            properties:
+              level:
+                type: string
+                enum: ["MINIMAL", "MODERATE", "HIGH", "EXTREME"]
+          communication:
+            type: object
+            properties:
+              level:
+                type: string
+                enum: ["MINIMAL", "MODERATE", "HIGH"]
+      infrastructure:
+        type: object
+        description: "Workplace infrastructure details"
+        properties:
+          buildingAccess:
+            type: object
+            properties:
+              ramps:
+                type: boolean
+              elevators:
+                type: boolean
+              stepFreeEntry:
+                type: boolean
+          workspace:
+            type: object
+            properties:
+              adjustableDesks:
+                type: boolean
+    example:
+      suitableDisabilityTypes:
+        - disabilityCode: "LOCO_WHEELCHAIR"
+          subTypes: ["Wheelchair User"]
+          fitLevel: "PERFECT_MATCH"
+          notes: "Desk-based role with barrier-free office"
+    
+  # Application Process Attributes
+  
+  applicationForm:
+    type: object
+    description: "Application form details"
+    scope: XInput
+    properties:
+      url:
+        type: string
+        format: uri
+        description: "URL to application form"
+      fields:
+        type: array
+        description: "Required form fields"
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+            required:
+              type: boolean
+    example:
+      url: "https://careers.example.com/apply/job-001"
+      fields:
+        - name: "resume"
+          type: "file"
+          required: true
+          
+  requiredDocuments:
+    type: array
+    description: "Documents required for application"
+    scope: XInput
+    items:
+      type: string
+      enum:
+        - RESUME
+        - COVER_LETTER
+        - IDENTITY_PROOF
+        - ADDRESS_PROOF
+        - EDUCATION_CERTIFICATE
+        - EXPERIENCE_CERTIFICATE
+        - PORTFOLIO
+        - REFERENCE_LETTER
+        - BACKGROUND_CHECK_CONSENT
+    example:
+      - "RESUME"
+      - "EDUCATION_CERTIFICATE"
+      
+  interviewProcess:
+    type: array
+    description: "Stages in the interview process"
+    scope: Fulfillment
+    items:
+      type: object
+      properties:
+        stage:
+          type: string
+          description: "Interview stage name"
+        type:
+          type: string
+          enum:
+            - ONLINE_INTERVIEW
+            - FACE_TO_FACE_INTERVIEW
+            - TELEPHONIC_INTERVIEW
+            - VIDEO_INTERVIEW
+            - TECHNICAL_ASSESSMENT
+            - HR_ROUND
+            - MANAGERIAL_ROUND
+            - PANEL_INTERVIEW
+            - GROUP_DISCUSSION
+        duration:
+          type: string
+          description: "Expected duration (ISO 8601)"
+        mode:
+          type: string
+          enum: [ONLINE, OFFLINE]
+    example:
+      - stage: "Technical Screening"
+        type: "TELEPHONIC_INTERVIEW"
+        duration: "PT30M"
+        mode: "ONLINE"
+      - stage: "Technical Round"
+        type: "VIDEO_INTERVIEW"
+        duration: "PT1H"
+        mode: "ONLINE"
+        
+  joiningDate:
+    type: string
+    format: date
+    description: "Expected date of joining"
+    scope: Fulfillment
+    example: "2024-02-01"
+    
+  probationPeriod:
+    type: string
+    description: "Duration of probation period (ISO 8601)"
+    scope: Item
+    example: "P3M"
+    
+  noticePeriod:
+    type: string
+    description: "Required notice period for resignation (ISO 8601)"
+    scope: Item
+    example: "P30D"
+    
+  # Application Status Attributes
+  
+  applicationStatus:
+    type: ApplicationStatus
+    description: "Current status of job application"
+    scope: Fulfillment.state
+    values:
+      - APPLICATION_SUBMITTED
+      - APPLICATION_RECEIVED
+      - APPLICATION_UNDER_REVIEW
+      - SHORTLISTED
+      - INTERVIEW_SCHEDULED
+      - INTERVIEW_COMPLETED
+      - ASSESSMENT_PENDING
+      - ASSESSMENT_COMPLETED
+      - REFERENCE_CHECK_IN_PROGRESS
+      - BACKGROUND_CHECK_IN_PROGRESS
+      - OFFER_PENDING
+      - OFFER_EXTENDED
+      - OFFER_ACCEPTED
+      - OFFER_REJECTED
+      - OFFER_WITHDRAWN
+      - APPLICATION_REJECTED
+      - APPLICATION_ON_HOLD
+      - CANDIDATE_WITHDREW
+      - JOINED
+    example: "SHORTLISTED"
+    
+  # Employer Profile Attributes
+  
+  companyProfile:
+    type: object
+    description: "Detailed company information"
+    scope: Provider
+    properties:
+      founded:
+        type: string
+        description: "Year founded"
+      website:
+        type: string
+        format: uri
+        description: "Company website"
+      socialMedia:
+        type: object
+        description: "Social media handles"
+      culture:
+        type: string
+        description: "Company culture description"
+      mission:
+        type: string
+        description: "Company mission statement"
+    example:
+      founded: "2010"
+      website: "https://example.com"
+      culture: "Innovation-driven with work-life balance"
+      
+  # Job Seeker Profile Attributes
+  
+  candidateProfile:
+    type: object
+    description: "Job seeker profile information"
+    scope: Customer.person
+    properties:
+      resume:
+        type: object
+        properties:
+          url:
+            type: string
+            format: uri
+          lastUpdated:
+            type: string
+            format: date
+      portfolio:
+        type: string
+        format: uri
+        description: "Portfolio URL"
+      linkedIn:
+        type: string
+        format: uri
+        description: "LinkedIn profile URL"
+      githubProfile:
+        type: string
+        format: uri
+        description: "GitHub profile (for developers)"
+      currentEmployer:
+        type: string
+        description: "Current employer name"
+      currentDesignation:
+        type: string
+        description: "Current job title"
+      totalExperience:
+        type: string
+        description: "Total years of experience (ISO 8601 duration)"
+      noticePeriod:
+        type: string
+        description: "Current notice period (ISO 8601 duration)"
+      expectedSalary:
+        type: object
+        properties:
+          currency:
+            type: string
+          amount:
+            type: number
+          period:
+            type: string
+      preferredLocations:
+        type: array
+        items:
+          type: string
+      preferredWorkMode:
+        type: array
+        items:
+          type: WorkMode
+      disabilityProfile:
+        type: object
+        description: "Disability profile for accessibility matching"
+        properties:
+          disabilityType:
+            type: string
+            enum: ["LOCO_WHEELCHAIR", "VISUAL_LOW_VISION", "VISUAL_BLIND", "HEARING_IMPAIRED", "SPEECH_IMPAIRED", "LEARNING_DISABILITY", "MENTAL_HEALTH", "OTHER"]
+          subType:
+            type: string
+          nature:
+            type: string
+            enum: ["CONGENITAL", "ACQUIRED"]
+          severityPercentage:
+            type: number
+            minimum: 0
+            maximum: 100
+          functionalAbilities:
+            type: object
+            properties:
+              upperLimbDexterity:
+                type: string
+                enum: ["FULL", "LIMITED", "NONE"]
+              fineMotorSkills:
+                type: string
+                enum: ["UNAFFECTED", "AFFECTED", "SEVERELY_AFFECTED"]
+              indoorMobility:
+                type: string
+                enum: ["INDEPENDENT", "INDEPENDENT_WHEELCHAIR", "ASSISTED", "DEPENDENT"]
+              sittingTolerance:
+                type: string
+                enum: ["UNLIMITED", "4_6_HOURS", "2_4_HOURS", "LESS_THAN_2_HOURS"]
+              travelRangeKm:
+                type: string
+                enum: ["UNLIMITED", "20_50", "5_20", "LESS_THAN_5"]
+          workplaceRequirements:
+            type: object
+            properties:
+              barrierFreeAccess:
+                type: boolean
+              accessibleWashroom:
+                type: boolean
+              ergonomicSeating:
+                type: boolean
+          assistiveTechnologyOwned:
+            type: array
+            items:
+              type: string
+              enum: ["WHEELCHAIR_MANUAL", "WHEELCHAIR_ELECTRIC", "MODIFIED_SCOOTER", "SCREEN_READER", "BRAILLE_DISPLAY", "HEARING_AID", "SPEECH_SYNTHESIZER", "ADAPTIVE_KEYBOARD", "OTHER"]
+    example:
+      totalExperience: "P5Y"
+      currentDesignation: "Software Engineer"
+      noticePeriod: "P60D"
+      preferredWorkMode: ["REMOTE", "HYBRID"]
+      disabilityProfile:
+        disabilityType: "LOCO_WHEELCHAIR"
+        subType: "Wheelchair User"
+        nature: "ACQUIRED"
+        severityPercentage: 60
+
+  # Job Offer Attributes
+  salaryBreakup:
+    type: array
+    description: "Detailed salary component breakdown"
+    scope: Price
+    items:
+      type: object
+      properties:
+        component:
+          type: string
+          enum: ["BASE_SALARY", "VARIABLE_PAY", "JOINING_BONUS", "CONVEYANCE_ALLOWANCE", "LTA", "MEDICAL_ALLOWANCE", "OTHER"]
+        currency:
+          type: string
+        amount:
+          type: number
+        period:
+          type: string
+          enum: ["ANNUAL", "MONTHLY", "ONE_TIME", "QUARTERLY"]
+    example:
+      - component: "BASE_SALARY"
+        currency: "INR"
+        amount: 1200000
+        period: "ANNUAL"
+
+  employmentTerms:
+    type: object
+    description: "Terms of employment"
+    scope: Item
+    properties:
+      probationPeriod:
+        type: string
+      noticePeriod:
+        type: string
+      joiningDate:
+        type: string
+        format: date
+    example:
+      probationPeriod: "P3M"
+      noticePeriod: "P30D"
+      joiningDate: "2024-02-01"
+
+  # Application Attributes
+  applicationId:
+    type: string
+    description: "Unique identifier for the job application"
+    scope: Order
+    example: "APP-2024-001"
+
+  appliedDate:
+    type: string
+    format: date-time
+    description: "Date and time when the application was submitted"
+    scope: Order
+    example: "2024-01-15T12:11:46.129Z"
+
+  submittedDocuments:
+    type: array
+    description: "Types of documents submitted with the application"
+    scope: Order
+    items:
+      type: string
+      enum: ["RESUME", "COVER_LETTER", "PORTFOLIO", "CERTIFICATES", "REFERENCES"]
+    example: ["RESUME", "COVER_LETTER"]
+
+  # Fulfillment Attributes
+  formVerificationStatus:
+    type: string
+    description: "Status of form verification by provider"
+    scope: Fulfillment
+    enum: ["VERIFIED", "PENDING", "REJECTED", "REQUIRES_CORRECTION"]
+    example: "PENDING"
+
+  verificationNotes:
+    type: string
+    description: "Notes from form verification process"
+    scope: Fulfillment
+    example: "Application received. Verification will occur after candidate confirmation."
+
+  nextSteps:
+    type: string
+    description: "Next steps in the application process"
+    scope: Fulfillment
+    example: "Awaiting candidate confirmation."
+
+# Tag Definitions for Beckn v2.0
+# Tags are used to extend Item, Provider, Customer, etc. with domain-specific data
+
+tagGroups:
+  
+  job-requirements:
+    description: "Job requirements and qualifications"
+    applicableTo: [Item]
+    tags:
+      - code: experience-years
+        name: Years of Experience
+        dataType: string
+      - code: education
+        name: Education Requirement
+        dataType: string
+      - code: certifications
+        name: Required Certifications
+        dataType: array
+      - code: languages
+        name: Language Requirements
+        dataType: array
+      - code: technical-skills
+        name: Technical Skills
+        dataType: array
+      - code: soft-skills
+        name: Soft Skills
+        dataType: array
+        
+  job-benefits:
+    description: "Employee benefits and compensation"
+    applicableTo: [Item]
+    tags:
+      - code: health-insurance
+        name: Health Insurance
+        dataType: string
+      - code: life-insurance
+        name: Life Insurance
+        dataType: string
+      - code: retirement-benefits
+        name: Retirement Benefits
+        dataType: string
+      - code: paid-time-off
+        name: Paid Time Off
+        dataType: string
+      - code: flexible-hours
+        name: Flexible Working Hours
+        dataType: boolean
+      - code: remote-work
+        name: Remote Work Option
+        dataType: boolean
+      - code: professional-development
+        name: Professional Development
+        dataType: string
+      - code: wellness-programs
+        name: Wellness Programs
+        dataType: string
+      - code: stock-options
+        name: Stock Options/ESOP
+        dataType: string
+        
+  job-responsibilities:
+    description: "Key job responsibilities and duties"
+    applicableTo: [Item]
+    tags:
+      - code: primary-duties
+        name: Primary Duties
+        dataType: array
+      - code: team-size
+        name: Team Size (if managing)
+        dataType: number
+      - code: reporting-to
+        name: Reporting To
+        dataType: string
+        
+  employment-terms:
+    description: "Terms of employment"
+    applicableTo: [Item, Order]
+    tags:
+      - code: probation-period
+        name: Probation Period
+        dataType: string
+      - code: notice-period
+        name: Notice Period
+        dataType: string
+      - code: contract-duration
+        name: Contract Duration
+        dataType: string
+      - code: bond-period
+        name: Bond Period (if any)
+        dataType: string
+      - code: relocation-assistance
+        name: Relocation Assistance
+        dataType: boolean
+        
+  application-info:
+    description: "Application submission information"
+    applicableTo: [Order]
+    tags:
+      - code: application-id
+        name: Application Reference ID
+        dataType: string
+      - code: applied-date
+        name: Application Submitted Date
+        dataType: string
+      - code: referral-code
+        name: Referral Code
+        dataType: string
+      - code: source
+        name: Application Source
+        dataType: string
+        
+  interview-details:
+    description: "Interview scheduling and details"
+    applicableTo: [Fulfillment]
+    tags:
+      - code: interview-date
+        name: Interview Date
+        dataType: string
+      - code: interview-time
+        name: Interview Time
+        dataType: string
+      - code: interview-duration
+        name: Interview Duration
+        dataType: string
+      - code: interview-mode
+        name: Interview Mode
+        dataType: string
+      - code: interview-location
+        name: Interview Location
+        dataType: string
+      - code: interview-link
+        name: Interview Link (for online)
+        dataType: string
+      - code: interviewer-name
+        name: Interviewer Name
+        dataType: string
+      - code: interview-instructions
+        name: Interview Instructions
+        dataType: string
+        
+  assessment-details:
+    description: "Assessment and test information"
+    applicableTo: [Fulfillment]
+    tags:
+      - code: assessment-type
+        name: Assessment Type
+        dataType: string
+      - code: assessment-duration
+        name: Assessment Duration
+        dataType: string
+      - code: assessment-link
+        name: Assessment Link
+        dataType: string
+      - code: assessment-deadline
+        name: Assessment Deadline
+        dataType: string
+        
+  company-info:
+    description: "Company information and culture"
+    applicableTo: [Provider]
+    tags:
+      - code: company-website
+        name: Company Website
+        dataType: string
+      - code: linkedin-page
+        name: LinkedIn Page
+        dataType: string
+      - code: glassdoor-rating
+        name: Glassdoor Rating
+        dataType: string
+      - code: employee-count
+        name: Number of Employees
+        dataType: string
+      - code: funding-stage
+        name: Funding Stage
+        dataType: string
+      - code: investors
+        name: Investors
+        dataType: array
+        
+  candidate-credentials:
+    description: "Candidate verifiable credentials"
+    applicableTo: [Customer]
+    tags:
+      - code: degree-verification
+        name: Degree Verification
+        dataType: string
+      - code: experience-verification
+        name: Experience Verification
+        dataType: string
+      - code: skill-certification
+        name: Skill Certification
+        dataType: string
+      - code: background-check
+        name: Background Check Status
+        dataType: string

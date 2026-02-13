@@ -1,0 +1,876 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "http://schema.org/",
+    "beckn": "https://schema.beckn.org/core/v2/",
+    "livelihood": "https://schema.beckn.org/livelihood/v1/"
+  },
+  "@graph": [
+    {
+      "@id": "livelihood:",
+      "@type": "rdfs:Ontology",
+      "rdfs:label": "Beckn Livelihood Domain Vocabulary",
+      "rdfs:comment": "Vocabulary for job opportunities and employment services in the Beckn Protocol ecosystem",
+      "schema:version": "1.0.0",
+      "schema:dateCreated": "2024-01-15"
+    },
+    
+    {
+      "@id": "livelihood:JobOpportunity",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Job Opportunity",
+      "rdfs:comment": "Represents a job opening or employment opportunity",
+      "rdfs:subClassOf": "beckn:Item"
+    },
+    
+    {
+      "@id": "livelihood:LivelihoodJobOpportunity",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Livelihood Job Opportunity",
+      "rdfs:comment": "Represents a job opportunity with livelihood domain specific attributes",
+      "rdfs:subClassOf": "livelihood:JobOpportunity"
+    },
+    
+    {
+      "@id": "livelihood:EmploymentType",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Employment Type",
+      "rdfs:comment": "Type of employment contract",
+      "schema:enumeration": [
+        "FULL_TIME",
+        "PART_TIME",
+        "CONTRACT",
+        "TEMPORARY",
+        "INTERNSHIP",
+        "FREELANCE",
+        "APPRENTICESHIP",
+        "VOLUNTEER"
+      ]
+    },
+    
+    {
+      "@id": "livelihood:WorkMode",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Work Mode",
+      "rdfs:comment": "Work location arrangement",
+      "schema:enumeration": [
+        "REMOTE",
+        "ONSITE",
+        "HYBRID"
+      ]
+    },
+    
+    {
+      "@id": "livelihood:ExperienceLevel",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Experience Level",
+      "rdfs:comment": "Level of professional experience",
+      "schema:enumeration": [
+        "ENTRY_LEVEL",
+        "JUNIOR",
+        "MID_LEVEL",
+        "SENIOR",
+        "LEAD",
+        "MANAGER",
+        "DIRECTOR",
+        "EXECUTIVE"
+      ]
+    },
+    
+    {
+      "@id": "livelihood:EducationLevel",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Education Level",
+      "rdfs:comment": "Educational qualification level",
+      "schema:enumeration": [
+        "NO_FORMAL_EDUCATION",
+        "HIGH_SCHOOL",
+        "DIPLOMA",
+        "BACHELORS",
+        "MASTERS",
+        "DOCTORATE",
+        "PROFESSIONAL_CERTIFICATION"
+      ]
+    },
+    
+    {
+      "@id": "livelihood:ApplicationStatus",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Application Status",
+      "rdfs:comment": "Status of a job application in the recruitment process",
+      "schema:enumeration": [
+        "APPLICATION_SUBMITTED",
+        "APPLICATION_RECEIVED",
+        "APPLICATION_UNDER_REVIEW",
+        "SHORTLISTED",
+        "INTERVIEW_SCHEDULED",
+        "INTERVIEW_COMPLETED",
+        "ASSESSMENT_PENDING",
+        "ASSESSMENT_COMPLETED",
+        "REFERENCE_CHECK_IN_PROGRESS",
+        "BACKGROUND_CHECK_IN_PROGRESS",
+        "OFFER_PENDING",
+        "OFFER_EXTENDED",
+        "OFFER_ACCEPTED",
+        "OFFER_REJECTED",
+        "OFFER_WITHDRAWN",
+        "APPLICATION_REJECTED",
+        "APPLICATION_ON_HOLD",
+        "CANDIDATE_WITHDREW",
+        "JOINED"
+      ]
+    },
+    
+    {
+      "@id": "livelihood:InterviewType",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Interview Type",
+      "rdfs:comment": "Type of interview in the recruitment process",
+      "schema:enumeration": [
+        "ONLINE_INTERVIEW",
+        "FACE_TO_FACE_INTERVIEW",
+        "TELEPHONIC_INTERVIEW",
+        "VIDEO_INTERVIEW",
+        "TECHNICAL_ASSESSMENT",
+        "HR_ROUND",
+        "MANAGERIAL_ROUND",
+        "PANEL_INTERVIEW",
+        "GROUP_DISCUSSION"
+      ]
+    },
+    
+    {
+      "@id": "livelihood:Location",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Location",
+      "rdfs:comment": "Represents a job location with address details",
+      "rdfs:subClassOf": "schema:Place"
+    },
+    
+    {
+      "@id": "livelihood:ExperienceRequired",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Experience Required",
+      "rdfs:comment": "Represents required work experience for a position",
+      "rdfs:subClassOf": "schema:QuantitativeValue"
+    },
+    
+    {
+      "@id": "livelihood:SalaryRange",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Salary Range",
+      "rdfs:comment": "Represents compensation range for a position",
+      "rdfs:subClassOf": "schema:MonetaryAmount"
+    },
+    
+    {
+      "@id": "livelihood:SalaryBreakup",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Salary Breakup",
+      "rdfs:comment": "Represents detailed salary component breakdown",
+      "rdfs:subClassOf": "schema:StructuredValue"
+    },
+    
+    {
+      "@id": "livelihood:ProvidedAccommodations",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Provided Accommodations",
+      "rdfs:comment": "Represents accommodations and support provided for persons with disabilities",
+      "rdfs:subClassOf": "schema:Thing"
+    },
+    
+    {
+      "@id": "livelihood:SuitableDisabilityType",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Suitable Disability Type",
+      "rdfs:comment": "Represents a disability type and its suitability for a job",
+      "rdfs:subClassOf": "schema:Thing"
+    },
+    
+    {
+      "@id": "livelihood:InterviewStage",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Interview Stage",
+      "rdfs:comment": "Represents a stage in the interview process",
+      "rdfs:subClassOf": "schema:Action"
+    },
+    
+    {
+      "@id": "livelihood:Skill",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Skill",
+      "rdfs:comment": "Represents a skill requirement for a job",
+      "rdfs:subClassOf": "schema:DefinedTerm"
+    },
+    
+    {
+      "@id": "livelihood:Benefit",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Benefit",
+      "rdfs:comment": "Represents an employee benefit or perk",
+      "rdfs:subClassOf": "schema:OfferItemCondition"
+    },
+    
+    {
+      "@id": "livelihood:AccessibilityMetadata",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Accessibility Metadata",
+      "rdfs:comment": "Represents accessibility information for persons with disabilities",
+      "rdfs:subClassOf": "schema:Thing"
+    },
+    
+    {
+      "@id": "livelihood:CandidateProfile",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Candidate Profile",
+      "rdfs:comment": "Represents a job seeker's profile information",
+      "rdfs:subClassOf": "schema:Person"
+    },
+    
+    {
+      "@id": "livelihood:ApplicationForm",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Application Form",
+      "rdfs:comment": "Represents a job application form",
+      "rdfs:subClassOf": "schema:WebPage"
+    },
+    
+    {
+      "@id": "livelihood:LivelihoodJobOfferAttributes",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Livelihood Job Offer Attributes",
+      "rdfs:comment": "Represents job offer specific attributes in the livelihood domain",
+      "rdfs:subClassOf": "beckn:Item"
+    },
+    
+    {
+      "@id": "livelihood:LivelihoodApplicationAttributes",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Livelihood Application Attributes",
+      "rdfs:comment": "Represents job application specific attributes in the livelihood domain",
+      "rdfs:subClassOf": "beckn:Order"
+    },
+    
+    {
+      "@id": "livelihood:LivelihoodFulfillmentAttributes",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Livelihood Fulfillment Attributes",
+      "rdfs:comment": "Represents fulfillment and verification attributes for job applications",
+      "rdfs:subClassOf": "beckn:Fulfillment"
+    },
+    
+    {
+      "@id": "livelihood:jobCode",
+      "@type": "rdf:Property",
+      "rdfs:label": "Job Code",
+      "rdfs:comment": "Unique identifier or reference code for the job posting",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:roleName",
+      "@type": "rdf:Property",
+      "rdfs:label": "Role Name",
+      "rdfs:comment": "Name or title of the job role",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:positionType",
+      "@type": "rdf:Property",
+      "rdfs:label": "Position Type",
+      "rdfs:comment": "Type of position (e.g., new_position, replacement, backfill)",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:priority",
+      "@type": "rdf:Property",
+      "rdfs:label": "Priority",
+      "rdfs:comment": "Priority level of the job posting (e.g., low, medium, high, urgent)",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+    
+    {
+      "@id": "livelihood:employmentType",
+      "@type": "rdf:Property",
+      "rdfs:label": "Employment Type",
+      "rdfs:comment": "Type of employment contract being offered",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:EmploymentType"
+    },
+    
+    {
+      "@id": "livelihood:workMode",
+      "@type": "rdf:Property",
+      "rdfs:label": "Work Mode",
+      "rdfs:comment": "Work location arrangement (remote, onsite, or hybrid)",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:WorkMode"
+    },
+    
+    {
+      "@id": "livelihood:experienceRequired",
+      "@type": "rdf:Property",
+      "rdfs:label": "Experience Required",
+      "rdfs:comment": "Required work experience for the position",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:ExperienceRequired"
+    },
+    
+    {
+      "@id": "livelihood:educationLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": "Education Level",
+      "rdfs:comment": "Required educational qualification",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:EducationLevel"
+    },
+    
+    {
+      "@id": "livelihood:skills",
+      "@type": "rdf:Property",
+      "rdfs:label": "Skills",
+      "rdfs:comment": "Required and preferred skills for the position",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:Skill"
+    },
+    
+    {
+      "@id": "livelihood:responsibilities",
+      "@type": "rdf:Property",
+      "rdfs:label": "Responsibilities",
+      "rdfs:comment": "Key job responsibilities and duties",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+    
+    {
+      "@id": "livelihood:benefits",
+      "@type": "rdf:Property",
+      "rdfs:label": "Benefits",
+      "rdfs:comment": "Employee benefits and perks offered",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:Benefit"
+    },
+    
+    {
+      "@id": "livelihood:salaryRange",
+      "@type": "rdf:Property",
+      "rdfs:label": "Salary Range",
+      "rdfs:comment": "Compensation range for the position",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:SalaryRange"
+    },
+    
+    {
+      "@id": "livelihood:applicationDeadline",
+      "@type": "rdf:Property",
+      "rdfs:label": "Application Deadline",
+      "rdfs:comment": "Last date to apply for the position",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:dateTime"
+    },
+    
+    {
+      "@id": "livelihood:vacancies",
+      "@type": "rdf:Property",
+      "rdfs:label": "Vacancies",
+      "rdfs:comment": "Number of open positions",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:integer"
+    },
+    
+    {
+      "@id": "livelihood:jobFunction",
+      "@type": "rdf:Property",
+      "rdfs:label": "Job Function",
+      "rdfs:comment": "Primary job function or department",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:string"
+    },
+    
+    {
+      "@id": "livelihood:industryType",
+      "@type": "rdf:Property",
+      "rdfs:label": "Industry Type",
+      "rdfs:comment": "Industry sector of the employer",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "xsd:string"
+    },
+    
+    {
+      "@id": "livelihood:companySize",
+      "@type": "rdf:Property",
+      "rdfs:label": "Company Size",
+      "rdfs:comment": "Size of the organization",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "xsd:string"
+    },
+    
+    {
+      "@id": "livelihood:applicationForm",
+      "@type": "rdf:Property",
+      "rdfs:label": "Application Form",
+      "rdfs:comment": "Application form details and URL",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:ApplicationForm"
+    },
+    
+    {
+      "@id": "livelihood:requiredDocuments",
+      "@type": "rdf:Property",
+      "rdfs:label": "Required Documents",
+      "rdfs:comment": "Documents required for application submission",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "schema:DigitalDocument"
+    },
+    
+    {
+      "@id": "livelihood:interviewProcess",
+      "@type": "rdf:Property",
+      "rdfs:label": "Interview Process",
+      "rdfs:comment": "Stages in the interview and recruitment process",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:InterviewStage"
+    },
+    
+    {
+      "@id": "livelihood:joiningDate",
+      "@type": "rdf:Property",
+      "rdfs:label": "Joining Date",
+      "rdfs:comment": "Expected date of joining",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:date"
+    },
+    
+    {
+      "@id": "livelihood:probationPeriod",
+      "@type": "rdf:Property",
+      "rdfs:label": "Probation Period",
+      "rdfs:comment": "Duration of probation period",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:duration"
+    },
+    
+    {
+      "@id": "livelihood:noticePeriod",
+      "@type": "rdf:Property",
+      "rdfs:label": "Notice Period",
+      "rdfs:comment": "Required notice period for resignation",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "xsd:duration"
+    },
+
+    {
+      "@id": "livelihood:location",
+      "@type": "rdf:Property",
+      "rdfs:label": "Location",
+      "rdfs:comment": "Job location details",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:Location"
+    },
+
+    {
+      "@id": "livelihood:city",
+      "@type": "rdf:Property",
+      "rdfs:label": "City",
+      "rdfs:comment": "City where the job is located",
+      "schema:domainIncludes": "livelihood:Location",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:pincode",
+      "@type": "rdf:Property",
+      "rdfs:label": "Pincode",
+      "rdfs:comment": "Postal code of the location",
+      "schema:domainIncludes": "livelihood:Location",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:state",
+      "@type": "rdf:Property",
+      "rdfs:label": "State",
+      "rdfs:comment": "State or province where the job is located",
+      "schema:domainIncludes": "livelihood:Location",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:country",
+      "@type": "rdf:Property",
+      "rdfs:label": "Country",
+      "rdfs:comment": "Country where the job is located",
+      "schema:domainIncludes": "livelihood:Location",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:streetAddress",
+      "@type": "rdf:Property",
+      "rdfs:label": "Street Address",
+      "rdfs:comment": "Street address or locality of the job location",
+      "schema:domainIncludes": "livelihood:Location",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:accessibilityMetadata",
+      "@type": "rdf:Property",
+      "rdfs:label": "Accessibility Metadata",
+      "rdfs:comment": "Accessibility information for persons with disabilities",
+      "schema:domainIncludes": "livelihood:JobOpportunity",
+      "schema:rangeIncludes": "livelihood:AccessibilityMetadata"
+    },
+
+    {
+      "@id": "livelihood:providedAccommodations",
+      "@type": "rdf:Property",
+      "rdfs:label": "Provided Accommodations",
+      "rdfs:comment": "Accommodations and support provided for persons with disabilities",
+      "schema:domainIncludes": "livelihood:AccessibilityMetadata",
+      "schema:rangeIncludes": "livelihood:ProvidedAccommodations"
+    },
+
+    {
+      "@id": "livelihood:support",
+      "@type": "rdf:Property",
+      "rdfs:label": "Support",
+      "rdfs:comment": "Support accommodations provided (e.g., flexible hours, remote work options)",
+      "schema:domainIncludes": "livelihood:ProvidedAccommodations",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:tech",
+      "@type": "rdf:Property",
+      "rdfs:label": "Tech",
+      "rdfs:comment": "Technical accommodations and assistive technology provided",
+      "schema:domainIncludes": "livelihood:ProvidedAccommodations",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:suitableDisabilityTypes",
+      "@type": "rdf:Property",
+      "rdfs:label": "Suitable Disability Types",
+      "rdfs:comment": "Types of disabilities this job is suitable for",
+      "schema:domainIncludes": "livelihood:AccessibilityMetadata",
+      "schema:rangeIncludes": "livelihood:SuitableDisabilityType"
+    },
+
+    {
+      "@id": "livelihood:category",
+      "@type": "rdf:Property",
+      "rdfs:label": "Category",
+      "rdfs:comment": "Category or name of the disability type",
+      "schema:domainIncludes": "livelihood:SuitableDisabilityType",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:code",
+      "@type": "rdf:Property",
+      "rdfs:label": "Code",
+      "rdfs:comment": "Code identifier for the disability type",
+      "schema:domainIncludes": "livelihood:SuitableDisabilityType",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:fitLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": "Fit Level",
+      "rdfs:comment": "How well the job matches the disability type",
+      "schema:domainIncludes": "livelihood:SuitableDisabilityType",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:notes",
+      "@type": "rdf:Property",
+      "rdfs:label": "Notes",
+      "rdfs:comment": "Additional notes or comments",
+      "schema:domainIncludes": "livelihood:SuitableDisabilityType",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:founded",
+      "@type": "rdf:Property",
+      "rdfs:label": "Founded",
+      "rdfs:comment": "Year the company was founded",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:website",
+      "@type": "rdf:Property",
+      "rdfs:label": "Website",
+      "rdfs:comment": "Company website URL",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "xsd:anyURI"
+    },
+
+    {
+      "@id": "livelihood:culture",
+      "@type": "rdf:Property",
+      "rdfs:label": "Culture",
+      "rdfs:comment": "Company culture description",
+      "schema:domainIncludes": "beckn:Provider",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:minimumYears",
+      "@type": "rdf:Property",
+      "rdfs:label": "Minimum Years",
+      "rdfs:comment": "Minimum years of experience required",
+      "schema:domainIncludes": "livelihood:ExperienceRequired",
+      "schema:rangeIncludes": "xsd:integer"
+    },
+
+    {
+      "@id": "livelihood:maximumYears",
+      "@type": "rdf:Property",
+      "rdfs:label": "Maximum Years",
+      "rdfs:comment": "Maximum years of experience",
+      "schema:domainIncludes": "livelihood:ExperienceRequired",
+      "schema:rangeIncludes": "xsd:integer"
+    },
+
+    {
+      "@id": "livelihood:name",
+      "@type": "rdf:Property",
+      "rdfs:label": "Name",
+      "rdfs:comment": "Name of skill or item",
+      "schema:domainIncludes": "livelihood:Skill",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:proficiency",
+      "@type": "rdf:Property",
+      "rdfs:label": "Proficiency",
+      "rdfs:comment": "Required proficiency level",
+      "schema:domainIncludes": "livelihood:Skill",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:type",
+      "@type": "rdf:Property",
+      "rdfs:label": "Type",
+      "rdfs:comment": "Type or category",
+      "schema:domainIncludes": ["livelihood:Benefit", "livelihood:InterviewStage"],
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:description",
+      "@type": "rdf:Property",
+      "rdfs:label": "Description",
+      "rdfs:comment": "Detailed description",
+      "schema:domainIncludes": "livelihood:Benefit",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:currency",
+      "@type": "rdf:Property",
+      "rdfs:label": "Currency",
+      "rdfs:comment": "ISO 4217 currency code",
+      "schema:domainIncludes": ["livelihood:SalaryRange", "livelihood:SalaryBreakup"],
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:minimum",
+      "@type": "rdf:Property",
+      "rdfs:label": "Minimum",
+      "rdfs:comment": "Minimum salary amount",
+      "schema:domainIncludes": "livelihood:SalaryRange",
+      "schema:rangeIncludes": "xsd:decimal"
+    },
+
+    {
+      "@id": "livelihood:maximum",
+      "@type": "rdf:Property",
+      "rdfs:label": "Maximum",
+      "rdfs:comment": "Maximum salary amount",
+      "schema:domainIncludes": "livelihood:SalaryRange",
+      "schema:rangeIncludes": "xsd:decimal"
+    },
+
+    {
+      "@id": "livelihood:period",
+      "@type": "rdf:Property",
+      "rdfs:label": "Period",
+      "rdfs:comment": "Payment frequency or period",
+      "schema:domainIncludes": ["livelihood:SalaryRange", "livelihood:SalaryBreakup"],
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:mimeType",
+      "@type": "rdf:Property",
+      "rdfs:label": "MIME Type",
+      "rdfs:comment": "MIME type of the content",
+      "schema:domainIncludes": "livelihood:ApplicationForm",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:formData",
+      "@type": "rdf:Property",
+      "rdfs:label": "Form Data",
+      "rdfs:comment": "Form data content",
+      "schema:domainIncludes": "livelihood:ApplicationForm",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:resubmit",
+      "@type": "rdf:Property",
+      "rdfs:label": "Resubmit",
+      "rdfs:comment": "Whether the form can be resubmitted",
+      "schema:domainIncludes": "livelihood:ApplicationForm",
+      "schema:rangeIncludes": "xsd:boolean"
+    },
+
+    {
+      "@id": "livelihood:stage",
+      "@type": "rdf:Property",
+      "rdfs:label": "Stage",
+      "rdfs:comment": "Interview stage name",
+      "schema:domainIncludes": "livelihood:InterviewStage",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:duration",
+      "@type": "rdf:Property",
+      "rdfs:label": "Duration",
+      "rdfs:comment": "Duration of interview or process",
+      "schema:domainIncludes": "livelihood:InterviewStage",
+      "schema:rangeIncludes": "xsd:duration"
+    },
+
+    {
+      "@id": "livelihood:mode",
+      "@type": "rdf:Property",
+      "rdfs:label": "Mode",
+      "rdfs:comment": "Mode of interview or work",
+      "schema:domainIncludes": "livelihood:InterviewStage",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:disabilityProfile",
+      "@type": "rdf:Property",
+      "rdfs:label": "Disability Profile",
+      "rdfs:comment": "Disability profile for accessibility matching",
+      "schema:domainIncludes": "livelihood:CandidateProfile",
+      "schema:rangeIncludes": "schema:Thing"
+    },
+
+    {
+      "@id": "livelihood:salaryBreakup",
+      "@type": "rdf:Property",
+      "rdfs:label": "Salary Breakup",
+      "rdfs:comment": "Detailed salary component breakdown",
+      "schema:domainIncludes": "livelihood:LivelihoodJobOfferAttributes",
+      "schema:rangeIncludes": "livelihood:SalaryBreakup"
+    },
+
+    {
+      "@id": "livelihood:component",
+      "@type": "rdf:Property",
+      "rdfs:label": "Component",
+      "rdfs:comment": "Type of salary component",
+      "schema:domainIncludes": "livelihood:SalaryBreakup",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:amount",
+      "@type": "rdf:Property",
+      "rdfs:label": "Amount",
+      "rdfs:comment": "Amount for this component",
+      "schema:domainIncludes": "livelihood:SalaryBreakup",
+      "schema:rangeIncludes": "xsd:decimal"
+    },
+
+    {
+      "@id": "livelihood:employmentTerms",
+      "@type": "rdf:Property",
+      "rdfs:label": "Employment Terms",
+      "rdfs:comment": "Terms of employment",
+      "schema:domainIncludes": "livelihood:LivelihoodJobOfferAttributes",
+      "schema:rangeIncludes": "schema:StructuredValue"
+    },
+
+    {
+      "@id": "livelihood:applicationId",
+      "@type": "rdf:Property",
+      "rdfs:label": "Application ID",
+      "rdfs:comment": "Unique identifier for the job application",
+      "schema:domainIncludes": "livelihood:LivelihoodApplicationAttributes",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:appliedDate",
+      "@type": "rdf:Property",
+      "rdfs:label": "Applied Date",
+      "rdfs:comment": "Date and time when the application was submitted",
+      "schema:domainIncludes": "livelihood:LivelihoodApplicationAttributes",
+      "schema:rangeIncludes": "xsd:dateTime"
+    },
+
+    {
+      "@id": "livelihood:submittedDocuments",
+      "@type": "rdf:Property",
+      "rdfs:label": "Submitted Documents",
+      "rdfs:comment": "Types of documents submitted with the application",
+      "schema:domainIncludes": "livelihood:LivelihoodApplicationAttributes",
+      "schema:rangeIncludes": "schema:DigitalDocument"
+    },
+
+    {
+      "@id": "livelihood:formVerificationStatus",
+      "@type": "rdf:Property",
+      "rdfs:label": "Form Verification Status",
+      "rdfs:comment": "Status of form verification by provider",
+      "schema:domainIncludes": "livelihood:LivelihoodFulfillmentAttributes",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:verificationNotes",
+      "@type": "rdf:Property",
+      "rdfs:label": "Verification Notes",
+      "rdfs:comment": "Notes from form verification process",
+      "schema:domainIncludes": "livelihood:LivelihoodFulfillmentAttributes",
+      "schema:rangeIncludes": "xsd:string"
+    },
+
+    {
+      "@id": "livelihood:nextSteps",
+      "@type": "rdf:Property",
+      "rdfs:label": "Next Steps",
+      "rdfs:comment": "Next steps in the application process",
+      "schema:domainIncludes": "livelihood:LivelihoodFulfillmentAttributes",
+      "schema:rangeIncludes": "xsd:string"
+    }
+  ]
+}
