@@ -232,7 +232,7 @@ Each subsection gives: **purpose**, **key descriptions**, and **full schema/exam
 
 **Purpose:** Wallet obtains a short-lived `c_nonce` from the Issuer to include in the proof of possession when requesting the credential.
 
-**Request:** `GET` or `POST` to `{credential_issuer}{nonce_endpoint}` (e.g. `GET /cred/nonce`). No body required for GET.
+**Request:** `POST` to `{credential_issuer}{nonce_endpoint}` (e.g. `POST https://issuer-plotch.opun.network/cred/nonce`).
 
 **Response keys:**
 
@@ -266,7 +266,7 @@ Each subsection gives: **purpose**, **key descriptions**, and **full schema/exam
 | `proof.proof_type` | Yes | `"jwt"`. |
 | `proof.jwt` | Yes | JWT containing at least `iss` (holder DID), `aud` (issuer or credential_issuer), `nonce` (c_nonce), `iat`, optional `exp`. Signed with holder’s private key (ES256). |
 
-**Schema (example):**
+**Schema:**
 
 ```json
 {
@@ -279,7 +279,7 @@ Each subsection gives: **purpose**, **key descriptions**, and **full schema/exam
 }
 ```
 
-**Pre-auth:** Request is authorized by the Issuer’s acceptance of the pre-authorized code (e.g. sent in a header or validated out-of-band). No access token from an authorization server is required in this document’s flow.
+**Pre-auth:** Request is authorized by the Issuer’s acceptance of the pre-authorized code. No access token from an authorization server is required in this flow.
 
 ---
 
