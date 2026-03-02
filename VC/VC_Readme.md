@@ -85,8 +85,8 @@ sequenceDiagram
 ---
 
 **Pre-auth–specific points:**
-- **Flow A:** Offer contains `grants.urn:ietf:params:oauth:grant-type:pre-authorized_code` with `pre-authorized_code` and `user_pin_required: false`. No separate auth server or login.
-- **Flow B:** Wallet may use a pre-authorized code obtained out-of-band (e.g. from a prior link or API) or an issuer-specific mechanism; no authorization server token exchange.
+-  Offer contains `grants.urn:ietf:params:oauth:grant-type:pre-authorized_code` with `pre-authorized_code` and `user_pin_required: false`. No separate auth server or login.
+-  The wallet must send a **pre-authorized code** in request; No separate auth server or login.
 - **Endpoints used:** `/.well-known/openid-credential-issuer`, `/cred/nonce`, `/cred/credential`, and optionally `/cred/notification`.
 
 ---
@@ -317,7 +317,7 @@ Each subsection gives: **purpose**, **key descriptions**, and **full schema/exam
 
 ### 3.6 Issued VC (SD-JWT) — Decoded Payload and Disclosures
 
-**Purpose:** Defines the structure of the SD-JWT payload (before disclosure hashes) and the format of each disclosure for schema review.
+**Purpose:** Defines the structure of the SD-JWT payload (before disclosure hashes) and the format of each disclosure.
 
 **VC JWT payload (decoded) — key explanations:**
 
