@@ -525,8 +525,3 @@ We use **only** the **dc+sd-jwt** format (Selective Disclosure JWT Verifiable Cr
 No authorization server or token endpoint is used in the pre-authorized code flow described here.
 
 ---
-
-## 7. Document History
-
-- Reorganized for schema reviewers; pre-authorized code flow only; dc+sd-jwt only.
-- Key-level explanations and full schemas added for all issuance and presentation messages.
