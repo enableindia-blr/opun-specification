@@ -1,0 +1,339 @@
+# Loan Domain Attributes for Beckn Protocol v2
+# Application created at BAP; init sends it; BPP echoes in on_init; confirm verifies echo and sets APPLICATION_SUBMITTED; on_confirm BPP moves DRAFT -> APPLICATION_SUBMITTED.
+# Provider updates status via unsolicited on_update or against update.
+
+attributes:
+
+  # --- Loan Product (Item) attributes ---
+
+  loanProductCode:
+    type: string
+    description: "Unique identifier or reference code for the loan product"
+    scope: Item
+    example: "LP-AGRI-2024-001"
+
+  loanProductName:
+    type: string
+    description: "Name of the loan product"
+    scope: Item
+    example: "Kisan Credit - Rabi"
+
+  loanDescription:
+    type: string
+    description: "Description of the loan product"
+    scope: Item
+
+  loanPurpose:
+    type: LoanPurpose
+    description: "Purpose or use of the loan"
+    scope: Item
+    values:
+      - AGRICULTURE
+      - EDUCATION
+      - BUSINESS
+      - HOUSING
+      - PERSONAL
+      - GROUP
+      - SHG
+      - MICROFINANCE
+      - OTHER
+    example: "AGRICULTURE"
+
+  loanType:
+    type: LoanType
+    description: "Type of loan product"
+    scope: Item
+    values:
+      - TERM_LOAN
+      - OVERDRAFT
+      - REVOLVING
+      - MICRO_LOAN
+      - SHG_LOAN
+      - EDUCATION_LOAN
+      - HOME_LOAN
+      - OTHER
+    example: "TERM_LOAN"
+
+  principalMin:
+    type: number
+    description: "Minimum loan amount (principal)"
+    scope: Item
+    example: 10000
+
+  principalMax:
+    type: number
+    description: "Maximum loan amount (principal)"
+    scope: Item
+    example: 500000
+
+  currency:
+    type: string
+    description: "Currency code (ISO 4217)"
+    scope: [Item, Price]
+    example: "INR"
+
+  interestRateAnnual:
+    type: number
+    description: "Annual interest rate (percentage)"
+    scope: Item
+    example: 12.5
+
+  interestType:
+    type: string
+    description: "FIXED or FLOATING"
+    scope: Item
+    values:
+      - FIXED
+      - FLOATING
+    example: "FIXED"
+
+  tenureMinMonths:
+    type: number
+    description: "Minimum tenure in months"
+    scope: Item
+    example: 12
+
+  tenureMaxMonths:
+    type: number
+    description: "Maximum tenure in months"
+    scope: Item
+    example: 60
+
+  repaymentFrequency:
+    type: RepaymentFrequency
+    description: "Repayment frequency"
+    scope: Item
+    values:
+      - WEEKLY
+      - BIWEEKLY
+      - MONTHLY
+      - QUARTERLY
+      - BULLET
+      - OTHER
+    example: "MONTHLY"
+
+  processingFee:
+    type: number
+    description: "Processing fee amount or percentage"
+    scope: Item
+
+  targetSegments:
+    type: array
+    description: "Target customer segments (e.g. SHG, FARMER, MSME)"
+    scope: Item
+    items: { type: string }
+
+  providerId:
+    type: string
+    description: "Loan provider (BPP) identifier"
+    scope: Item
+    example: "PRV_LOAN_001"
+
+  providerName:
+    type: string
+    description: "Loan provider name"
+    scope: Item
+
+  # --- Order (Loan Application) attributes ---
+
+  loanApplicationId:
+    type: string
+    description: "Unique application ID created at BAP and sent in init; BPP creates application against this ID"
+    scope: Order
+    example: "LOAN_APP_2024_001"
+
+  loanProductId:
+    type: string
+    description: "Selected loan product ID"
+    scope: Order
+
+  appliedPrincipal:
+    type: number
+    description: "Requested loan amount"
+    scope: Order
+    example: 100000
+
+  appliedTenureMonths:
+    type: number
+    description: "Requested tenure in months"
+    scope: Order
+    example: 24
+
+  purposeDetails:
+    type: string
+    description: "Free-text purpose or usage details"
+    scope: Order
+
+  applicationForm:
+    type: object
+    description: "Application form (e.g. XForms 2.0) with formId, formData, mimeType, resubmit"
+    scope: Order
+    properties:
+      formId: { type: string }
+      formData: { type: string }
+      formUrl: { type: string, format: uri }
+      mimeType: { type: string }
+      resubmit: { type: boolean }
+
+  applicationStatus:
+    type: LoanApplicationStatus
+    description: "Application status (DRAFT until confirm; APPLICATION_SUBMITTED after on_confirm)"
+    scope: Order
+    values:
+      - DRAFT
+      - APPLICATION_SUBMITTED
+      - UNDER_REVIEW
+      - ADDITIONAL_INFO_REQUESTED
+      - APPROVED
+      - REJECTED
+      - CANCELLED
+      - PENDING_DISBURSAL
+      - DISBURSED
+      - ACTIVE
+      - CLOSED
+      - WRITTEN_OFF
+      - DELINQUENT
+      - NPA
+    example: "DRAFT"
+
+  appliedDate:
+    type: string
+    format: date-time
+    description: "When the application was created/submitted"
+    scope: Order
+    example: "2024-02-10T10:00:00Z"
+
+  customerId:
+    type: string
+    description: "Borrower/customer identifier (e.g. from BAP identity)"
+    scope: Order
+
+  # --- Fulfillment attributes (status, disbursement, repayment) ---
+
+  loanApplicationStatus:
+    type: LoanApplicationStatus
+    description: "Current application/loan status as reported by BPP"
+    scope: Fulfillment
+    values:
+      - DRAFT
+      - APPLICATION_SUBMITTED
+      - UNDER_REVIEW
+      - ADDITIONAL_INFO_REQUESTED
+      - APPROVED
+      - REJECTED
+      - CANCELLED
+      - PENDING_DISBURSAL
+      - DISBURSED
+      - ACTIVE
+      - CLOSED
+      - WRITTEN_OFF
+      - DELINQUENT
+      - NPA
+
+  loanAccountId:
+    type: string
+    description: "Loan account ID after disbursement"
+    scope: Fulfillment
+
+  sanctionedPrincipal:
+    type: number
+    description: "Sanctioned loan amount"
+    scope: Fulfillment
+
+  sanctionedTenureMonths:
+    type: number
+    description: "Sanctioned tenure in months"
+    scope: Fulfillment
+
+  sanctionedInterestRateAnnual:
+    type: number
+    description: "Sanctioned annual interest rate"
+    scope: Fulfillment
+
+  emiAmount:
+    type: number
+    description: "EMI amount"
+    scope: Fulfillment
+
+  emiCount:
+    type: number
+    description: "Number of EMIs"
+    scope: Fulfillment
+
+  repaymentSchedule:
+    type: array
+    description: "Schedule of installments (dueDate, amount, principalComponent, interestComponent, status)"
+    scope: Fulfillment
+    items:
+      type: object
+      properties:
+        dueDate: { type: string, format: date }
+        amount: { type: number }
+        principalComponent: { type: number }
+        interestComponent: { type: number }
+        status: { type: string }
+
+  nextDueDate:
+    type: string
+    format: date
+    description: "Next repayment due date"
+    scope: Fulfillment
+
+  overdueAmount:
+    type: number
+    description: "Overdue amount"
+    scope: Fulfillment
+
+  daysPastDue:
+    type: number
+    description: "Days past due"
+    scope: Fulfillment
+
+# Tag groups for extensibility
+tagGroups:
+
+  loan-product:
+    description: "Loan product catalog"
+    applicableTo: [Item]
+    tags:
+      - code: loan_product_code
+        name: Loan Product Code
+        dataType: string
+      - code: loan_purpose
+        name: Loan Purpose
+        dataType: string
+      - code: principal_min
+        name: Min Principal
+        dataType: number
+      - code: principal_max
+        name: Max Principal
+        dataType: number
+      - code: tenure_min_months
+        name: Min Tenure (months)
+        dataType: number
+      - code: tenure_max_months
+        name: Max Tenure (months)
+        dataType: number
+      - code: repayment_frequency
+        name: Repayment Frequency
+        dataType: string
+
+  application:
+    description: "Loan application (BAP-originated)"
+    applicableTo: [Order]
+    tags:
+      - code: loan_application_id
+        name: Loan Application ID
+        dataType: string
+      - code: application_status
+        name: Application Status
+        dataType: string
+      - code: applied_principal
+        name: Applied Principal
+        dataType: number
+      - code: applied_tenure_months
+        name: Applied Tenure (months)
+        dataType: number
+      - code: applied_date
+        name: Applied Date
+        dataType: string

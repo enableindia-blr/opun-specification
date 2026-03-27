@@ -1,0 +1,67 @@
+{
+  "context": {
+    "action": "confirm",
+    "bap_id": "bap.loanapp.com",
+    "bap_uri": "https://bap-api.loanapp.com",
+    "bpp_id": "bpp.lender.com",
+    "bpp_uri": "https://bpp-api.lender.com",
+    "domain": "opun:loan",
+    "message_id": "msg-confirm-loan-001",
+    "timestamp": "2024-02-10T10:12:00Z",
+    "transaction_id": "LOAN_APP_2024_001",
+    "ttl": "PT30S",
+    "version": "2.0.0",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "CUST_001",
+        "beckn:displayName": "Ramesh Kumar",
+        "beckn:email": "ramesh@example.com",
+        "beckn:telephone": "9876543210"
+      },
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:fulfillmentStatus": "SUBMITTED",
+        "beckn:id": "LOAN_APP_2024_001",
+        "beckn:mode": "DIGITAL"
+      },
+      "beckn:id": "LOAN_APP_2024_001",
+      "beckn:orderAttributes": {
+        "@type": "opun:LoanApplicationAttributes",
+        "opun:loanApplicationId": "LOAN_APP_2024_001",
+        "opun:applicationStatus": "APPLICATION_SUBMITTED",
+        "opun:appliedPrincipal": 100000,
+        "opun:appliedTenureMonths": 24,
+        "opun:purposeDetails": "Rabi crop cultivation",
+        "opun:applicationForm": {
+          "@type": "opun:ApplicationForm",
+          "opun:formData": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:model xmlns:xf=\"http://www.w3.org/2002/xforms\"><xf:instance id=\"form-data\"><data xmlns=\"\"><applicant_name>Ramesh Kumar</applicant_name><loan_amount>100000</loan_amount><tenure_months>24</tenure_months><purpose>Rabi crop cultivation</purpose></data></xf:instance></xf:model>",
+          "opun:resubmit": false
+        },
+        "opun:appliedDate": "2024-02-10T10:10:00Z"
+      },
+      "beckn:orderItems": [
+        {
+          "@type": "beckn:Item",
+          "beckn:orderedItem": {
+            "@type": "opun:LoanProduct",
+            "beckn:id": "LP-AGRI-2024-001",
+            "beckn:provider": { "beckn:id": "PRV_LOAN_001" }
+          }
+        }
+      ],
+      "beckn:orderStatus": "SUBMITTED",
+      "beckn:seller": { "@type": "beckn:Party", "beckn:id": "PRV_LOAN_001" }
+    }
+  }
+}

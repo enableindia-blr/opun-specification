@@ -1,0 +1,64 @@
+{
+  "context": {
+    "domain": "opun:loan",
+    "action": "on_cancel",
+    "version": "2.0.0",
+    "bap_id": "bap.loanapp.com",
+    "bap_uri": "https://bap-api.loanapp.com",
+    "bpp_id": "bpp.lender.com",
+    "bpp_uri": "https://bpp-api.lender.com",
+    "transaction_id": "LOAN_APP_2024_001",
+    "message_id": "msg-on-cancel-loan-001",
+    "timestamp": "2024-02-11T09:00:05Z",
+    "ttl": "PT10M",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "beckn:id": "LOAN_APP_2024_001",
+      "beckn:orderStatus": "CANCELLED",
+      "beckn:seller": { "@type": "beckn:Party", "beckn:id": "PRV_LOAN_001" },
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "CUST_001",
+        "beckn:displayName": "Ramesh Kumar"
+      },
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@type": "opun:LoanProduct",
+            "beckn:id": "LP-AGRI-2024-001"
+          }
+        }
+      ],
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "LOAN_APP_2024_001",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "CANCELLED",
+        "beckn:deliveryAttributes": {
+          "@type": "opun:LoanFulfillmentAttributes",
+          "opun:loanApplicationStatus": "CANCELLED"
+        }
+      },
+      "beckn:cancellation": {
+        "@type": "beckn:Cancellation",
+        "beckn:cancelledBy": "BUYER",
+        "beckn:reason": {
+          "@type": "beckn:Reason",
+          "beckn:code": "BORROWER_WITHDREW",
+          "beckn:description": "Applicant withdrew the application"
+        }
+      },
+      "beckn:orderAttributes": {
+        "@type": "opun:LoanApplicationAttributes",
+        "opun:loanApplicationId": "LOAN_APP_2024_001",
+        "opun:applicationStatus": "CANCELLED",
+        "opun:appliedDate": "2024-02-10T10:10:00Z"
+      }
+    }
+  }
+}

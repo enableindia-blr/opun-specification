@@ -1,0 +1,69 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "on_search",
+    "domain": "opun:loan",
+    "transaction_id": "loan-search-001-2024-02-10",
+    "message_id": "msg-on-search-loan-001",
+    "timestamp": "2024-02-10T10:00:05Z",
+    "ttl": "PT30S",
+    "bap_id": "bap.loanapp.com",
+    "bap_uri": "https://bap-api.loanapp.com",
+    "bpp_id": "bpp.lender.com",
+    "bpp_uri": "https://bpp-api.lender.com",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+    ]
+  },
+  "message": {
+    "catalogs": [
+      {
+        "@context": [
+          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+          "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+        ],
+        "@type": "beckn:Catalog",
+        "beckn:id": "PRV_LOAN_001",
+        "beckn:provider": {
+          "@type": "beckn:Provider",
+          "beckn:id": "PRV_LOAN_001",
+          "beckn:descriptor": {
+            "@type": "beckn:Descriptor",
+            "schema:name": "Rural Finance Co"
+          }
+        },
+        "beckn:items": [
+          {
+            "@type": "beckn:Item",
+            "beckn:id": "LP-AGRI-2024-001",
+            "beckn:descriptor": {
+              "@type": "beckn:Descriptor",
+              "schema:name": "Kisan Credit - Rabi",
+              "beckn:shortDesc": "Short-term crop loan for rabi season"
+            },
+            "beckn:itemAttributes": {
+              "@context": "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld",
+              "@type": "opun:LoanProduct",
+              "opun:loanProductCode": "LP-AGRI-2024-001",
+              "opun:loanProductName": "Kisan Credit - Rabi",
+              "opun:loanDescription": "Short-term crop loan for rabi season",
+              "opun:loanPurpose": "AGRICULTURE",
+              "opun:loanType": "TERM_LOAN",
+              "opun:principalMin": 50000,
+              "opun:principalMax": 200000,
+              "opun:currency": "INR",
+              "opun:interestRateAnnual": 9.5,
+              "opun:interestType": "FIXED",
+              "opun:tenureMinMonths": 12,
+              "opun:tenureMaxMonths": 36,
+              "opun:repaymentFrequency": "MONTHLY",
+              "opun:providerId": "PRV_LOAN_001",
+              "opun:providerName": "Rural Finance Co",
+              "opun:targetSegments": ["FARMER", "SHG"]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

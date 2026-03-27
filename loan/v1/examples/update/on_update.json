@@ -1,0 +1,49 @@
+{
+  "context": {
+    "action": "on_update",
+    "bap_id": "bap.loanapp.com",
+    "bap_uri": "https://bap-api.loanapp.com",
+    "bpp_id": "bpp.lender.com",
+    "bpp_uri": "https://bpp-api.lender.com",
+    "domain": "opun:loan",
+    "message_id": "msg-on-update-loan-001",
+    "timestamp": "2024-02-12T14:00:05Z",
+    "transaction_id": "LOAN_APP_2024_001",
+    "ttl": "PT30S",
+    "version": "2.0.0",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "beckn:id": "LOAN_APP_2024_001",
+      "beckn:orderStatus": "ACTIVE",
+      "beckn:seller": { "@type": "beckn:Party", "beckn:id": "PRV_LOAN_001" },
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "CUST_001",
+        "beckn:displayName": "Ramesh Kumar",
+        "beckn:email": "ramesh.new@example.com",
+        "beckn:telephone": "9876543211"
+      },
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "LOAN_APP_2024_001",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "IN_PROGRESS",
+        "beckn:deliveryAttributes": {
+          "@type": "opun:LoanFulfillmentAttributes",
+          "opun:loanApplicationStatus": "UNDER_REVIEW"
+        }
+      },
+      "beckn:orderAttributes": {
+        "@type": "opun:LoanApplicationAttributes",
+        "opun:loanApplicationId": "LOAN_APP_2024_001",
+        "opun:applicationStatus": "UNDER_REVIEW",
+        "opun:appliedDate": "2024-02-10T10:10:00Z"
+      }
+    }
+  }
+}

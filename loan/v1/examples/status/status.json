@@ -1,0 +1,24 @@
+{
+  "context": {
+    "domain": "opun:loan",
+    "action": "status",
+    "version": "2.0.0",
+    "bap_id": "bap.loanapp.com",
+    "bap_uri": "https://bap-api.loanapp.com",
+    "bpp_id": "bpp.lender.com",
+    "bpp_uri": "https://bpp-api.lender.com",
+    "transaction_id": "LOAN_APP_2024_001",
+    "message_id": "msg-status-loan-001",
+    "timestamp": "2024-02-15T12:00:00Z",
+    "ttl": "PT10M",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "beckn:id": "LOAN_APP_2024_001"
+    }
+  }
+}

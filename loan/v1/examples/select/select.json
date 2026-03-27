@@ -1,0 +1,48 @@
+{
+  "context": {
+    "version": "2.0.0",
+    "action": "select",
+    "domain": "opun:loan",
+    "transaction_id": "loan-select-001",
+    "message_id": "msg-select-loan-001",
+    "timestamp": "2024-02-10T10:05:00Z",
+    "ttl": "PT30S",
+    "bap_id": "bap.loanapp.com",
+    "bap_uri": "https://bap-api.loanapp.com",
+    "bpp_id": "bpp.lender.com",
+    "bpp_uri": "https://bpp-api.lender.com",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@context": [
+        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+        "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+      ],
+      "@type": "beckn:Order",
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:category": "LOAN_APPLICATION",
+        "beckn:id": "LP-AGRI-2024-001",
+        "beckn:mode": "DIGITAL"
+      },
+      "beckn:orderItems": [
+        {
+          "beckn:orderedItem": {
+            "@type": "opun:LoanProduct",
+            "beckn:id": "LP-AGRI-2024-001",
+            "beckn:provider": {
+              "beckn:id": "PRV_LOAN_001"
+            }
+          }
+        }
+      ],
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "PRV_LOAN_001"
+      }
+    }
+  }
+}

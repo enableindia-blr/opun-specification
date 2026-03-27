@@ -1,0 +1,65 @@
+{
+  "context": {
+    "domain": "opun:loan",
+    "action": "on_status",
+    "version": "2.0.0",
+    "bap_id": "bap.loanapp.com",
+    "bap_uri": "https://bap-api.loanapp.com",
+    "bpp_id": "bpp.lender.com",
+    "bpp_uri": "https://bpp-api.lender.com",
+    "transaction_id": "LOAN_APP_2024_001",
+    "message_id": "msg-on-status-loan-001",
+    "timestamp": "2024-02-15T12:00:05Z",
+    "ttl": "PT10M",
+    "schema_context": [
+      "https://raw.githubusercontent.com/opun-network/schemas/main/loan/v1/schema-extension/context.jsonld"
+    ]
+  },
+  "message": {
+    "order": {
+      "@type": "beckn:Order",
+      "beckn:id": "LOAN_APP_2024_001",
+      "beckn:orderStatus": "ACTIVE",
+      "beckn:seller": {
+        "@type": "beckn:Party",
+        "beckn:id": "PRV_LOAN_001"
+      },
+      "beckn:buyer": {
+        "@type": "beckn:Buyer",
+        "beckn:id": "CUST_001",
+        "beckn:displayName": "Ramesh Kumar",
+        "beckn:telephone": "9876543210",
+        "beckn:email": "ramesh@example.com"
+      },
+      "beckn:orderItems": [
+        {
+          "@type": "beckn:OrderItem",
+          "beckn:orderedItem": {
+            "@type": "opun:LoanProduct",
+            "beckn:id": "LP-AGRI-2024-001",
+            "beckn:provider": { "beckn:id": "PRV_LOAN_001" }
+          }
+        }
+      ],
+      "beckn:fulfillment": {
+        "@type": "beckn:Fulfillment",
+        "beckn:id": "LOAN_APP_2024_001",
+        "beckn:mode": "DIGITAL",
+        "beckn:fulfillmentStatus": "IN_PROGRESS",
+        "beckn:deliveryAttributes": {
+          "@type": "opun:LoanFulfillmentAttributes",
+          "opun:loanApplicationStatus": "UNDER_REVIEW",
+          "opun:nextDueDate": null,
+          "opun:overdueAmount": null,
+          "opun:daysPastDue": null
+        }
+      },
+      "beckn:orderAttributes": {
+        "@type": "opun:LoanApplicationAttributes",
+        "opun:loanApplicationId": "LOAN_APP_2024_001",
+        "opun:applicationStatus": "UNDER_REVIEW",
+        "opun:appliedDate": "2024-02-10T10:10:00Z"
+      }
+    }
+  }
+}
