@@ -31,7 +31,7 @@ sequenceDiagram
     BAP->>BPP: /init (XInput submission step 2)
     BPP->>LOS: Underwriting engine
     LOS-->>BPP: Approval and sanction terms
-    BPP->>BAP: /on_init (quote: ROI, EMI, terms; status DRAFT)
+    BPP->>BAP: /on_init (quote: ROI, EMI, terms, status DRAFT)
 
     
     C->>BAP: Accept and submit application
