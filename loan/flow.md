@@ -79,6 +79,6 @@ sequenceDiagram
     LOS-->>BPP: Success (next: Income Proof)
     
     BPP->>BAP: /on_init (XInput: Request Income VC OR Doc Upload)
-    Note over BAP, BPP: Flow continues as per your original diagram...
+    Note over BAP, BPP: Flow continues as per original flow...
 
 ```
