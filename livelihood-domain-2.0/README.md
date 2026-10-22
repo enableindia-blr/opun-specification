@@ -117,7 +117,7 @@ Contributions are welcome! Please refer to the Beckn Protocol contribution guide
 
 ## License
 
-This specification is licensed under the MIT License.
+This specification is licensed under the Apache License 2.0. See the [LICENSE](../LICENSE) and [NOTICE](../NOTICE) files at the repository root.
 
 ## Related Specifications
 

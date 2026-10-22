@@ -1,228 +1,176 @@
 # OPuN Specification
 
-## Overview
+**OPuN (Open Purple Network)** is an open, decentralised, consent-based network protocol that connects Persons with Disabilities (PwDs) to jobs, learning and financial services across any participating platform.
 
-OPuN (A Decentralized, Consent-Based Open Network for Persons with Disabilities) establishes a unified protocol enabling structured data exchange for livelihood-related processes. This repository contains the complete API specifications, implementation guides, and example payloads for the OPuN ecosystem.
+OPuN is a **domain extension of [Beckn Protocol Core v2.0.0](https://github.com/beckn/protocol-specifications)**. It adds domain meaning (jobs, courses, loans, credentials) without changing Beckn Core, so any Beckn-compatible platform can join the network without bespoke integration.
 
-OPuN facilitates transparent, interoperable, and verifiable communications, ensuring that livelihood opportunities—such as job roles, internships, and project-based assignments—can be discovered, evaluated, and pursued efficiently across decentralized digital infrastructures.
-
-## Repository Structure
-
-```
-opun-specification/
-├── README.md (this file)
-└── livelihood-domain/
-    ├── doc/
-    │   ├── OPuN_API_Contract_Livelihood_v1.0.0.md
-    │   └── OPuN API Contract for Livelihood Domain.pdf
-    └── examples/
-        ├── README.md
-        ├── search/
-        ├── select/
-        ├── init/
-        ├── confirm/
-        ├── status/
-        ├── update/
-        ├── cancel/
-        └── support/
-```
+This repository holds the normative specification, schema packs (JSON-LD contexts, vocabularies, attributes) and example payloads for every API.
 
 ## Domains
 
-### Livelihood Domain (`opun:livelihood`)
+| Domain | Code | Scope | Version | Status | Folder |
+| --- | --- | --- | --- | --- | --- |
+| Livelihood | `opun:livelihood` | Jobs, internships and project work: discovery, application, interview, offer, joining, cancellation, support | 1.0.0 | Normative | [`livelihood-domain-2.0/`](./livelihood-domain-2.0/) and [specification](./opun_livelihood_domain_spec_2_0_0.md) |
+| Learning | `opun:learning` | Courses (online, offline, hybrid): discovery, enrolment, progress, certificates | v1 | Draft | [`learning-domain-2.0/`](./learning-domain-2.0/) |
+| Loan | `opun:loan` | Loan product discovery, application, status updates | v1 | Current | [`loan/`](./loan/) |
+| Verifiable Credentials | — | Credential issuance and presentation (OpenID4VCI / OpenID4VP, SD-JWT VC) | — | Draft | [`VC/`](./VC/VC_Readme.md) |
 
-The livelihood domain enables discovery and application for job opportunities, internships, and project-based assignments through a standardized protocol.
+All domains are built on Beckn Protocol Core **v2.0.0**. Domain versions evolve independently of Beckn releases (see §5 of the livelihood specification).
 
-**Documentation:**
-- [API Contract v1.0.0](./livelihood-domain/doc/OPuN_API_Contract_Livelihood_v1.0.0.md) - Complete API specification with request/response payloads, attribute definitions, and expected behaviors
-- [Examples](./livelihood-domain/examples/) - Sample payloads for all API endpoints
+## Repository structure
 
+```
+OPuN-Specification/
+├── README.md                              # This file
+├── LICENSE                                # Apache License 2.0
+├── NOTICE                                 # Copyright and stewardship
+├── opun_livelihood_domain_spec_2_0_0.md   # Normative livelihood specification
+├── livelihood-domain-2.0/
+│   └── schema/livelihood/v1/
+│       ├── schema-extension/              # attributes.yaml, context.jsonld, vocab.jsonld
+│       └── examples/                      # discover, select, init, confirm, status,
+│                                          # update, cancel, support
+├── learning-domain-2.0/
+│   ├── LEARNING_DOMAIN_SCHEMA_DESIGN.md
+│   └── schema/learning/v1/
+│       ├── schema-extension/
+│       └── examples/                      # search, select, init, confirm, status,
+│                                          # update, cancel
+├── loan/
+│   ├── flow.md
+│   └── v1/
+│       ├── schema-extension/
+│       └── examples/                      # search, select, init, confirm, status,
+│                                          # update, cancel
+└── VC/
+    └── VC_Readme.md                       # Verifiable credential flow and schemas
+```
 
-**Flow Diagram**
+## Livelihood flow
+
+Livelihood discovery follows Beckn v2.0 catalog-centric discovery: provider platforms (BPPs) publish catalogs, and seeker platforms (BAPs) discover them. The transaction APIs that follow are exchanged directly between BAP and BPP.
+
 ```mermaid
 sequenceDiagram
     autonumber
     participant C as Candidate
-    participant BAP as Buyer App
-    participant GW as Gateway
-    participant BPP as Seller App
+    participant BAP as Seeker app (BAP)
+    participant CDS as Catalog discovery
+    participant BPP as Provider app (BPP)
 
-    %% 1 Discovery (search broadcast via Gateway)
+    BPP->>CDS: catalog_publish (job catalog)
     C->>BAP: Enter search criteria
-    BAP->>GW: POST /search
-    GW->>BPP: POST /search
-    BPP-->>GW: POST /on_search
-    GW-->>BAP: POST /on_search
+    BAP->>CDS: discover
+    CDS-->>BAP: on_discover (matching jobs)
     BAP-->>C: Display job listings
 
-    %% 2 Selection and on_select (direct)
     C->>BAP: Select job
-    BAP->>BPP: POST /select
-    BPP-->>BAP: POST /on_select (job details and XForm)
-    BAP-->>C: Render XForm for completion
+    BAP->>BPP: select
+    BPP-->>BAP: on_select (job details and application form)
+    C->>BAP: Fill and submit form
+    BAP->>BPP: init (filled form data)
+    BPP-->>BAP: on_init (echo for review)
+    C->>BAP: Confirm application
+    BAP->>BPP: confirm
+    BPP-->>BAP: on_confirm (application id)
 
-    %% 3 Form completion and init
-    C->>BAP: Fill XForm and submit
-    BAP->>BPP: POST /init (filled form data)
-    BPP->>BPP: Persist submitted form
-
-    %% 4 on_init (review)
-    BPP-->>BAP: POST /on_init (echo submitted data)
-    BAP-->>C: Show submitted data for review
-
-    %% 5 Candidate proceeds to confirm
-    C->>BAP: Confirm reviewed application
-
-    %% 6 Confirm (order creation)
-    BAP->>BPP: POST /confirm (verified form data)
-    BPP->>BPP: Validate and create order id
-
-    %% 7 on_confirm
-    BPP-->>BAP: POST /on_confirm (order id)
-    BAP-->>C: Show "Application submitted"
-
-    %% 8 Solicited updates
-    C->>BAP: Request change
-    BAP->>BPP: POST /update
-    BPP-->>BAP: POST /on_update
-    BAP-->>C: Show update result
-
-    %% 9 Unsolicited updates from BPP
-    BPP-->>BAP: POST /on_update (interview, notes, offer, status)
-    BAP-->>C: Notify candidate
-
-    %% 10 Status
-    C->>BAP: Request status
-    BAP->>BPP: POST /status
-    BPP-->>BAP: POST /on_status
-    BAP-->>C: Display status
-
-    %% 11 Cancel (post-confirm only)
-    C->>BAP: Cancel application (post-confirm)
-    BAP->>BPP: POST /cancel
-    BPP-->>BAP: POST /on_cancel
-    BAP-->>C: Show "Application withdrawn"
-
-    %% 12 Support
-    C->>BAP: Request support
-    BAP->>BPP: POST /support
-    BPP-->>BAP: POST /on_support
-    BAP-->>C: Present support information
+    BPP-->>BAP: on_update (interview, offer, joining; unsolicited)
+    BAP->>BPP: status / update / cancel / support
+    BPP-->>BAP: on_status / on_update / on_cancel / on_support
 ```
 
-**Key Features:**
-- Structured field approach for better clarity and interoperability
-- XForms 2.0 XML-based application forms
-- Comprehensive application workflow from search to confirmation
-- Support for both solicited and unsolicited updates
-- Complete lifecycle management (status, cancel, support)
+### Livelihood APIs
 
-## API Endpoints
+| Stage | APIs |
+| --- | --- |
+| Discovery | `catalog_publish`, `discover`, `on_discover` |
+| Selection and application | `select`, `on_select`, `init`, `on_init`, `confirm`, `on_confirm` |
+| Post-application | `status`, `on_status`, `update`, `on_update`, `cancel`, `on_cancel`, `support`, `on_support` |
 
-The OPuN Livelihood domain includes the following APIs:
+The learning and loan domains use the `search` / `on_search` discovery pair, followed by the same select → init → confirm → status/update/cancel lifecycle. See each domain's README and examples.
 
-### Pre-order APIs
-- `/search` - Search for job opportunities
-- `/on_search` - Job catalog response
-- `/select` - Select a job opportunity
-- `/on_select` - Detailed job information and application form
-- `/init` - Submit filled application form
-- `/on_init` - Form data returned for verification
-- `/confirm` - Confirm and submit job application
-- `/on_confirm` - Application confirmation response
+## Getting started
 
-### Post-order APIs
-- `/status` - Check application status
-- `/on_status` - Status response
-- `/update` - Update application details (solicited)
-- `/on_update` - Update response or unsolicited updates (interview schedule, notes, offer, etc.)
-- `/cancel` - Cancel application
-- `/on_cancel` - Cancellation confirmation
-- `/support` - Request support information
-- `/on_support` - Support contact details
+### For readers and implementers
 
-## Getting Started
+1. Read the [livelihood specification](./opun_livelihood_domain_spec_2_0_0.md): domain identification, lifecycle states, form (XInput) rules, identity and consent, security, conformance.
+2. Review the schema pack for your domain: `attributes.yaml`, `context.jsonld` and `vocab.jsonld` under `schema-extension/`.
+3. Use the example payloads under `examples/` as reference requests and responses for every API.
 
-### For Developers
+### For platforms joining a network
 
-1. **Read the API Contract**: Start with the [Livelihood Domain API Contract](./livelihood-domain/doc/OPuN_API_Contract_Livelihood_v1.0.0.md) to understand the complete specification.
+1. **Choose your role:** seeker platform (BAP) or provider platform (BPP).
+2. **Register** as a network participant in a DeDi-compliant registry, with your participant type and public keys.
+3. **Generate keys:** Ed25519 for message signing (HTTP signature over a SHA-256 body digest) and X25519 for encryption.
+4. **Implement the APIs** for your domain, including all mandatory fields and lifecycle rules.
+5. **Test** your requests and responses against the example payloads.
 
-2. **Review Examples**: Explore the [example payloads](./livelihood-domain/examples/) to see real-world usage patterns for each API endpoint.
+## Standards used
 
-3. **Understand the Flow**: Refer to the Application Flow section in the API Contract to understand the end-to-end process.
+| Standard | Used for |
+| --- | --- |
+| [Beckn Protocol Core v2.0.0](https://github.com/beckn/protocol-specifications) | Transaction grammar, envelopes, routing |
+| [JSON-LD 1.1](https://www.w3.org/TR/json-ld11/) | Linked-data contexts for every schema pack |
+| [schema.org](https://schema.org/) | Shared vocabulary (`JobPosting`, `Course`, `MonetaryAmount`, …) |
+| [DeDi](https://dedi.global/) | Decentralised directory of network participants and keys |
+| [W3C Decentralized Identifiers (DID) v1.0](https://www.w3.org/TR/did-core/) | Issuer (`did:web`) and holder (`did:key`) identifiers |
+| [OpenID for Verifiable Credential Issuance](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) | Credential issuance (pre-authorised code flow) |
+| [OpenID for Verifiable Presentations](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) | Credential presentation to verifiers |
+| [SD-JWT-based Verifiable Credentials](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/) | Credential format with selective disclosure |
+| [Ed25519 (RFC 8032)](https://www.rfc-editor.org/rfc/rfc8032) and X25519 (RFC 7748) | Message signing and encryption |
+| [XForms](https://www.w3.org/TR/xforms/) | Application forms exchanged in `on_select` |
 
-### For Platform Integrators
+The VC flow is aligned with OpenID4VCI and OpenID4VP; it has not yet been run through the OpenID Foundation conformance suite.
 
-1. **Registry Setup**: Ensure your platform is registered in the OPuN registry with appropriate participant type (BAP or BPP).
+## Relevance to the Sustainable Development Goals
 
-2. **Cryptographic Setup**: Generate signing and encryption key pairs (ed25519 for signing, X25519 for encryption) and register public keys.
+OPuN directly advances **SDG 8** (Decent Work and Economic Growth) and **SDG 10** (Reduced Inequalities), both of which name persons with disabilities in their targets:
 
-3. **API Implementation**: Implement all required APIs according to the specification, ensuring compliance with mandatory fields and expected behaviors.
+- **8.5** Full and productive employment and decent work for all, including persons with disabilities: an open, interoperable job network from discovery to joining (livelihood domain).
+- **8.6** Reduce youth not in employment, education or training: courses, credentials and jobs on the same network (learning domain).
+- **8.10** Access to financial services for all: loan products offered over the same open rails (loan domain).
+- **10.2** Inclusion irrespective of disability: removes platform silos and supports accessible participating apps.
+- **10.3** Equal opportunity: selective disclosure lets a candidate share only what a job needs, not their full disability or medical record.
 
-4. **Testing**: Use the example payloads to test your implementation against the specification.
+## Privacy and data protection
 
-## Key Concepts
+- Disability and identity data is sensitive. Implementations must collect and share only what a transaction needs, with the user's consent (see §17 and §19 of the livelihood specification).
+- Verifiable credentials use selective disclosure, so a holder can prove one fact without revealing the whole record.
+- Implementations operating in India must comply with the Digital Personal Data Protection Act 2023 and the Rights of Persons with Disabilities Act 2016; implementations elsewhere must comply with their local equivalents.
+- Example payloads are illustrative only and must not contain real personal data.
+- Hosting user content, moderation and grievance redressal are the responsibility of each participating platform.
 
-### Participant Types
+## Versioning
 
-- **Buyer App Platform (BAP)**: Platforms that enable candidates to discover and apply for job opportunities
-- **Seller App Platform (BPP)**: Platforms that provide job opportunities and manage applications
+Each domain follows semantic versioning, independently of Beckn Core:
 
-### Protocol Principles
+- **Major:** breaking lifecycle or semantic changes
+- **Minor:** additive, backward-compatible changes
+- **Patch:** clarifications, documentation, constraints
 
-- **Decentralized**: Each participant operates its own systems
-- **Consent-Based**: All interactions require explicit consent and verification
-- **Interoperable**: Standardized APIs ensure seamless communication
-- **Verifiable**: Cryptographic signing ensures transaction integrity
+### Current versions
 
-### Form Submission Flow
+- Beckn Protocol Core: 2.0.0
+- Livelihood domain: 1.0.0 (normative)
+- Learning and loan domains: v1
+- Verifiable credential flow: draft
 
-1. BPP provides form structure in XForms 2.0 XML format (no URL)
-2. Buyer app renders the form and candidate completes it
-3. BAP sends filled form data in `/init`
-4. BPP stores and returns form data for review in `/on_init`
-5. Candidate reviews and confirms with same form data in `/confirm`
-6. BPP verifies and submits application in `/on_confirm`
-
-## Version Information
-
-- **Current API Version**: `1.0.0`
-- **Domain**: `opun:livelihood`
-- **Document Version**: `1.0.0`
-- **Last Updated**: 2024-12-11
-
-## Compliance
-
-All participants are required to ensure full compliance with the API contract specifications on the OPuN network. Non-compliance may result in rejection of requests/responses with appropriate error codes.
+Tagged releases and a changelog start with the first public release.
 
 ## Contributing
 
-When contributing to this specification:
+Contributions are welcome through issues and pull requests.
 
-1. Follow the existing documentation structure
-2. Ensure all examples are valid JSON
-3. Update version history for any changes
-4. Maintain consistency with Beckn Protocol core principles
-5. Include comprehensive documentation for new features
+1. Open an issue describing the change and the domain it affects.
+2. Keep changes backward-compatible unless a major version is proposed.
+3. Make sure every example payload is valid JSON and uses synthetic data.
+4. Update the domain README and the changelog.
+5. Sign off each commit (`git commit -s`) to certify the [Developer Certificate of Origin](https://developercertificate.org/). Contributions are accepted under the Apache License 2.0.
 
-## References
+## License
 
-- [OPuN Protocol Specification](../) - Core protocol documentation
-- [Beckn Protocol Core Specification](https://github.com/beckn/protocol-specifications) - Foundation protocol
-- [XForms 2.0 Specification](https://www.w3.org/TR/xforms22/) - Form specification
-- OPuN Registry Documentation
-- OPuN Error Codes Specification
+Copyright 2025–2026 Plotch.ai. Licensed under the [Apache License, Version 2.0](./LICENSE). See [NOTICE](./NOTICE).
 
-## Support
+## Stewardship
 
-For questions, issues, or contributions related to the OPuN specification:
-
-- Review the API Contract documentation
-- Check example payloads for reference implementations
-- Consult the Application Flow section for process understanding
-- Refer to error codes specification for troubleshooting
-
----
-
-**Note**: This specification is actively maintained. Please refer to the version history in individual domain documentation for change tracking.
-
+The OPuN specification was originally developed by Plotch.ai and is stewarded by Enable India as an open, royalty-free public good. Any government, employer, training provider, lender, NGO or platform may implement it without licence fees.
