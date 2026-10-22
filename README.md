@@ -24,6 +24,7 @@ OPuN-Specification/
 ├── README.md                              # This file
 ├── LICENSE                                # Apache License 2.0
 ├── NOTICE                                 # Copyright and stewardship
+├── DPG.md                                 # SDG alignment and DPG Standard evidence
 ├── opun_livelihood_domain_spec_2_0_0.md   # Normative livelihood specification
 ├── livelihood-domain-2.0/
 │   └── schema/livelihood/v1/
@@ -124,13 +125,9 @@ The VC flow is aligned with OpenID4VCI and OpenID4VP; it has not yet been run th
 
 ## Relevance to the Sustainable Development Goals
 
-OPuN directly advances **SDG 8** (Decent Work and Economic Growth) and **SDG 10** (Reduced Inequalities), both of which name persons with disabilities in their targets:
+OPuN directly advances **SDG 8** (Decent Work and Economic Growth: targets 8.5, 8.6, 8.10) and **SDG 10** (Reduced Inequalities: targets 10.2, 10.3), both of which name persons with disabilities in their targets.
 
-- **8.5** Full and productive employment and decent work for all, including persons with disabilities: an open, interoperable job network from discovery to joining (livelihood domain).
-- **8.6** Reduce youth not in employment, education or training: courses, credentials and jobs on the same network (learning domain).
-- **8.10** Access to financial services for all: loan products offered over the same open rails (loan domain).
-- **10.2** Inclusion irrespective of disability: removes platform silos and supports accessible participating apps.
-- **10.3** Equal opportunity: selective disclosure lets a candidate share only what a job needs, not their full disability or medical record.
+OPuN is being prepared for submission as a Digital Public Good. See [DPG.md](./DPG.md) for the full SDG alignment and how the specification meets each indicator of the DPG Standard.
 
 ## Privacy and data protection
 
