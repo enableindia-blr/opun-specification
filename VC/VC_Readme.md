@@ -302,10 +302,10 @@ Each subsection gives: **purpose**, **key descriptions**, and **full schema/exam
 ```json
 {
   "format": "dc+sd-jwt", 
-  "credential": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6d2ViOmRpZC1wbG90Y2gub3B1bi5uZXR3b3JrOmFnYWNoZTphZ2VudDppZGVudGl0eTppZDoyMzUzYzZiNCIsInN1YiI6ImRpZDprZXk6ejZNa2IzODU1M2IxMTRmMTRhYzYiLCJpYXQiOjE3NzI0MzUyNTQsImV4cCI6MTgwMzk3MTI1NCwidmN0IjoiaHR0cHM6Ly9vcHVuLm5ldHdvcmsvdmN0L2lkZW50aXR5LWNhcmQiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJwaG9uZSI6Ijk4MzM5MzMzNDUiLCJmdWxsX25hbWUiOiJWaWtyYW0iLCJpc19vdmVyXzE4IjoiMTgrIiwiX3NkIjpbIld6NXhwTzFCMktyck54M3NiNUJBUlRWZ0VTRkZVcE15TENkV1p0MEp3RWciLCJsVS1TQlV1OUJ0cHhVS0lHdVpvZzhFZXpVX3JGS0x4TTNYcHZFX01nellZIiwiNDNhb2RVc21NNjBRX2RtYWxtODM0eFpsaEJpdUpuVGUtMlVzMkt5bHJLYyJdfX0.PoY5_j6A6w9GKi4Tkbc4cSv8MoaRpZngE5QTv-NxnPuE0lDW6NVYWEOWbPCd_gjVePtsiUm6XvNSGgsnJ-ufFQ",
+  "credential": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6d2ViOmRpZC1wbG90Y2gub3B1bi5uZXR3b3JrOmFnYWNoZTphZ2VudDppZGVudGl0eTppZDoyMzUzYzZiNCIsInN1YiI6ImRpZDprZXk6ejZNa2IzODU1M2IxMTRmMTRhYzYiLCJpYXQiOjE3NzI0MzUyNTQsImV4cCI6MTgwMzk3MTI1NCwidmN0IjoiaHR0cHM6Ly9vcHVuLm5ldHdvcmsvdmN0L2lkZW50aXR5LWNhcmQiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJwaG9uZSI6IjU1NTAxMDQzMjEiLCJmdWxsX25hbWUiOiJWaWtyYW50IiwiaXNfb3Zlcl8xOCI6IjE4KyIsIl9zZCI6WyJXejV4cE8xQjJLcnJOeDNzYjVCQVJUVmdFU0ZGVXBNeUxDZFdadDBKd0VnIiwibFUtU0JVdTlCdHB4VUtJR3Vab2c4RWV6VV9yRktMeE0zWHB2RV9NZ3pZWSIsIjQzYW9kVXNtTTYwUV9kbWFsbTgzNHhabGhCaXVKblRlLTJVczJLeWxyS2MiXX19.PoY5_j6A6w9GKi4Tkbc4cSv8MoaRpZngE5QTv-NxnPuE0lDW6NVYWEOWbPCd_gjVePtsiUm6XvNSGgsnJ-ufFQ",
   "disclosures": [
-    "WyI2a3lyWnh2dlppaGE0ZU45aFVvRjFRIiwicGhvbmUiLCI5ODMzOTMzMzQ1Il0",
-    "WyJrakV1UUQ4WFRZU01CM2hJVkJwS1JnIiwiZnVsbF9uYW1lIiwiVmlrcmFtIl0",
+    "WyI2a3lyWnh2dlppaGE0ZU45aFVvRjFRIiwicGhvbmUiLCI1NTUwMTA0MzIxIl0",
+    "WyJrakV1UUQ4WFRZU01CM2hJVkJwS1JnIiwiZnVsbF9uYW1lIiwiVmlrcmFudCJd",
     "WyJCTWRKcmFOMklaMHRBdDhrYWRnQ2NRIiwiaXNfb3Zlcl8xOCIsIjE4KyJd"
   ],
   "c_nonce": "-7iiFfBzJj5pxeEZJKW4ow",
@@ -358,8 +358,8 @@ Each subsection gives: **purpose**, **key descriptions**, and **full schema/exam
 
 ```json
 [
-  ["6kyrZxvvZiha4eN9hUoF1Q", "phone", "9833933345"],
-  ["kjEuQD8XTYSMB3hIVBpKRg", "full_name", "Vikram"],
+  ["6kyrZxvvZiha4eN9hUoF1Q", "phone", "5550104321"],
+  ["kjEuQD8XTYSMB3hIVBpKRg", "full_name", "Vikrant"],
   ["BMdJraN2IZ0tAt8kadgCcQ", "is_over_18", "18+"]
 ]
 ```
