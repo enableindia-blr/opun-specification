@@ -75,7 +75,7 @@ sequenceDiagram
     BAP->>BPP: confirm
     BPP-->>BAP: on_confirm (application id)
 
-    BPP-->>BAP: on_update (interview, offer, joining; unsolicited)
+    BPP-->>BAP: on_update (unsolicited interview, offer, joining)
     BAP->>BPP: status / update / cancel / support
     BPP-->>BAP: on_status / on_update / on_cancel / on_support
 ```
