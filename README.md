@@ -47,6 +47,19 @@ OPuN-Specification/
     └── VC_Readme.md                       # Verifiable credential flow and schemas
 ```
 
+## Schema contexts
+
+Every payload references the Beckn core context and the OPuN context for its domain.
+
+| Domain | Canonical context | Tagged copy (v2.0.0) |
+| --- | --- | --- |
+| Beckn core | `https://schema.nfh.global/core/v2.0/context.jsonld` | Published by Beckn |
+| Livelihood | `https://opun.network/schema/livelihood/v1/context.jsonld` | [context.jsonld](https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld) |
+| Learning | `https://opun.network/schema/learning/v1/context.jsonld` | [context.jsonld](https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/learning-domain-2.0/schema/learning/v1/schema-extension/context.jsonld) |
+| Loan | `https://opun.network/schema/loan/v1/context.jsonld` | [context.jsonld](https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld) |
+
+The `opun.network` copies are published from this repository's `main` branch through GitHub Pages; `vocab.jsonld` and `attributes.yaml` sit beside each context. Example payloads use the tagged copies. Implementations should load contexts through a cached or local document loader rather than fetching them on every message.
+
 ## Livelihood flow
 
 Livelihood discovery follows Beckn v2.0 catalog-centric discovery: provider platforms (BPPs) publish catalogs, and seeker platforms (BAPs) discover them. The transaction APIs that follow are exchanged directly between BAP and BPP.

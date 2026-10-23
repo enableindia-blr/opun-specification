@@ -12,15 +12,15 @@
       "bpp_id": "discovery.opun-network.org",
       "bpp_uri": "https://discovery.opun-network.org",
       "schema_context": [
-        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+        "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
       ]
     },
     "message": {
       "catalogs": [
         {
           "@context": [
-            "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-            "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+            "https://schema.nfh.global/core/v2.0/context.jsonld",
+            "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
           ],
           "@type": "beckn:Catalog",
           "beckn:id": "catalog-techcorp-001",
@@ -45,7 +45,7 @@
               },
   
               "beckn:itemAttributes": {
-                "@context": "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld",
+                "@context": "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld",
                 "@type": "opun:LivelihoodJobOpportunity",
   
                 "opun:employmentType": "FULL_TIME",

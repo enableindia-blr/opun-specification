@@ -4,8 +4,8 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "http://schema.org/",
-    "beckn": "https://schema.beckn.org/core/v2/",
-    "livelihood": "https://schema.beckn.org/livelihood/v1/"
+    "beckn": "https://schema.nfh.global/core/v2.0/",
+    "livelihood": "https://opun.network/schema/livelihood/v1/"
   },
   "@graph": [
     {

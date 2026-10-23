@@ -49,7 +49,7 @@ All transactions **must declare**:
 ### 3.2 Namespace
 
 ```json
-"opun": "https://opun.network/ns/"
+"opun": "https://opun.network/schema/livelihood/v1/"
 ```
 
 OPuN is the **namespace authority** for all livelihood semantics.
@@ -62,13 +62,17 @@ All payloads **must include exactly two contexts**:
 
 ```json
 "@context": [
-  "https://becknprotocol.io/context/core.jsonld",
-  "https://opun.network/context/livelihood/1.0.0.jsonld"
+  "https://schema.nfh.global/core/v2.0/context.jsonld",
+  "https://opun.network/schema/livelihood/v1/context.jsonld"
 ]
 ```
 
-- `core.jsonld` → Beckn-governed, immutable
-- `livelihood.jsonld` → OPuN-governed, versioned
+The OPuN context is also published, unchanged, at the tagged repository copy:
+`https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld`.
+Implementations should resolve both contexts through a document loader with a local or cached copy, as recommended by Beckn, rather than fetching them on every message.
+
+- Beckn core context → Beckn-governed, immutable within v2
+- OPuN livelihood context → OPuN-governed, versioned (`v1` in the path is the major version)
 
 ---
 

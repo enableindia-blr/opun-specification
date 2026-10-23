@@ -12,7 +12,7 @@ This directory contains the **Loan** domain schema extension for OPuN networks o
 
 ## Domain Context
 
-- **Base IRI:** `https://schema.opun.network/loan/v1/`
+- **Base IRI:** `https://opun.network/schema/loan/v1/`
 - **Domain in messages:** `opun:loan`
 
 ## Key Types and Entities

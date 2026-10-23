@@ -10,14 +10,14 @@
     "bap_id": "bap.opungram.com",
     "bap_uri": "https://bap-api.opungram.com",
     "schema_context": [
-      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
     ]
   },
   "message": {
     "order": {
       "@context": [
-        "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-        "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+        "https://schema.nfh.global/core/v2.0/context.jsonld",
+        "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
       ],
       "@type": "beckn:Order",
 

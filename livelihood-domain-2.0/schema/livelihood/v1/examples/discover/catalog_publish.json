@@ -10,7 +10,7 @@
     "bpp_uri": "https://bpp-api.opunseva.com/agache/agent/network/",
     "ttl": "PT30S",
     "schema_context": [
-      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
     ]
     
   },
@@ -18,8 +18,8 @@
     "catalogs": [
       {
         "@context": [
-          "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
-          "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+          "https://schema.nfh.global/core/v2.0/context.jsonld",
+          "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
         ],
         "@type": "beckn:Catalog",
         "beckn:id": "PRV_1766398782_74c3029b",

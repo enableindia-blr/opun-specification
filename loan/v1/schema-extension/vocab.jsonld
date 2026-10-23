@@ -4,8 +4,8 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "schema": "http://schema.org/",
-    "beckn": "https://schema.beckn.org/core/v2/",
-    "loan": "https://schema.opun.network/loan/v1/"
+    "beckn": "https://schema.nfh.global/core/v2.0/",
+    "loan": "https://opun.network/schema/loan/v1/"
   },
   "@graph": [
     {"@id":"loan:","@type":"rdfs:Ontology","rdfs:label":"OPuN Loan Domain Vocabulary","rdfs:comment":"Vocabulary for loan products, applications (BAP-originated), and status/fulfillment. Aligned with init/on_init echo and confirm/on_confirm APPLICATION_SUBMITTED flow.","schema:version":"1.0.0"},

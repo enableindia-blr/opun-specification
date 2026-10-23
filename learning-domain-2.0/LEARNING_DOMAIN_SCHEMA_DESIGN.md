@@ -31,7 +31,7 @@ This document plans and designs the **schema extension** for a **Learning Domain
 ## 3. Domain Identification
 
 - **Domain code (in context):** `opun:learning`
-- **Namespace:** `https://schema.opun.network/learning/v1/`
+- **Namespace:** `https://opun.network/schema/learning/v1/`
 - **Fulfillment category:** `COURSE` (or equivalent as finalized)
 
 All learning transactions **must** declare the learning domain in `context.domain` as `opun:learning` and use the learning JSON-LD context.
@@ -169,7 +169,7 @@ Define RDF classes and properties for:
 - **Enums (as classes or enumeration):** `DeliveryMode` (PHYSICAL, ONLINE, HYBRID), `EnrollmentStatus` (values as above), `CredentialType`, `CourseLevel`.
 - **Properties:** All attributes in §5 as RDF properties with `schema:domainIncludes` and `schema:rangeIncludes` where appropriate; align with schema.org (e.g. `Course`, `EducationalOccupationalProgram`, `LearningResource`) where it fits.
 
-Namespace: e.g. `learning:` → `https://schema.opun.network/learning/v1/`.
+Namespace: e.g. `learning:` → `https://opun.network/schema/learning/v1/`.
 
 ---
 

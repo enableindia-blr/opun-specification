@@ -13,12 +13,12 @@
     "ttl": "PT10M",
     "network_id": ["opun-network"],
     "schema_context": [
-      "https://raw.githubusercontent.com/opun/opunnetwork-specification/main/schema/livelihood/v1/context.jsonld"
+      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
     ]
   },
   "message": {
     "supportInfo": {
-      "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/main/schema/core/v2/context.jsonld",
+      "@context": "https://schema.nfh.global/core/v2.0/context.jsonld",
       "@type": "beckn:SupportInfo",
       "name": "TechCorp HR Support",
       "phone": "+91-9876543210",
