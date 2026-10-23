@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OPuN schemas</title>
+  <meta name="description" content="JSON-LD contexts, vocabularies and attribute packs for the OPuN livelihood, learning and loan domains.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="OPuN home">OP<span>u</span>N</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/#how-it-works">How it works</a></li>
+          <li><a href="/#domains">Domains</a></li>
+          <li><a href="/#dpg">Digital Public Good</a></li>
+          <li><a href="/schema/" aria-current="page">Schemas</a></li>
+          <li><a href="https://github.com/enableindia-blr/opun-specification">Specification</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section aria-labelledby="schema-title">
+      <div class="wrap">
+        <p class="eyebrow">Schemas</p>
+        <h1 id="schema-title">OPuN schema packs</h1>
+        <p class="lead">JSON-LD contexts, vocabularies and attribute definitions for every OPuN domain. Every network payload references the Beckn core context and the OPuN context for its domain.</p>
+        <div class="table-wrap">
+          <table>
+            <caption class="eyebrow" style="text-align:left">Published schema packs</caption>
+            <thead>
+              <tr><th scope="col">Domain</th><th scope="col">Version</th><th scope="col">Context</th><th scope="col">Vocabulary and attributes</th><th scope="col">Tagged copy</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Livelihood<br><code>opun:livelihood</code></th>
+                <td>1.0.0</td>
+                <td><a href="/schema/livelihood/v1/context.jsonld"><code>https://opun.network/schema/livelihood/v1/context.jsonld</code></a></td>
+                <td><a href="/schema/livelihood/v1/vocab.jsonld">vocab.jsonld</a><br><a href="/schema/livelihood/v1/attributes.yaml">attributes.yaml</a></td>
+                <td><a href="https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld">v2.0.0 copy</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Learning<br><code>opun:learning</code></th>
+                <td>v1</td>
+                <td><a href="/schema/learning/v1/context.jsonld"><code>https://opun.network/schema/learning/v1/context.jsonld</code></a></td>
+                <td><a href="/schema/learning/v1/vocab.jsonld">vocab.jsonld</a><br><a href="/schema/learning/v1/attributes.yaml">attributes.yaml</a></td>
+                <td><a href="https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/learning-domain-2.0/schema/learning/v1/schema-extension/context.jsonld">v2.0.0 copy</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Loan<br><code>opun:loan</code></th>
+                <td>v1</td>
+                <td><a href="/schema/loan/v1/context.jsonld"><code>https://opun.network/schema/loan/v1/context.jsonld</code></a></td>
+                <td><a href="/schema/loan/v1/vocab.jsonld">vocab.jsonld</a><br><a href="/schema/loan/v1/attributes.yaml">attributes.yaml</a></td>
+                <td><a href="https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld">v2.0.0 copy</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Beckn core</th>
+                <td>2.0</td>
+                <td><code>https://schema.nfh.global/core/v2.0/context.jsonld</code></td>
+                <td colspan="2">Published by the Beckn community</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 style="margin-top:2.5rem">Using the contexts</h2>
+        <p>Include both contexts in every payload, for example for the livelihood domain:</p>
+        <pre class="card" style="overflow-x:auto"><code>"@context": [
+  "https://schema.nfh.global/core/v2.0/context.jsonld",
+  "https://opun.network/schema/livelihood/v1/context.jsonld"
+]</code></pre>
+        <p>Load contexts through a cached or local document loader rather than fetching them on every message. <code>v1</code> in the path is the major version: files at a <code>v1</code> URL only change in backward-compatible ways.</p>
+        <p>The schemas are published from the <a href="https://github.com/enableindia-blr/opun-specification">OPuN specification repository</a> under the Apache License 2.0. Example payloads for every API are in the repository.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p>OPuN is stewarded by <a href="https://www.enableindia.org">Enable India</a>.</p>
+        <p class="partner">Technology partner: <a href="https://plotch.ai">Plotch.ai</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="https://github.com/enableindia-blr/opun-specification">Specification</a></li>
+          <li><a href="/schema/">Schemas</a></li>
+          <li><a href="https://github.com/enableindia-blr/opun-specification/blob/main/LICENSE">Apache-2.0 licence</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

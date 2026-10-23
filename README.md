@@ -25,6 +25,7 @@ OPuN-Specification/
 ├── LICENSE                                # Apache License 2.0
 ├── NOTICE                                 # Copyright and stewardship
 ├── DPG.md                                 # SDG alignment and DPG Standard evidence
+├── website/                               # opun.network home page, schemas page, deploy script
 ├── opun_livelihood_domain_spec_2_0_0.md   # Normative livelihood specification
 ├── livelihood-domain-2.0/
 │   └── schema/livelihood/v1/
@@ -58,7 +59,7 @@ Every payload references the Beckn core context and the OPuN context for its dom
 | Learning | `https://opun.network/schema/learning/v1/context.jsonld` | [context.jsonld](https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/learning-domain-2.0/schema/learning/v1/schema-extension/context.jsonld) |
 | Loan | `https://opun.network/schema/loan/v1/context.jsonld` | [context.jsonld](https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld) |
 
-The `opun.network` copies are published from this repository's `main` branch through GitHub Pages; `vocab.jsonld` and `attributes.yaml` sit beside each context. Example payloads use the tagged copies. Implementations should load contexts through a cached or local document loader rather than fetching them on every message.
+The `opun.network` copies are published from this repository's `main` branch by [`website/deploy.sh`](./website/deploy.sh); `vocab.jsonld` and `attributes.yaml` sit beside each context. Example payloads use the tagged copies. Implementations should load contexts through a cached or local document loader rather than fetching them on every message.
 
 ## Livelihood flow
 

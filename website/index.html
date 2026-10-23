@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OPuN: Open Purple Network</title>
+  <meta name="description" content="OPuN is an open, consent-based network connecting Persons with Disabilities to jobs, learning and finance, on any platform. Stewarded by Enable India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="OPuN home">OP<span>u</span>N</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#domains">Domains</a></li>
+          <li><a href="#dpg">Digital Public Good</a></li>
+          <li><a href="/schema/">Schemas</a></li>
+          <li><a href="https://github.com/enableindia-blr/opun-specification">Specification</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="eyebrow">Open Purple Network</p>
+        <h1 id="hero-title">OPuN</h1>
+        <p class="lead">An open, consent-based network connecting Persons with Disabilities to jobs, learning and finance, on any platform.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/enableindia-blr/opun-specification">Read the specification</a>
+          <a class="button secondary" href="/schema/">Browse the schemas</a>
+        </div>
+        <p class="steward">Stewarded by <strong><a href="https://www.enableindia.org">Enable India</a></strong>, a disability-sector non-profit, as an open public good.</p>
+      </div>
+    </section>
+
+    <section class="alt" aria-labelledby="why-title">
+      <div class="wrap">
+        <p class="eyebrow">Why OPuN</p>
+        <h2 id="why-title">Livelihood services for Persons with Disabilities don't talk to each other</h2>
+        <div class="grid">
+          <div class="card">
+            <p class="num">01</p>
+            <p>Services are split across separate portals, NGOs and employers that don't interoperate.</p>
+          </div>
+          <div class="card">
+            <p class="num">02</p>
+            <p>Employers can't easily find or verify talent. Candidates re-enter their profile on every portal.</p>
+          </div>
+          <div class="card">
+            <p class="num">03</p>
+            <p>Disability data is sensitive, protected by the RPwD Act 2016 and the DPDP Act 2023, yet it is often over-shared.</p>
+          </div>
+        </div>
+        <p class="quote">UPI did it for payments. ONDC did it for commerce. The purple economy needs the same open rail.</p>
+      </div>
+    </section>
+
+    <section id="how-it-works" aria-labelledby="how-title">
+      <div class="wrap">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title">Any seeker app, any provider app</h2>
+        <p class="lead">Seeker apps and provider apps connect through a shared network core. Every message is signed, and every participant is listed in an open registry.</p>
+        <div class="layers">
+          <div class="layer">
+            <h3>Seeker apps</h3>
+            <p>Where candidates and learners build a profile, discover opportunities and apply.</p>
+          </div>
+          <div class="layer core">
+            <h3>Network core</h3>
+            <ul>
+              <li>Beckn Protocol 2.0, signed messages</li>
+              <li>Network adaptors and gateway</li>
+              <li>Participant registry on <a href="https://dedi.global">DeDi</a></li>
+            </ul>
+          </div>
+          <div class="layer">
+            <h3>Provider apps</h3>
+            <p>Where employers, training providers and lenders publish opportunities and manage applications.</p>
+          </div>
+        </div>
+        <p class="trust"><strong>Trust layer:</strong> identity, verifiable credentials and consent, shared by every app on the network.</p>
+      </div>
+    </section>
+
+    <section id="domains" class="alt" aria-labelledby="domains-title">
+      <div class="wrap">
+        <p class="eyebrow">Domains</p>
+        <h2 id="domains-title">Three domains, one network</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Jobs</h3>
+            <p>Jobs, internships and project work, from discovery to joining.</p>
+            <p><span class="tag">Livelihood 1.0.0</span></p>
+          </div>
+          <div class="card">
+            <h3>Learning</h3>
+            <p>Courses (online, offline, hybrid), enrolment, progress and certificates.</p>
+            <p><span class="tag">Learning v1</span></p>
+          </div>
+          <div class="card">
+            <h3>Loans</h3>
+            <p>Loan products, applications and status updates, with credential-backed eligibility.</p>
+            <p><span class="tag">Loan v1</span></p>
+          </div>
+        </div>
+        <p class="lead" style="margin-top:1.75rem">One identity, one consent model, one wallet: course, then certificate, then job, then loan, without registering again. New domains plug in as schema packs, with no change to Beckn Core.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="apart-title">
+      <div class="wrap">
+        <p class="eyebrow">What sets OPuN apart</p>
+        <h2 id="apart-title">Built on open standards</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Beckn 2.0 native</h3>
+            <p>A domain extension of Beckn Protocol Core v2.0.0, with signed messages and catalog-based discovery.</p>
+          </div>
+          <div class="card">
+            <h3>Open registry</h3>
+            <p>Participants are listed on DeDi, so other open networks can discover them and verify their keys.</p>
+          </div>
+          <div class="card">
+            <h3>Verifiable credentials</h3>
+            <p>OpenID4VCI and OpenID4VP with SD-JWT and did:web. A candidate shares one fact, not the full record.</p>
+          </div>
+          <div class="card">
+            <h3>Multi-domain</h3>
+            <p>Jobs, learning and loans share the same rails, identity and consent model.</p>
+          </div>
+          <div class="card">
+            <h3>Portable</h3>
+            <p>Runs in any cloud. Any government, NGO or company can operate a network.</p>
+          </div>
+          <div class="card">
+            <h3>AI-agent ready</h3>
+            <p>Every network action is a well-defined intent that software agents can call.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" aria-labelledby="apps-title">
+      <div class="wrap">
+        <p class="eyebrow">Try it</p>
+        <h2 id="apps-title">Reference apps</h2>
+        <div class="grid">
+          <div class="card">
+            <h3><a href="https://www.opungram.com">OPuNgram</a></h3>
+            <p>Seeker app: profile, discovery, applications, wallet and credentials.</p>
+          </div>
+          <div class="card">
+            <h3><a href="https://www.opunseva.com">OPuNseva</a></h3>
+            <p>Provider and employer app: job postings, applicant pipeline, offers, courses and loans.</p>
+          </div>
+        </div>
+        <p style="margin-top:1.5rem">Enable India's own iEnablegram and iEnableseva apps run on the same network. The reference apps are tested against WCAG 2.2 AA for screen readers, low vision and reduced motion.</p>
+      </div>
+    </section>
+
+    <section id="dpg" aria-labelledby="dpg-title">
+      <div class="wrap">
+        <p class="eyebrow">Digital Public Good</p>
+        <h2 id="dpg-title">Open, royalty-free, for anyone to use</h2>
+        <p class="lead">The OPuN specification is published under the Apache License 2.0 and is being prepared for the <a href="https://digitalpublicgoods.net">Digital Public Goods</a> registry.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>What's inside</h3>
+            <p>Beckn 2.0 schema packs (JSON-LD), the full API lifecycle with example payloads, and a verifiable-credential profile.</p>
+            <p><a href="https://github.com/enableindia-blr/opun-specification">Specification on GitHub</a></p>
+          </div>
+          <div class="card">
+            <h3>SDG alignment</h3>
+            <p>SDG 8 (targets 8.5, 8.6, 8.10): decent work for all, including persons with disabilities. SDG 10 (10.2, 10.3): inclusion and equal opportunity.</p>
+            <p><a href="https://github.com/enableindia-blr/opun-specification/blob/main/DPG.md">SDG and DPG evidence</a></p>
+          </div>
+          <div class="card">
+            <h3>Schemas</h3>
+            <p>JSON-LD contexts, vocabularies and attribute packs for every domain, served from this site.</p>
+            <p><a href="/schema/">Browse the schemas</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" aria-labelledby="engage-title">
+      <div class="wrap">
+        <p class="eyebrow">Get involved</p>
+        <h2 id="engage-title">Three ways to engage</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Adopt the specification</h3>
+            <p>Build your own app or network on the open OPuN specification and stay compatible with every other participant.</p>
+          </div>
+          <div class="card">
+            <h3>Run a network</h3>
+            <p>Deploy the full stack in your own cloud, under your brand, for your state or country.</p>
+          </div>
+          <div class="card">
+            <h3>Federate</h3>
+            <p>Networks discover each other through DeDi, so participants are shared, not duplicated.</p>
+          </div>
+        </div>
+        <p style="margin-top:1.5rem">To propose a change to the specification, <a href="https://github.com/enableindia-blr/opun-specification/issues">open an issue on GitHub</a>. To talk about adopting OPuN, contact <a href="https://www.enableindia.org">Enable India</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p>OPuN is stewarded by <a href="https://www.enableindia.org">Enable India</a>.</p>
+        <p class="partner">Technology partner: <a href="https://plotch.ai">Plotch.ai</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="https://github.com/enableindia-blr/opun-specification">Specification</a></li>
+          <li><a href="/schema/">Schemas</a></li>
+          <li><a href="https://github.com/enableindia-blr/opun-specification/blob/main/LICENSE">Apache-2.0 licence</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
