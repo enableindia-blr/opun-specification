@@ -13,7 +13,7 @@
     "ttl": "PT10M",
     "network_id": ["opun-network"],
     "schema_context": [
-      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
+      "https://opun.network/schema/livelihood/v1/context.jsonld"
     ]
   },
 
@@ -23,7 +23,7 @@
     "order": {
       "@context": [
         "https://schema.nfh.global/core/v2.0/context.jsonld",
-        "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
+        "https://opun.network/schema/livelihood/v1/context.jsonld"
       ],
       "@type": "beckn:Order",
 

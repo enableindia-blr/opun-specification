@@ -13,7 +13,7 @@
     "ttl": "PT10M",
     "network_id": ["opun-network"],
     "schema_context": [
-      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
+      "https://opun.network/schema/livelihood/v1/context.jsonld"
     ]
   },
 

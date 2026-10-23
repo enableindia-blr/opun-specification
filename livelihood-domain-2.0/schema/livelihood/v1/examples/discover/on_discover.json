@@ -12,7 +12,7 @@
       "bpp_id": "discovery.opun-network.org",
       "bpp_uri": "https://discovery.opun-network.org",
       "schema_context": [
-        "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
+        "https://opun.network/schema/livelihood/v1/context.jsonld"
       ]
     },
     "message": {
@@ -20,7 +20,7 @@
         {
           "@context": [
             "https://schema.nfh.global/core/v2.0/context.jsonld",
-            "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld"
+            "https://opun.network/schema/livelihood/v1/context.jsonld"
           ],
           "@type": "beckn:Catalog",
           "beckn:id": "catalog-techcorp-001",
@@ -45,7 +45,7 @@
               },
   
               "beckn:itemAttributes": {
-                "@context": "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/livelihood-domain-2.0/schema/livelihood/v1/schema-extension/context.jsonld",
+                "@context": "https://opun.network/schema/livelihood/v1/context.jsonld",
                 "@type": "opun:LivelihoodJobOpportunity",
   
                 "opun:employmentType": "FULL_TIME",

@@ -12,14 +12,14 @@
     "bpp_id": "bpp.lender.com",
     "bpp_uri": "https://bpp-api.lender.com",
     "schema_context": [
-      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld"
+      "https://opun.network/schema/loan/v1/context.jsonld"
     ]
   },
   "message": {
     "order": {
       "@context": [
         "https://schema.nfh.global/core/v2.0/context.jsonld",
-        "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld"
+        "https://opun.network/schema/loan/v1/context.jsonld"
       ],
       "@type": "beckn:Order",
       "beckn:id": "LP-AGRI-2024-001",

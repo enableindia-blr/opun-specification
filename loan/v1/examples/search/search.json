@@ -10,7 +10,7 @@
     "bap_id": "bap.loanapp.com",
     "bap_uri": "https://bap-api.loanapp.com",
     "schema_context": [
-      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld"
+      "https://opun.network/schema/loan/v1/context.jsonld"
     ]
   },
   "message": {

@@ -12,14 +12,14 @@
     "ttl": "PT30S",
     "version": "2.0.0",
     "schema_context": [
-      "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld"
+      "https://opun.network/schema/loan/v1/context.jsonld"
     ]
   },
   "message": {
     "order": {
       "@context": [
         "https://schema.nfh.global/core/v2.0/context.jsonld",
-        "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld"
+        "https://opun.network/schema/loan/v1/context.jsonld"
       ],
       "@type": "beckn:Order",
       "beckn:buyer": {
@@ -36,7 +36,7 @@
         "beckn:mode": "DIGITAL"
       },
       "beckn:orderAttributes": {
-        "@context": "https://raw.githubusercontent.com/enableindia-blr/opun-specification/v2.0.0/loan/v1/schema-extension/context.jsonld",
+        "@context": "https://opun.network/schema/loan/v1/context.jsonld",
         "@type": "opun:LoanApplicationAttributes",
         "opun:loanApplicationId": "LOAN_APP_2024_001",
         "opun:appliedPrincipal": 100000,
